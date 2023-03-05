@@ -1050,6 +1050,10 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2088186383295098131, guid: c814ddaeaad7a7b49bee19d4c7c4e75e, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 448c20767e497b148bf4d2997c735e02, type: 3}
     - target: {fileID: 2088186384035410048, guid: c814ddaeaad7a7b49bee19d4c7c4e75e, type: 3}
       propertyPath: m_Name
       value: Player
@@ -1100,11 +1104,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2088186384035410051, guid: c814ddaeaad7a7b49bee19d4c7c4e75e, type: 3}
       propertyPath: m_Size.x
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2088186384035410051, guid: c814ddaeaad7a7b49bee19d4c7c4e75e, type: 3}
       propertyPath: m_Size.y
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2088186384035410051, guid: c814ddaeaad7a7b49bee19d4c7c4e75e, type: 3}
       propertyPath: m_Offset.x
