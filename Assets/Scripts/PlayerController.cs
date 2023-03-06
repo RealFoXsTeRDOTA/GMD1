@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
 
   private Vector2 moveDirection;
   private Rigidbody2D body;
+  private SpriteRenderer spriteRenderer;
 
   private void Start()
   {
@@ -23,11 +24,17 @@ public class PlayerController : MonoBehaviour
 
     body = GetComponent<Rigidbody2D>();
     body.freezeRotation = true;
+    spriteRenderer = GetComponent<SpriteRenderer>();
   }
 
   private void Update()
   {
     transform.position += moveSpeed * Time.deltaTime * new Vector3(moveDirection.x, 0f, 0f);
+
+    if (moveDirection.x != 0f)
+    {
+      spriteRenderer.flipX = moveDirection.x > 0f;
+    }
   }
 
   private void HandleMove(Vector2 direction)
@@ -48,5 +55,13 @@ public class PlayerController : MonoBehaviour
   private void HandleAttack()
   {
     Debug.Log("Avada Kedavra!");
+  }
+
+  private void OnDestroy()
+  {
+    input.MoveEvent -= HandleMove;
+    input.JumpEvent -= HandleJump;
+    input.DescendEvent -= HandleDescend;
+    input.AttackEvent -= HandleAttack;
   }
 }

@@ -23,4 +23,10 @@ public class GameManager : MonoBehaviour
   //{
   //  pauseMenu.SetActive(false);
   //}
+
+  //private void OnDestroy()
+  //{
+  //  input.PauseEvent -= HandlePause;
+  //  input.ResumeEvent -= HandleResume;
+  //}
 }
