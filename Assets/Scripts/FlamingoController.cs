@@ -19,7 +19,7 @@ public class FlamingoController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position += moveSpeed * Time.deltaTime * new Vector3(moveDirection.x,0f , 0f);
+        transform.position += moveSpeed * Time.deltaTime * new Vector3(moveDirection.x,0f,0f);
     }
 
     private void OnCollisionEnter2D(Collision2D col) {
