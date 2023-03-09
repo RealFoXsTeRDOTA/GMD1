@@ -23,28 +23,29 @@ public class PlayerController : MonoBehaviour
     input.AttackEvent += HandleAttack;
 
     body = GetComponent<Rigidbody2D>();
-    body.freezeRotation = true;
     spriteRenderer = GetComponent<SpriteRenderer>();
   }
 
-  private void Update()
+  private void FixedUpdate()
   {
-    transform.position += moveSpeed * Time.deltaTime * new Vector3(moveDirection.x, 0f, 0f);
+    body.velocity = new Vector2(moveDirection.x * moveSpeed, body.velocity.y);
+  }
 
+  private void HandleMove(Vector2 direction)
+  {
+    moveDirection = direction;
     if (moveDirection.x != 0f)
     {
       spriteRenderer.flipX = moveDirection.x > 0f;
     }
   }
 
-  private void HandleMove(Vector2 direction)
-  {
-    moveDirection = direction;
-  }
-
   private void HandleJump()
   {
-    body.velocity = new Vector2(0f, 1f * jumpForce);
+    if (IsPlayerGrounded())
+    {
+      body.AddForce(jumpForce * Vector2.up, ForceMode2D.Impulse);
+    }
   }
 
   private void HandleDescend()
@@ -63,5 +64,10 @@ public class PlayerController : MonoBehaviour
     input.JumpEvent -= HandleJump;
     input.DescendEvent -= HandleDescend;
     input.AttackEvent -= HandleAttack;
+  }
+
+  private bool IsPlayerGrounded()
+  {
+    return body.velocity.y == 0f;
   }
 }
