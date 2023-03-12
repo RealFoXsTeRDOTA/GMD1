@@ -8,4 +8,7 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Scenes/Tile Map.unity
+    guid: 3e498637833eeb8438511842375b8b5b
   m_configObjects: {}
