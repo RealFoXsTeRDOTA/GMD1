@@ -10,6 +10,9 @@ public class PlayerController : MonoBehaviour
 
   [SerializeField]
   private float jumpForce;
+  
+  [SerializeField] 
+  private Animator animator;
 
   private Vector2 moveDirection;
   private Rigidbody2D body;
@@ -29,6 +32,8 @@ public class PlayerController : MonoBehaviour
   private void FixedUpdate()
   {
     body.velocity = new Vector2(moveDirection.x * moveSpeed, body.velocity.y);
+    animator.SetFloat("Speed", Mathf.Abs(Input.GetAxisRaw("Horizontal")));
+    animator.SetFloat("Velocity", body.velocity.y);
   }
 
   private void HandleMove(Vector2 direction)
