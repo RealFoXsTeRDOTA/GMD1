@@ -16,23 +16,31 @@ public class FlamingoController : MonoBehaviour
         moveDirection.Normalize();
         flamingoSprite = GetComponent<SpriteRenderer>();
     }
-
-    // Update is called once per frame
-    private void Update() {
-        
-    }
-
     void FixedUpdate() {
         flamingo.MovePosition(flamingo.position + moveSpeed * Time.fixedDeltaTime * moveDirection);
-        // flamingo.velocity += new Vector2(moveSpeed * Time.deltaTime * moveDirection.x, flamingo.velocity.y);
-        Debug.Log(Time.fixedDeltaTime +" "+ moveSpeed +" "+ moveDirection  + " "+ flamingo.position);
-        // transform.position += moveSpeed * Time.fixedDeltaTime * new Vector3(moveDirection.x,0f,0f);
     }
 
     private void OnCollisionEnter2D(Collision2D col) {
-        if (!col.gameObject.tag.Equals("Ground")) {
-            flamingoSprite.flipX = !flamingoSprite.flipX;
-            moveDirection.x *= -1;
+        if (!(col.gameObject.tag.Equals("Ground") || col.gameObject.tag.Equals("Player"))) {
+            FlipMovementDirection();
         }
+    }
+
+    //updates each frame so even if the player jumps over the enemy, it will switch direction
+    private void OnTriggerStay2D(Collider2D other) {
+        if (other.gameObject.tag.Equals("Player")) {
+            var position = other.gameObject.transform.position;
+            //set the position to flamingo.y so that the enemy cannot jump after the player
+            var target = new Vector2(position.x, flamingo.position.y);
+            if ((target.x < flamingo.position.x && moveDirection.x > 0) || (target.x > flamingo.position.x && moveDirection.x < 0)) {
+                FlipMovementDirection();
+            }
+            flamingo.position = Vector2.MoveTowards(flamingo.position, target, moveSpeed * Time.fixedDeltaTime);
+        }
+    }
+    
+    private void FlipMovementDirection() {
+        flamingoSprite.flipX = !flamingoSprite.flipX;
+        moveDirection.x *= -1;
     }
 }
