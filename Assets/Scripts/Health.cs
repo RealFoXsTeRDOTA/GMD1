@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UIElements;
 using Image = UnityEngine.UI.Image;
@@ -7,14 +8,16 @@ public class Health : MonoBehaviour
 {
     [SerializeField] 
     private Image[] hitPoints;
+    private PlayerAnimation animationScript;
     private int health;
-    private const int maxHealth = 9;
-    private GameObject player; 
+    private int maxHealth;
+    private bool isHit;
 
     private void Start()
     {
+        maxHealth = 9;
         health = 9;
-        player = GameObject.FindWithTag("Player");
+        animationScript = GetComponent<PlayerAnimation>();
     }
 
     public void Update()
@@ -27,10 +30,22 @@ public class Health : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        health -= damage;
-        if (health <= 0)
+        if (!isHit)
         {
-            
+            health -= damage;
+            StartCoroutine(BecomeTemporarilyInvincible());
+            if (health <= 0)
+            {
+                animationScript.SetDeath(true);
+            }
         }
+    }
+    private IEnumerator BecomeTemporarilyInvincible()
+    {
+        isHit = true;
+        animationScript.SetHit(true);
+        yield return new WaitForSeconds(0.25f);
+        animationScript.SetHit(false);
+        isHit = false;
     }
 }
