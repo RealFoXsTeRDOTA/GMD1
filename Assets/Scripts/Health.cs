@@ -32,8 +32,11 @@ public class Health : MonoBehaviour
         if (!isHit)
         {
             health -= damage;
-            StartCoroutine(BecomeTemporarilyInvincible());
-            if (health <= 0)
+            if (health > 0)
+            {
+                StartCoroutine(BecomeTemporarilyInvincible());
+            }
+            else 
             {
                 animationScript.SetDeath(true);
             }

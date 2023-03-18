@@ -12,7 +12,7 @@ public class PlayerAnimation : MonoBehaviour
         body =  GetComponent<Rigidbody2D>();
     }
     
-    void FixedUpdate()
+    void Update()
     {
         animator.SetFloat("Speed", Mathf.Abs(Input.GetAxisRaw("Horizontal")));
         animator.SetFloat("Velocity", body.velocity.y);
