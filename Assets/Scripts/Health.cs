@@ -1,13 +1,11 @@
-using System;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.UIElements;
-using Image = UnityEngine.UI.Image;
+using UnityEngine.UI;
 
 public class Health : MonoBehaviour
 {
     [SerializeField] 
-    private Image[] hitPoints;
+    private GameObject healthContainer;
     private PlayerAnimation animationScript;
     private int health;
     private int maxHealth;
@@ -22,9 +20,10 @@ public class Health : MonoBehaviour
 
     public void Update()
     {
+        var images = healthContainer.GetComponentsInChildren<Image>();
         for (var i = 0; i < maxHealth; i++)
         {
-            hitPoints[i].enabled = i < health;
+            images[i].enabled = i < health;
         }
     }
 

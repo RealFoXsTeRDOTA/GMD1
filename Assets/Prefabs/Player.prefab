@@ -171,7 +171,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f631a938bfc45e04e893bdfa63bb5f5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitPoints: []
+  healthContainer: {fileID: 338783632983122550, guid: 635421b695fdbff40ac89679737d009b, type: 3}
 --- !u!114 &474413541183817873
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -184,7 +184,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4d948e0c61b7c745be268909e6c3851, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 0}
+  animator: {fileID: 2223546203991798705}
 --- !u!50 &2282898809750020326
 Rigidbody2D:
   serializedVersion: 4
