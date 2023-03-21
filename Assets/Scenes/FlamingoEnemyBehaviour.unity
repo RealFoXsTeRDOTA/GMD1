@@ -5296,11 +5296,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 317534224758329008, guid: af3284c4bede53946b1f3241374a4cc8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.1314
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 317534224758329008, guid: af3284c4bede53946b1f3241374a4cc8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.428
+      value: -3.41
       objectReference: {fileID: 0}
     - target: {fileID: 317534224758329008, guid: af3284c4bede53946b1f3241374a4cc8, type: 3}
       propertyPath: m_LocalPosition.z
@@ -5335,12 +5335,24 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 317534224758329009, guid: af3284c4bede53946b1f3241374a4cc8, type: 3}
+      propertyPath: m_FlipX
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 317534224758329009, guid: af3284c4bede53946b1f3241374a4cc8, type: 3}
       propertyPath: m_SortingOrder
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 317534224758329011, guid: af3284c4bede53946b1f3241374a4cc8, type: 3}
       propertyPath: moveSpeed
       value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 317534224758329011, guid: af3284c4bede53946b1f3241374a4cc8, type: 3}
+      propertyPath: tileNumber
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 317534224758329011, guid: af3284c4bede53946b1f3241374a4cc8, type: 3}
+      propertyPath: moveUnrestricted
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 317534224758329012, guid: af3284c4bede53946b1f3241374a4cc8, type: 3}
       propertyPath: m_Enabled

@@ -1,11 +1,15 @@
 ﻿using UnityEngine;
 
-public class FlamingoController : MonoBehaviour
+public class EnemyMovementController : MonoBehaviour
 {
     [SerializeField]
     private float moveSpeed;
     private Vector2 moveDirection;
     private Rigidbody2D flamingo;
+    [SerializeField] private bool moveUnrestricted;
+    [SerializeField] private int tileNumber;
+    private readonly float tileLength = 1f;
+    private Vector2 currentPosition;
 
     private SpriteRenderer flamingoSprite;
     // Start is called before the first frame update
@@ -15,14 +19,28 @@ public class FlamingoController : MonoBehaviour
         moveDirection = Vector2.left;
         moveDirection.Normalize();
         flamingoSprite = GetComponent<SpriteRenderer>();
+        currentPosition = flamingo.position;
     }
     void FixedUpdate() {
+        if (!moveUnrestricted) {
+            ChangeDirectionForFixedDirection();
+        }
         flamingo.MovePosition(flamingo.position + moveSpeed * Time.fixedDeltaTime * moveDirection);
     }
 
-    private void OnCollisionEnter2D(Collision2D col) {
-        if (!(col.gameObject.tag.Equals("Ground") || col.gameObject.tag.Equals("Player"))) {
+    private void ChangeDirectionForFixedDirection() {
+        if (flamingo.position.x > tileNumber * tileLength + currentPosition.x ||
+            flamingo.position.x <  currentPosition.x - tileNumber * tileLength ) {
             FlipMovementDirection();
+            currentPosition = flamingo.position;
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D col) {
+        if (moveUnrestricted) {
+            if (!(col.gameObject.tag.Equals("Ground") || col.gameObject.tag.Equals("Player"))) {
+                FlipMovementDirection();
+            }
         }
     }
 
