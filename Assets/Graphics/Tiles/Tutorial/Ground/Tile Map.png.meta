@@ -190,9 +190,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Tile Map_0: -1243289436
       Tile Map_1: -1722918094
       Tile Map_2: 1190411556
+      Tile Map_0: -1243289436
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

@@ -337,16 +337,16 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Player_0: -1833158313
-      Player_1: -801399547
       Player_2: 1048257719
-      Player_3: 1631306957
       Player_4: -2022939860
-      Player_5: -256686196
       Player_6: 2114836795
-      Player_7: -1570276236
-      Player_8: -275428890
+      Player_1: -801399547
       Player_9: -363158558
+      Player_0: -1833158313
+      Player_7: -1570276236
+      Player_3: 1631306957
+      Player_8: -275428890
+      Player_5: -256686196
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
