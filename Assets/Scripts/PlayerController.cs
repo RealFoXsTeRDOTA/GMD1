@@ -10,16 +10,10 @@ public class PlayerController : MonoBehaviour
 
   [SerializeField]
   private float jumpForce;
-  
-  [SerializeField]
-  private PhysicsMaterial2D catMaterialPhysics;
 
   private Vector2 moveDirection;
   private Rigidbody2D body;
-  private bool isOnIce = false;
-
-
-
+  private SpriteRenderer spriteRenderer;
 
   private void Start()
   {
@@ -29,37 +23,29 @@ public class PlayerController : MonoBehaviour
     input.AttackEvent += HandleAttack;
 
     body = GetComponent<Rigidbody2D>();
-    body.freezeRotation = true;
-    
-  }
-
-  private void Update()
-  {
-    if (isOnIce)
-    {
-      float horizontalInput = Input.GetAxis("Horizontal");
-      moveDirection = new Vector2(horizontalInput, 0f).normalized;
-    }
-    else
-    {
-      transform.position += moveSpeed * Time.deltaTime * new Vector3(moveDirection.x, 0f, 0f);
-    }
-
+    spriteRenderer = GetComponent<SpriteRenderer>();
   }
 
   private void FixedUpdate()
   {
-    body.AddForce(moveDirection * moveSpeed, ForceMode2D.Force);
+    body.velocity = new Vector2(moveDirection.x * moveSpeed, body.velocity.y);
   }
 
   private void HandleMove(Vector2 direction)
   {
     moveDirection = direction;
+    if (moveDirection.x != 0f)
+    {
+      spriteRenderer.flipX = moveDirection.x > 0f;
+    }
   }
 
   private void HandleJump()
   {
-    body.velocity = new Vector2(0f, 1f * jumpForce);
+    if (IsPlayerGrounded())
+    {
+      body.AddForce(jumpForce * Vector2.up, ForceMode2D.Impulse);
+    }
   }
 
   private void HandleDescend()
@@ -72,21 +58,16 @@ public class PlayerController : MonoBehaviour
     Debug.Log("Avada Kedavra!");
   }
 
-  private void OnTriggerEnter2D(Collider2D col)
+  private void OnDestroy()
   {
-    if (col.gameObject.tag.Equals("Ice") && catMaterialPhysics != null)
-    {
-      isOnIce = true;
-      body.drag = 0f;
-      body.sharedMaterial = catMaterialPhysics;
-    }
+    input.MoveEvent -= HandleMove;
+    input.JumpEvent -= HandleJump;
+    input.DescendEvent -= HandleDescend;
+    input.AttackEvent -= HandleAttack;
   }
 
-  private void OnTriggerExit2D(Collider2D collision)
+  private bool IsPlayerGrounded()
   {
-    Debug.Log("OnTriggerExit2D");
-      isOnIce = false;
-      body.drag = 4f;
-      body.sharedMaterial = null;
+    return body.velocity.y == 0f;
   }
 }
