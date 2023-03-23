@@ -158,7 +158,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   input: {fileID: 11400000, guid: f55063e978f15e341888fded38ebf4c4, type: 2}
   moveSpeed: 10
-  jumpForce: 24
+  jumpForce: 28
   dashForce: 32
   dashCooldown: 2
 --- !u!114 &1617357323021387639

@@ -147,6 +147,6 @@ public class PlayerController : MonoBehaviour
 
   private bool IsPlayerGrounded()
   {
-    return body.velocity.y == 0f;
+    return body.velocity.y <= .2f && body.velocity.y >= -.2f;
   }
 }
