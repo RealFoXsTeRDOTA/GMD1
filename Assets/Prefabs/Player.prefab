@@ -158,10 +158,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   input: {fileID: 11400000, guid: f55063e978f15e341888fded38ebf4c4, type: 2}
   moveSpeed: 10
-  jumpForce: 16
-  dashForce: 24
-  dashTime: 0.25
-  dashCooldown: 1.5
+  jumpForce: 24
+  dashForce: 32
+  dashCooldown: 2
 --- !u!114 &1617357323021387639
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -290,7 +289,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 8086195011285090535}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 2cacdc6fa3bd1e049bb972f96effcae0, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0

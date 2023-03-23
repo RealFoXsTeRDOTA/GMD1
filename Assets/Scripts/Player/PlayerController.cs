@@ -29,11 +29,9 @@ public class PlayerController : MonoBehaviour
   private float dashForce = 24f;
 
   [SerializeField]
-  private float dashTime = 0.25f;
-
-  [SerializeField]
   private float dashCooldown = 1.5f;
 
+  private float dashTime = 0.25f;
   private bool canDash = true;
   private bool isDashing;
 
@@ -94,6 +92,11 @@ public class PlayerController : MonoBehaviour
     if (canDash)
     {
       StartCoroutine(Dash());
+    }
+    else
+    {
+      Debug.Log("Dash is on cooldown!");
+      // TODO - Play a sound or something maybe?
     }
   }
 
