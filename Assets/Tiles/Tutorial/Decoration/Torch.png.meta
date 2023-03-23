@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: e8d31a8e461fcb643bbf4cdca9ec34a9
+guid: 032b8e09eeadc4d439bd134e475db201
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -117,11 +117,11 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Tile Map_0
+      name: Torch_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 48
+        y: 0
         width: 16
         height: 16
       alignment: 0
@@ -131,18 +131,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e6b4b4d353056724fbd12c0dcbeb1ac2
-      internalID: -1243289436
+      spriteID: 57e3df18a964aed4da0863c276ec064d
+      internalID: 292946877
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tile Map_1
+      name: Torch_1
       rect:
         serializedVersion: 2
         x: 16
-        y: 48
+        y: 0
         width: 16
         height: 16
       alignment: 0
@@ -152,18 +152,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8554f4e8cfa9ea641850a91130bbe29f
-      internalID: -1722918094
+      spriteID: 831ea2390e468b04cb61f2f98492c0e4
+      internalID: 1103175516
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tile Map_2
+      name: Torch_2
       rect:
         serializedVersion: 2
         x: 32
-        y: 48
+        y: 0
         width: 16
         height: 16
       alignment: 0
@@ -173,8 +173,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c2fbb6c04b72350419418c9418402ab1
-      internalID: 1190411556
+      spriteID: 898daba3c2806c640aa178403334ce8a
+      internalID: 1854959335
       vertices: []
       indices: 
       edges: []
@@ -190,9 +190,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Tile Map_1: -1722918094
-      Tile Map_2: 1190411556
-      Tile Map_0: -1243289436
+      Torch_0: 292946877
+      Torch_1: 1103175516
+      Torch_2: 1854959335
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
