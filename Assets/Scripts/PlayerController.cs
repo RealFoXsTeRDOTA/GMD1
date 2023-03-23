@@ -77,7 +77,7 @@ public class PlayerController : MonoBehaviour
   {
     Debug.Log("Avada Kedavra!");
   }
-  private void OnTriggerEnter2D(Collider2D col)
+  private void OnCollisionEnter2D(Collision2D col)
   {
     
     if (col.gameObject.tag.Equals("Ice") && catMaterialPhysics != null)
@@ -89,7 +89,7 @@ public class PlayerController : MonoBehaviour
     }
   }
 
-  private void OnTriggerExit2D(Collider2D collision)
+  private void OnCollisionExit2D(Collision2D collision)
   {
     Debug.Log("OnTriggerExit2D");
       isOnIce = false;
