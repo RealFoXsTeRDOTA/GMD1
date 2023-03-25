@@ -9,10 +9,10 @@ public class InputReader : ScriptableObject, GameInput.IGameplayActions, GameInp
 
   public Action<Vector2> MoveEvent;
   public Action AttackEvent;
-  public Action DescendEvent;
   public Action JumpEvent;
   public Action PauseEvent;
   public Action ResumeEvent;
+  public Action DashEvent;
 
   private void OnEnable()
   {
@@ -46,14 +46,6 @@ public class InputReader : ScriptableObject, GameInput.IGameplayActions, GameInp
     }
   }
 
-  public void OnDescend(InputAction.CallbackContext context)
-  {
-    if (context.action.phase == InputActionPhase.Performed)
-    {
-      DescendEvent?.Invoke();
-    }
-  }
-
   public void OnJump(InputAction.CallbackContext context)
   {
     if (context.action.phase == InputActionPhase.Performed)
@@ -82,6 +74,14 @@ public class InputReader : ScriptableObject, GameInput.IGameplayActions, GameInp
     {
       ResumeEvent?.Invoke();
       StartGameplay();
+    }
+  }
+
+  public void OnDash(InputAction.CallbackContext context)
+  {
+    if (context.action.phase == InputActionPhase.Performed)
+    {
+      DashEvent?.Invoke();
     }
   }
 }
