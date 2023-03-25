@@ -199,6 +199,10 @@ PrefabInstance:
       propertyPath: animator
       value: 
       objectReference: {fileID: 26285038}
+    - target: {fileID: 8545861257867616645, guid: c814ddaeaad7a7b49bee19d4c7c4e75e, type: 3}
+      propertyPath: moveSpeed
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c814ddaeaad7a7b49bee19d4c7c4e75e, type: 3}
 --- !u!1 &341531619
@@ -5280,7 +5284,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 317534224758328975, guid: af3284c4bede53946b1f3241374a4cc8, type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 317534224758329008, guid: af3284c4bede53946b1f3241374a4cc8, type: 3}
       propertyPath: m_RootOrder
@@ -5352,6 +5356,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 317534224758329011, guid: af3284c4bede53946b1f3241374a4cc8, type: 3}
       propertyPath: moveUnrestricted
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 317534224758329011, guid: af3284c4bede53946b1f3241374a4cc8, type: 3}
+      propertyPath: moveDirectionLeft
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 317534224758329012, guid: af3284c4bede53946b1f3241374a4cc8, type: 3}
