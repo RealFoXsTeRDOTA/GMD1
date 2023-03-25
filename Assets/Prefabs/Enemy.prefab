@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 317534224758329013}
   - component: {fileID: -8037474697165702057}
   m_Layer: 0
-  m_Name: Flamingo
+  m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
