@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
   [SerializeField]
   private float jumpForce;
 
-  private Vector2 moveDirection;
+  public Vector2 MoveDirection { get; private set; }
   private Vector2 faceDirection;
 
   [Header("Dash settings")]
@@ -66,15 +66,15 @@ public class PlayerController : MonoBehaviour
       return;
     }
 
-    body.velocity = new Vector2(moveDirection.x * moveSpeed, body.velocity.y);
+    body.velocity = new Vector2(MoveDirection.x * moveSpeed, body.velocity.y);
   }
 
   private void HandleMove(Vector2 direction)
   {
-    moveDirection = direction;
-    if (moveDirection.x != 0f)
+    MoveDirection = direction;
+    if (MoveDirection.x != 0f)
     {
-      faceDirection = moveDirection.normalized;
+      faceDirection = MoveDirection.normalized;
       spriteRenderer.flipX = faceDirection.x > 0f;
     }
   }

@@ -1,6 +1,7 @@
+using TMPro;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class GameController : MonoBehaviour
 {
   [SerializeField]
   private InputReader input;
@@ -8,10 +9,25 @@ public class GameManager : MonoBehaviour
   [SerializeField]
   private GameObject pauseMenu;
 
-  private void Start()
+  [SerializeField]
+  private TextMeshProUGUI scoreText;
+
+  public int Score { get; private set; }
+
+  private void Awake()
   {
     input.PauseEvent += HandlePause;
     input.ResumeEvent += HandleResume;
+
+    Score = 0;
+
+    DontDestroyOnLoad(gameObject);
+  }
+
+  public void IncreaseScore()
+  {
+    Score++;
+    scoreText.text = Score.ToString();
   }
 
   private void HandlePause()
