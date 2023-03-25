@@ -79,7 +79,7 @@ public class EnemyMovementController : MonoBehaviour {
         var position = other.gameObject.transform.position;
         //set the position to flamingo.y so that the enemy cannot jump after the player
         target = new Vector2(position.x, enemy.position.y);
-        // target.Normalize();
+        Physics2D.IgnoreCollision(other.gameObject.GetComponent<Collider2D>(),GetComponent<Collider2D>());
     }
     
     private void OnTriggerExit2D(Collider2D other) {
