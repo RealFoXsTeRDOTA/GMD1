@@ -5,10 +5,13 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
   - enabled: 1
-    path: Assets/Scenes/Tile Map.unity
-    guid: 3e498637833eeb8438511842375b8b5b
+    path: Assets/Scenes/Tutorial/Level 1.unity
+    guid: e6dac435151deb643b0381f38980601f
+  - enabled: 1
+    path: Assets/Scenes/Tutorial/Level 2.unity
+    guid: a6cd24ab4209b5645b49e91bf027042e
+  - enabled: 1
+    path: Assets/Scenes/Tutorial/Level 3.unity
+    guid: 049362693c94b1c43a60dd92896fe06e
   m_configObjects: {}
