@@ -306,6 +306,36 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 0
+  - first: {x: -2, y: -3, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 0
+      m_TileSpriteIndex: 0
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 0
+  - first: {x: 1, y: -3, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 0
+      m_TileSpriteIndex: 0
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 0
+  - first: {x: 4, y: -3, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 0
+      m_TileSpriteIndex: 0
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 0
   - first: {x: 5, y: 1, z: 0}
     second:
       serializedVersion: 2
@@ -337,7 +367,7 @@ Tilemap:
       m_AnimationSpeed: 10
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
-  - first: {x: 5, y: 1, z: 0}
+  - first: {x: -2, y: -3, z: 0}
     second:
       m_AnimatedSprites:
       - {fileID: 292946877, guid: 032b8e09eeadc4d439bd134e475db201, type: 3}
@@ -345,6 +375,36 @@ Tilemap:
       - {fileID: 1854959335, guid: 032b8e09eeadc4d439bd134e475db201, type: 3}
       - {fileID: 1103175516, guid: 032b8e09eeadc4d439bd134e475db201, type: 3}
       m_AnimationSpeed: 10
+      m_AnimationTimeOffset: 0
+      m_IsLooping: 1
+  - first: {x: 1, y: -3, z: 0}
+    second:
+      m_AnimatedSprites:
+      - {fileID: 292946877, guid: 032b8e09eeadc4d439bd134e475db201, type: 3}
+      - {fileID: 1103175516, guid: 032b8e09eeadc4d439bd134e475db201, type: 3}
+      - {fileID: 1854959335, guid: 032b8e09eeadc4d439bd134e475db201, type: 3}
+      - {fileID: 1103175516, guid: 032b8e09eeadc4d439bd134e475db201, type: 3}
+      m_AnimationSpeed: 10
+      m_AnimationTimeOffset: 0
+      m_IsLooping: 1
+  - first: {x: 4, y: -3, z: 0}
+    second:
+      m_AnimatedSprites:
+      - {fileID: 292946877, guid: 032b8e09eeadc4d439bd134e475db201, type: 3}
+      - {fileID: 1103175516, guid: 032b8e09eeadc4d439bd134e475db201, type: 3}
+      - {fileID: 1854959335, guid: 032b8e09eeadc4d439bd134e475db201, type: 3}
+      - {fileID: 1103175516, guid: 032b8e09eeadc4d439bd134e475db201, type: 3}
+      m_AnimationSpeed: 10
+      m_AnimationTimeOffset: 0
+      m_IsLooping: 1
+  - first: {x: 5, y: 1, z: 0}
+    second:
+      m_AnimatedSprites:
+      - {fileID: 292946877, guid: 032b8e09eeadc4d439bd134e475db201, type: 3}
+      - {fileID: 1103175516, guid: 032b8e09eeadc4d439bd134e475db201, type: 3}
+      - {fileID: 1854959335, guid: 032b8e09eeadc4d439bd134e475db201, type: 3}
+      - {fileID: 1103175516, guid: 032b8e09eeadc4d439bd134e475db201, type: 3}
+      m_AnimationSpeed: 10.000001
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   - first: {x: -4, y: 2, z: 0}
@@ -358,13 +418,13 @@ Tilemap:
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   m_TileAssetArray:
-  - m_RefCount: 3
+  - m_RefCount: 6
     m_Data: {fileID: 11400000, guid: 403a5394602566748837d267e71f7b28, type: 2}
   m_TileSpriteArray:
-  - m_RefCount: 3
+  - m_RefCount: 6
     m_Data: {fileID: 1103175516, guid: 032b8e09eeadc4d439bd134e475db201, type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 3
+  - m_RefCount: 6
     m_Data:
       e00: 1
       e01: 0
@@ -383,7 +443,7 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 3
+  - m_RefCount: 6
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
@@ -4304,7 +4364,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 317534224758329008, guid: f6655a39476a043628d91350d58092b5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.26
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 317534224758329008, guid: f6655a39476a043628d91350d58092b5, type: 3}
       propertyPath: m_LocalPosition.y
