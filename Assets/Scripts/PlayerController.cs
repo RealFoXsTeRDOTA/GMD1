@@ -1,7 +1,17 @@
+using System.Collections;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+  //[Header("General settings")]
+  [SerializeField]
+  private PhysicsMaterial2D catMaterialPhysics;
+
+  private Rigidbody2D body;
+  private bool isOnIce = false;
+  private SpriteRenderer spriteRenderer;
+
+  [Header("Movement settings")]
   [SerializeField]
   private InputReader input;
 
@@ -10,73 +20,102 @@ public class PlayerController : MonoBehaviour
 
   [SerializeField]
   private float jumpForce;
-  
-  [SerializeField]
-  private PhysicsMaterial2D catMaterialPhysics;
 
-  private Vector2 moveDirection;
-  private Rigidbody2D body;
-  private bool isOnIce = false;
-  private SpriteRenderer spriteRenderer;
+  public Vector2 MoveDirection { get; private set; }
+  private Vector2 faceDirection;
+
+  [Header("Dash settings")]
+  [SerializeField]
+  private float dashForce = 24f;
+
+  [SerializeField]
+  private float dashCooldown = 1.5f;
+
+  private float dashTime = 0.25f;
+  private bool canDash = true;
+  private bool isDashing;
 
   private void Start()
   {
     input.MoveEvent += HandleMove;
     input.JumpEvent += HandleJump;
-    input.DescendEvent += HandleDescend;
-    input.AttackEvent += HandleAttack;
+   // input.DashEvent += HandleDash;
 
     body = GetComponent<Rigidbody2D>();
-    body.freezeRotation = true;
     spriteRenderer = GetComponent<SpriteRenderer>();
-  }
-
-  private void Update()
-  {
-    if (isOnIce)
-    {
-      float horizontalInput = Input.GetAxis("Horizontal");
-      moveDirection = new Vector2(horizontalInput, 0f).normalized;
-    }
-    else
-    {
-      transform.position += moveSpeed * Time.deltaTime * new Vector3(moveDirection.x, 0f, 0f);
-    }
-
+    faceDirection = Vector2.left;
   }
 
   private void FixedUpdate()
   {
-    body.AddForce(moveDirection * moveSpeed, ForceMode2D.Force);
-//    body.velocity = new Vector2(moveDirection.x * moveSpeed, body.velocity.y);
+    if (isDashing)
+    {
+      return;
+    }
+    
+    if (isOnIce)
+    {
+      float horizontalInput = Input.GetAxis("Horizontal");
+      MoveDirection.Set(horizontalInput, 0f);
+      MoveDirection.Normalize();
+      body.AddForce(MoveDirection * moveSpeed, ForceMode2D.Force);
+    }
+    else
+    {
+      body.velocity = new Vector2(MoveDirection.x * moveSpeed, body.velocity.y);
+    }
+
   }
 
   private void HandleMove(Vector2 direction)
   {
-    moveDirection = direction;
-    if (moveDirection.x != 0f)
+    MoveDirection = direction;
+    if (MoveDirection.x != 0f)
     {
-      spriteRenderer.flipX = moveDirection.x > 0f;
+      faceDirection = MoveDirection.normalized;
+      spriteRenderer.flipX = faceDirection.x > 0f;
     }
   }
 
   private void HandleJump()
   {
-    if (IsPlayerGrounded())
+    if (IsPlayerGrounded() && !isDashing)
     {
       body.AddForce(jumpForce * Vector2.up, ForceMode2D.Impulse);
     }
   }
 
-  private void HandleDescend()
+  private void HandleDash()
   {
-    Debug.Log("Descend...");
+    if (canDash)
+    {
+      StartCoroutine(Dash());
+    }
+    else
+    {
+      Debug.Log("Dash is on cooldown!");
+      // TODO - Play a sound or something maybe?
+    }
   }
 
-  private void HandleAttack()
+  private IEnumerator Dash()
   {
-    Debug.Log("Avada Kedavra!");
+    canDash = false;
+    isDashing = true;
+    var gravity = body.gravityScale;
+    body.gravityScale = 0f;
+    body.AddForce(faceDirection * dashForce, ForceMode2D.Impulse);
+
+    yield return new WaitForSeconds(dashTime);
+
+    body.gravityScale = gravity;
+    isDashing = false;
+
+    yield return new WaitForSeconds(dashCooldown);
+
+    canDash = true;
   }
+
   private void OnCollisionEnter2D(Collision2D col)
   {
     
@@ -92,20 +131,21 @@ public class PlayerController : MonoBehaviour
   private void OnCollisionExit2D(Collision2D collision)
   {
     Debug.Log("OnTriggerExit2D");
-      isOnIce = false;
-      body.drag = 4f;
-      body.sharedMaterial = null;
+    isOnIce = false;
+    body.drag = 4f;
+    body.sharedMaterial = null;
   }
+
+
   private void OnDestroy()
   {
     input.MoveEvent -= HandleMove;
     input.JumpEvent -= HandleJump;
-    input.DescendEvent -= HandleDescend;
-    input.AttackEvent -= HandleAttack;
+    //input.DashEvent -= HandleDash;
   }
 
   private bool IsPlayerGrounded()
   {
-    return body.velocity.y == 0f;
+    return body.velocity.y <= .2f && body.velocity.y >= -.2f;
   }
 }
