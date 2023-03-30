@@ -15,15 +15,6 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Descend",
-                    "type": "Button",
-                    "id": "a972bc0a-8951-43c1-9a2d-1562aea5a0a1",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Jump",
                     "type": "Button",
                     "id": "f977d008-a2f0-4675-9114-123964ece5bd",
@@ -45,6 +36,15 @@
                     "name": "Pause",
                     "type": "Button",
                     "id": "4b2d63b0-d1e6-4cd6-ac71-81ade866f272",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Dash",
+                    "type": "Button",
+                    "id": "6c8495a9-c547-4c4d-9695-97a8ad6fa474",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -142,28 +142,6 @@
                 },
                 {
                     "name": "",
-                    "id": "e1278080-b8ad-4f56-8d6f-c5537802ecbb",
-                    "path": "<Keyboard>/downArrow",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Descend",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "016ea691-9e44-4fd8-a410-57768ff354ae",
-                    "path": "<Gamepad>/leftStick/down",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Descend",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "977bbc5f-73e2-4a33-a940-51e0fa81320f",
                     "path": "<Keyboard>/escape",
                     "interactions": "",
@@ -181,6 +159,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7eaed3ef-582c-4ed4-ab36-64a57633c2c9",
+                    "path": "<Keyboard>/shift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9720376d-0913-4c3b-820f-f1d3c931aa98",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Dash",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

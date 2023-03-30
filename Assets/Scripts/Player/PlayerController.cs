@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour
   {
     input.MoveEvent += HandleMove;
     input.JumpEvent += HandleJump;
-   // input.DashEvent += HandleDash;
+    input.DashEvent += HandleDash;
 
     body = GetComponent<Rigidbody2D>();
     spriteRenderer = GetComponent<SpriteRenderer>();
@@ -141,7 +141,7 @@ public class PlayerController : MonoBehaviour
   {
     input.MoveEvent -= HandleMove;
     input.JumpEvent -= HandleJump;
-    //input.DashEvent -= HandleDash;
+    input.DashEvent -= HandleDash;
   }
 
   private bool IsPlayerGrounded()
