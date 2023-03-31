@@ -5,10 +5,13 @@ public class PlayerController : MonoBehaviour
 {
   //[Header("General settings")]
   [SerializeField]
-  private PhysicsMaterial2D catMaterialPhysics;
+  public PhysicsMaterial2D catMaterialPhysics;
+  [SerializeField]
+  public GameObject fireParticleSystem;
 
+  private TerrainController terrainController;
   private Rigidbody2D body;
-  private bool isOnIce = false;
+  public bool isOnIce = false;
   private SpriteRenderer spriteRenderer;
 
   [Header("Movement settings")]
@@ -40,6 +43,8 @@ public class PlayerController : MonoBehaviour
     input.MoveEvent += HandleMove;
     input.JumpEvent += HandleJump;
     input.DashEvent += HandleDash;
+
+    terrainController = new TerrainController();
 
     body = GetComponent<Rigidbody2D>();
     spriteRenderer = GetComponent<SpriteRenderer>();
@@ -118,22 +123,26 @@ public class PlayerController : MonoBehaviour
 
   private void OnCollisionEnter2D(Collision2D col)
   {
-    
     if (col.gameObject.tag.Equals("Ice") && catMaterialPhysics != null)
     {
-      Debug.Log("OnTriggerEnter2D");
-      isOnIce = true;
-      body.drag = 0f;
-      body.sharedMaterial = catMaterialPhysics;
+      terrainController.HandleIceEffect(this);
+    } else if(col.gameObject.tag.Equals("Lava"))
+    {
+      terrainController.HandleLavaEffect(this);
     }
   }
 
   private void OnCollisionExit2D(Collision2D collision)
   {
-    Debug.Log("OnTriggerExit2D");
-    isOnIce = false;
-    body.drag = 4f;
-    body.sharedMaterial = null;
+    if (collision.gameObject.tag.Equals("Ice"))
+    {
+      terrainController.HandleExitIceEffect(this);
+    }
+
+    if (collision.gameObject.tag.Equals("Lava"))
+    {
+      terrainController.HandleExitLavaEffect(this);
+    }
   }
 
 
