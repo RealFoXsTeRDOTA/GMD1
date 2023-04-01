@@ -10,6 +10,8 @@ public class Health : MonoBehaviour
   private int health;
   private int maxHealth;
   private bool isHit;
+  [SerializeField]
+  private float secondsInvunerableAfterTakingDamage = 1;
 
   private void Start()
   {
@@ -55,7 +57,7 @@ public class Health : MonoBehaviour
   {
     isHit = true;
     animationScript.SetHit(true);
-    yield return new WaitForSeconds(0.25f);
+    yield return new WaitForSeconds(secondsInvunerableAfterTakingDamage);
     animationScript.SetHit(false);
     isHit = false;
   }
