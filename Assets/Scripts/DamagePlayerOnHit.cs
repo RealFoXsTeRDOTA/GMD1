@@ -3,7 +3,7 @@ using UnityEngine;
 public class DamagePlayerOnHit : MonoBehaviour
 {
   [SerializeField]
-  private int DamageOnHit = 1;
+  private int damageOnHit = 1;
 
   private void OnTriggerEnter2D(Collider2D collision)
   {
@@ -13,6 +13,6 @@ public class DamagePlayerOnHit : MonoBehaviour
     }
 
     var healthComponent = collision.GetComponent<Health>();
-    healthComponent.TakeDamage(DamageOnHit);
+    healthComponent.TakeDamage(damageOnHit);
   }
 }
