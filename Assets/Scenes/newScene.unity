@@ -2341,6 +2341,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: IcyTerrain
       objectReference: {fileID: 0}
+    - target: {fileID: 723321682211458428, guid: 92f0ccc17b3f147cc95d60d7f38d6094, type: 3}
+      propertyPath: m_TagString
+      value: SlipperySurface
+      objectReference: {fileID: 0}
     - target: {fileID: 723321682211458429, guid: 92f0ccc17b3f147cc95d60d7f38d6094, type: 3}
       propertyPath: m_RootOrder
       value: 0
