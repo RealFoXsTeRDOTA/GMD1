@@ -50,13 +50,16 @@ public class PlayerController : MonoBehaviour
     if (isSlipperyMovement && IsPlayerGrounded())
     {
       body.AddForce(new Vector2(CurrentMoveDirection.x * moveSpeed, 0f));
+      // TODO - Play icy sound?
     }
     else if (isSlipperyMovement && !IsPlayerGrounded())
     {
-      if (CurrentMoveDirection.x != 0f)
+      if (CurrentMoveDirection.x == 0f)
       {
-        body.velocity = new Vector2(CurrentMoveDirection.x * moveSpeed, body.velocity.y);
+        return;
       }
+
+      body.velocity = new Vector2(CurrentMoveDirection.x * moveSpeed, body.velocity.y);
     }
     else
     {
@@ -113,16 +116,9 @@ public class PlayerController : MonoBehaviour
     canDash = true;
   }
 
-  private void OnCollisionEnter2D(Collision2D collision)
+  private void OnCollisionStay2D(Collision2D collision)
   {
-    if (collision.gameObject.CompareTag("SlipperySurface"))
-    {
-      isSlipperyMovement = true;
-    }
-    else
-    {
-      isSlipperyMovement = false;
-    }
+    isSlipperyMovement = collision.gameObject.CompareTag("SlipperySurface");
   }
 
   private bool IsPlayerGrounded()
