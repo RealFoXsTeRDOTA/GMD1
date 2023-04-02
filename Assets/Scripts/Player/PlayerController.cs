@@ -5,8 +5,6 @@ public class PlayerController : MonoBehaviour
 {
   //[Header("General settings")]
   [SerializeField]
-  public PhysicsMaterial2D catMaterialPhysics;
-  [SerializeField]
   public GameObject fireParticleSystem;
 
   private TerrainController terrainController;
@@ -57,13 +55,12 @@ public class PlayerController : MonoBehaviour
     {
       return;
     }
+
     
     if (isOnIce)
     {
       float horizontalInput = Input.GetAxis("Horizontal");
-      MoveDirection.Set(horizontalInput, 0f);
-      MoveDirection.Normalize();
-      body.AddForce(MoveDirection * moveSpeed, ForceMode2D.Force);
+      body.AddForce(new Vector2(horizontalInput * moveSpeed, 0f), ForceMode2D.Force);
     }
     else
     {
@@ -74,6 +71,12 @@ public class PlayerController : MonoBehaviour
 
   private void HandleMove(Vector2 direction)
   {
+    if (direction == Vector2.zero)
+    {
+      MoveDirection = Vector2.zero;
+      return;
+    }
+    
     MoveDirection = direction;
     if (MoveDirection.x != 0f)
     {
@@ -123,7 +126,7 @@ public class PlayerController : MonoBehaviour
 
   private void OnCollisionEnter2D(Collision2D col)
   {
-    if (col.gameObject.tag.Equals("Ice") && catMaterialPhysics != null)
+    if (col.gameObject.tag.Equals("Ice"))
     {
       terrainController.HandleIceEffect(this);
     } else if(col.gameObject.tag.Equals("Lava"))
@@ -131,14 +134,14 @@ public class PlayerController : MonoBehaviour
       terrainController.HandleLavaEffect(this);
     }
   }
-
+  
   private void OnCollisionExit2D(Collision2D collision)
   {
     if (collision.gameObject.tag.Equals("Ice"))
     {
       terrainController.HandleExitIceEffect(this);
     }
-
+  
     if (collision.gameObject.tag.Equals("Lava"))
     {
       terrainController.HandleExitLavaEffect(this);
