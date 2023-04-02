@@ -16,7 +16,7 @@ public class PlayerAnimation : MonoBehaviour
 
   private void Update()
   {
-    animator.SetFloat("Speed", Mathf.Abs(controller.MoveDirection.x));
+    animator.SetFloat("Speed", Mathf.Abs(controller.CurrentMoveDirection.x));
     animator.SetFloat("Velocity", body.velocity.y);
   }
 

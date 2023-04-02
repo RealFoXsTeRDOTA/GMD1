@@ -3,35 +3,29 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-  //[Header("General settings")]
-  //[SerializeField]
-  //private PhysicsMaterial2D catMaterialPhysics;
-
   private Rigidbody2D body;
-  //private bool isOnIce = false;
   private SpriteRenderer spriteRenderer;
+  private bool isSlipperyMovement = false;
 
   [Header("Movement settings")]
   [SerializeField]
   private InputReader input;
 
   [SerializeField]
-  private float moveSpeed;
+  private float moveSpeed = 10f;
 
   [SerializeField]
-  private float jumpForce;
-
-  public Vector2 MoveDirection { get; private set; }
+  private float jumpForce = 19f;
+  public Vector2 CurrentMoveDirection { get; private set; }
   private Vector2 faceDirection;
 
   [Header("Dash settings")]
   [SerializeField]
-  private float dashForce = 24f;
+  private float dashForce = 32f;
 
   [SerializeField]
   private float dashCooldown = 1.5f;
-
-  private float dashTime = 0.25f;
+  private readonly float dashTime = 0.25f;
   private bool canDash = true;
   private bool isDashing;
 
@@ -43,20 +37,7 @@ public class PlayerController : MonoBehaviour
 
     body = GetComponent<Rigidbody2D>();
     spriteRenderer = GetComponent<SpriteRenderer>();
-    faceDirection = Vector2.left;
-  }
-
-  private void Update()
-  {
-    //if (isOnIce)
-    //{
-    //  float horizontalInput = Input.GetAxis("Horizontal");
-    //  moveDirection = new Vector2(horizontalInput, 0f).normalized;
-    //}
-    //else
-    //{
-    //  transform.position += moveSpeed * Time.deltaTime * new Vector3(moveDirection.x, 0f, 0f);
-    //}
+    faceDirection = Vector2.right;
   }
 
   private void FixedUpdate()
@@ -66,22 +47,36 @@ public class PlayerController : MonoBehaviour
       return;
     }
 
-    body.velocity = new Vector2(MoveDirection.x * moveSpeed, body.velocity.y);
+    if (isSlipperyMovement && IsPlayerGrounded())
+    {
+      body.AddForce(new Vector2(CurrentMoveDirection.x * moveSpeed, 0f));
+    }
+    else if (isSlipperyMovement && !IsPlayerGrounded())
+    {
+      if (CurrentMoveDirection.x != 0f)
+      {
+        body.velocity = new Vector2(CurrentMoveDirection.x * moveSpeed, body.velocity.y);
+      }
+    }
+    else
+    {
+      body.velocity = new Vector2(CurrentMoveDirection.x * moveSpeed, body.velocity.y);
+    }
   }
 
   private void HandleMove(Vector2 direction)
   {
-    MoveDirection = direction;
-    if (MoveDirection.x != 0f)
+    CurrentMoveDirection = direction;
+    if (CurrentMoveDirection.x != 0f)
     {
-      faceDirection = MoveDirection.normalized;
+      faceDirection = CurrentMoveDirection.normalized;
       spriteRenderer.flipX = faceDirection.x > 0f;
     }
   }
 
   private void HandleJump()
   {
-    if (IsPlayerGrounded() && !isDashing)
+    if (IsPlayerGrounded())
     {
       body.AddForce(jumpForce * Vector2.up, ForceMode2D.Impulse);
     }
@@ -118,35 +113,27 @@ public class PlayerController : MonoBehaviour
     canDash = true;
   }
 
-  //private void OnTriggerEnter2D(Collider2D col)
-  //{
+  private void OnCollisionEnter2D(Collision2D collision)
+  {
+    if (collision.gameObject.CompareTag("SlipperySurface"))
+    {
+      isSlipperyMovement = true;
+    }
+    else
+    {
+      isSlipperyMovement = false;
+    }
+  }
 
-  //  if (col.gameObject.tag.Equals("Ice") && catMaterialPhysics != null)
-  //  {
-  //    Debug.Log("OnTriggerEnter2D");
-  //    isOnIce = true;
-  //    body.drag = 0f;
-  //    body.sharedMaterial = catMaterialPhysics;
-  //  }
-  //}
-
-  //private void OnTriggerExit2D(Collider2D collision)
-  //{
-  //  Debug.Log("OnTriggerExit2D");
-  //  isOnIce = false;
-  //  body.drag = 4f;
-  //  body.sharedMaterial = null;
-  //}
+  private bool IsPlayerGrounded()
+  {
+    return body.velocity.y <= .3f && body.velocity.y >= -.3f;
+  }
 
   private void OnDestroy()
   {
     input.MoveEvent -= HandleMove;
     input.JumpEvent -= HandleJump;
     input.DashEvent -= HandleDash;
-  }
-
-  private bool IsPlayerGrounded()
-  {
-    return body.velocity.y <= .2f && body.velocity.y >= -.2f;
   }
 }
