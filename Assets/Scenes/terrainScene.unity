@@ -254,7 +254,7 @@ PrefabInstance:
     - target: {fileID: 3400602346526448176, guid: c814ddaeaad7a7b49bee19d4c7c4e75e, type: 3}
       propertyPath: healthContainer
       value: 
-      objectReference: {fileID: 1523413213}
+      objectReference: {fileID: 1958816178}
     - target: {fileID: 4655646040460653816, guid: c814ddaeaad7a7b49bee19d4c7c4e75e, type: 3}
       propertyPath: m_LocalPosition.y
       value: 2.94
@@ -6819,6 +6819,7 @@ GameObject:
   - component: {fileID: 1053306499}
   - component: {fileID: 1053306501}
   - component: {fileID: 1053306500}
+  - component: {fileID: 1053306502}
   m_Layer: 0
   m_Name: LavaTerrain
   m_TagString: Lava
@@ -7125,6 +7126,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &1053306502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1053306495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef911859948f6364ab7fdcab63dfe13e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1316058752
 GameObject:
   m_ObjectHideFlags: 0
@@ -7139,6 +7152,7 @@ GameObject:
   - component: {fileID: 1316058755}
   - component: {fileID: 1316058759}
   - component: {fileID: 1316058758}
+  - component: {fileID: 1316058760}
   m_Layer: 0
   m_Name: IcyTerrain
   m_TagString: Ice
@@ -7154,7 +7168,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1316058752}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.18, y: -0.55, z: 0}
+  m_LocalPosition: {x: 8.4, y: -0.31, z: 0}
   m_LocalScale: {x: 0.9118488, y: 0.66461515, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7455,11 +7469,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!1 &1523413213 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4483601151929110222, guid: 50b8a1a3abdb09646a1792ddd2f70193, type: 3}
-  m_PrefabInstance: {fileID: 2116227768}
+--- !u!114 &1316058760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1316058752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67ac11086c868f9459d8ea3c3832074e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1618967488
 GameObject:
   m_ObjectHideFlags: 0
@@ -7507,6 +7528,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1958816178 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3375449696760961726, guid: 50b8a1a3abdb09646a1792ddd2f70193, type: 3}
+  m_PrefabInstance: {fileID: 2116227768}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2116227768
 PrefabInstance:
   m_ObjectHideFlags: 0

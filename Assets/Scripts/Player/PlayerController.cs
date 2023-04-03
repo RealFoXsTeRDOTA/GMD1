@@ -56,7 +56,7 @@ public class PlayerController : MonoBehaviour
       return;
     }
 
-    
+
     if (isOnIce)
     {
       float horizontalInput = Input.GetAxis("Horizontal");
@@ -76,7 +76,7 @@ public class PlayerController : MonoBehaviour
       MoveDirection = Vector2.zero;
       return;
     }
-    
+
     MoveDirection = direction;
     if (MoveDirection.x != 0f)
     {
@@ -124,28 +124,21 @@ public class PlayerController : MonoBehaviour
     canDash = true;
   }
 
+  // Problem with OnCollisionEnter and OnCollisionExit that I noticed on the 'fix-slippery-surface' branch
+  // is that when the tiles are actually 16x16, when the player (who is 32x16) reaches the border of two tilemaps,
+  // you are in the state where you collide with 2 different ones. And in the case of the ice to normal border, if you slide off the ice onto normal tiles
+  // and then immediately go back on ice without actually exiting the ice collider, you are no longer considered "on ice" because you entered normal tile but didn't exit ice, hence you didn't enter ice again either
+  // and this is why I defaulted to use OnCollisionStay. Is it a great way to do it? Probably not :/ But I'm not sure how else you would combat this issue considering the player is twice as wide as one tile.
   private void OnCollisionEnter2D(Collision2D col)
   {
-    if (col.gameObject.tag.Equals("Ice"))
-    {
-      terrainController.HandleIceEffect(this);
-    } else if(col.gameObject.tag.Equals("Lava"))
-    {
-      terrainController.HandleLavaEffect(this);
-    }
+    var tile = col.gameObject.GetComponent<ITile>();
+    tile?.OnEnter(this);
   }
-  
+
   private void OnCollisionExit2D(Collision2D collision)
   {
-    if (collision.gameObject.tag.Equals("Ice"))
-    {
-      terrainController.HandleExitIceEffect(this);
-    }
-  
-    if (collision.gameObject.tag.Equals("Lava"))
-    {
-      terrainController.HandleExitLavaEffect(this);
-    }
+    var tile = collision.gameObject.GetComponent<ITile>();
+    tile?.OnExit(this);
   }
 
 
