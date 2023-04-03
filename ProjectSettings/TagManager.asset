@@ -5,8 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Tile
-  - Ice
   - Collectible
+  - SlipperySurface
+  - Ground
   layers:
   - Default
   - TransparentFX

@@ -87,6 +87,16 @@ Tilemap:
   m_GameObject: {fileID: 8056732474351023275}
   m_Enabled: 1
   m_Tiles:
+  - first: {x: -3, y: 0, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 4
+      m_TileSpriteIndex: 1
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
   - first: {x: -3, y: 1, z: 0}
     second:
       serializedVersion: 2
@@ -135,7 +145,7 @@ Tilemap:
       - {fileID: 1103175516, guid: 032b8e09eeadc4d439bd134e475db201, type: 3}
       - {fileID: 1854959335, guid: 032b8e09eeadc4d439bd134e475db201, type: 3}
       - {fileID: 1103175516, guid: 032b8e09eeadc4d439bd134e475db201, type: 3}
-      m_AnimationSpeed: 1
+      m_AnimationSpeed: 10
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   m_TileAssetArray:
@@ -147,15 +157,15 @@ Tilemap:
     m_Data: {fileID: 11400000, guid: 45d6842ec0ef01a4198827bf3ec79572, type: 2}
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
+  - m_RefCount: 1
+    m_Data: {fileID: 11400000, guid: d844069d4cc204f40a0e52632f08ebaa, type: 2}
   - m_RefCount: 1
     m_Data: {fileID: 11400000, guid: 403a5394602566748837d267e71f7b28, type: 2}
   m_TileSpriteArray:
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
+  - m_RefCount: 1
+    m_Data: {fileID: 21300000, guid: 13276083b1e3d8c48b6019d97189dfea, type: 3}
   - m_RefCount: 1
     m_Data: {fileID: 1190411556, guid: e8d31a8e461fcb643bbf4cdca9ec34a9, type: 3}
   - m_RefCount: 1
@@ -165,7 +175,7 @@ Tilemap:
   - m_RefCount: 1
     m_Data: {fileID: 1103175516, guid: 032b8e09eeadc4d439bd134e475db201, type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 4
+  - m_RefCount: 5
     m_Data:
       e00: 1
       e01: 0
@@ -184,8 +194,10 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 4
+  - m_RefCount: 5
     m_Data: {r: 1, g: 1, b: 1, a: 1}
+  - m_RefCount: 0
+    m_Data: {r: NaN, g: NaN, b: NaN, a: NaN}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -259,7 +271,7 @@ TilemapRenderer:
   m_Mode: 0
   m_DetectChunkCullingBounds: 0
   m_MaskInteraction: 0
---- !u!114 &4988882177388989707
+--- !u!114 &6666322752750869812
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
