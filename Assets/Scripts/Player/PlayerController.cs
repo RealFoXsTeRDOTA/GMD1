@@ -4,8 +4,6 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
   //[Header("General settings")]
-  [SerializeField]
-  public GameObject fireParticleSystem;
   private Rigidbody2D body;
   public bool isOnIce = false;
   private SpriteRenderer spriteRenderer;
@@ -129,6 +127,12 @@ public class PlayerController : MonoBehaviour
   {
     var tile = collision.gameObject.GetComponent<ITile>();
     tile?.OnExit(this);
+  }
+  
+  private void OnCollisionStay2D(Collision2D collision)
+  {
+    var tile = collision.gameObject.GetComponent<ITile>();
+    tile?.onStay(this);
   }
 
 

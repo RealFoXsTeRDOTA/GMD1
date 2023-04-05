@@ -15,4 +15,9 @@ public class IceTile : MonoBehaviour, ITile
     collision.isOnIce = false;
     playerBody.drag = 4f;
   }
+  
+  public void onStay(PlayerController collision)
+  {
+    // Do nothing
+  }
 }
