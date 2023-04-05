@@ -8,7 +8,6 @@ public class LavaTile : MonoBehaviour, ITile
     GameObject fireParticleSystem = collision.fireParticleSystem;
     if (health != null)
     {
-      Debug.Log("Take damage from lava");
       health.TakeDamage(1);
     }
     fireParticleSystem.SetActive(true);
