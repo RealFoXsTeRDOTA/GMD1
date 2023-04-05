@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/Tiles/Terrain/SmallerLavaTexture.asset.meta
 guid: ab85bfc2cf2864c87826ceb6996409f8
-========
-guid: d844069d4cc204f40a0e52632f08ebaa
->>>>>>>> main:Assets/Tiles/Terrain/ice.asset.meta
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 11400000
