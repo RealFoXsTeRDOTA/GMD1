@@ -5,14 +5,14 @@ TagManager:
   serializedVersion: 2
   tags:
   - Tile
-  - Ice
   - Collectible
-  - Lava
+  - SlipperySurface
+  - Ground
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Fire
+  - 
   - Water
   - UI
   - 
@@ -44,7 +44,4 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
-    locked: 0
-  - name: Fire
-    uniqueID: 1494922837
     locked: 0

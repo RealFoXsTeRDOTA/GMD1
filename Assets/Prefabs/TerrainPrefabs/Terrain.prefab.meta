@@ -1,6 +1,12 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Prefabs/TerrainPrefabs/Terrain.prefab.meta
 guid: 7003b7a0764d840c4ae8b2e18fb73418
 PrefabImporter:
+========
+guid: d598d924d4293ea41bf5caad168cf918
+folderAsset: yes
+DefaultImporter:
+>>>>>>>> main:Assets/Scripts/Enemy.meta
   externalObjects: {}
   userData: 
   assetBundleName: 
