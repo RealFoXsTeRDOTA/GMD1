@@ -42,6 +42,11 @@ public class PlayerAttack : MonoBehaviour
 
     foreach (var collider in enemyCollidersHit)
     {
+      if (collider.isTrigger)
+      {
+        continue;
+      }
+
       var healthComponent = collider.GetComponent<EnemyHealth>();
       healthComponent.TakeDamage(attackDamage);
     }
