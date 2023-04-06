@@ -38,6 +38,7 @@ public class PlayerController : MonoBehaviour
     body = GetComponent<Rigidbody2D>();
     spriteRenderer = GetComponent<SpriteRenderer>();
     faceDirection = Vector2.right;
+    FlipCharacter();
   }
 
   private void FixedUpdate()
@@ -72,9 +73,22 @@ public class PlayerController : MonoBehaviour
     CurrentMoveDirection = direction;
     if (CurrentMoveDirection.x != 0f)
     {
+      if (CurrentMoveDirection.x < 0f && faceDirection.x > 0f)
+      {
+        FlipCharacter();
+      }
+      else if (CurrentMoveDirection.x > 0f && faceDirection.x < 0f)
+      {
+        FlipCharacter();
+      }
+
       faceDirection = CurrentMoveDirection.normalized;
-      spriteRenderer.flipX = faceDirection.x > 0f;
     }
+  }
+
+  private void FlipCharacter()
+  {
+    transform.Rotate(0f, 180f, 0f);
   }
 
   private void HandleJump()
