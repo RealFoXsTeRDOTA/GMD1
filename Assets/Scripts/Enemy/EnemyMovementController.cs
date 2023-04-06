@@ -55,7 +55,6 @@ public class EnemyMovementController : MonoBehaviour {
             (target.x > enemy.position.x && moveDirection.x < 0)) {
             FlipMovementDirection();
         }
-
         enemy.position = Vector2.MoveTowards(enemy.position, target, moveSpeed * Time.fixedDeltaTime);
     }
 

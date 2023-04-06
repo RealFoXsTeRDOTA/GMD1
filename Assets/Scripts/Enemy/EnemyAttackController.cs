@@ -13,6 +13,10 @@ public class EnemyAttackController : MonoBehaviour {
         Instantiate(projectile, projectilePoz.position, Quaternion.identity);
     }
 
+    /// <summary>
+    /// Start firing once the player enters the trigger area
+    /// </summary>
+    /// <param name="col"></param>
     private void OnTriggerEnter2D(Collider2D col) {
         if (!col.gameObject.tag.Equals("Player"))
             return;
