@@ -20,10 +20,12 @@ public class PlayerAttack : MonoBehaviour
 
   [SerializeField]
   private LayerMask enemyLayer;
+  private Animator animator;
 
   private void Start()
   {
     input.AttackEvent += HandleAttack;
+    animator = GetComponent<Animator>();
   }
 
   private void HandleAttack()
@@ -34,7 +36,7 @@ public class PlayerAttack : MonoBehaviour
       return;
     }
 
-    // TODO - Play attack animation
+    animator.SetTrigger("Attack");
     var enemyCollidersHit = Physics2D.OverlapCircleAll(pointOfAttack.position, attackArea, enemyLayer);
     timeSinceLastAttack = Time.time + secondsPerAttack;
 
