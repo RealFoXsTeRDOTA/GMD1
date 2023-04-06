@@ -12,6 +12,10 @@ public class ProjectileController : MonoBehaviour {
         projectile.velocity = new Vector2(direction.x, direction.y).normalized * moveSpeed;
 
     }
+    /// <summary>
+    /// ignore collision with enemy and destroy projectile upon collision with any object other than the enemy
+    /// </summary>
+    /// <param name="col"></param>
     private void OnCollisionEnter2D(Collision2D col) {
         if (col.gameObject.tag.Equals("Enemy"))
             Physics2D.IgnoreCollision(col.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());

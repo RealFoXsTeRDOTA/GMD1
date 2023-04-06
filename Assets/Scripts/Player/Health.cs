@@ -61,4 +61,9 @@ public class Health : MonoBehaviour
     animationScript.SetHit(false);
     isHit = false;
   }
+
+  private void OnCollisionEnter2D(Collision2D col) {
+    if (col.gameObject.tag.Equals("Projectile"))
+      health -= 1;
+  }
 }

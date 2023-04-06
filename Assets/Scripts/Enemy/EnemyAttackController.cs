@@ -6,6 +6,9 @@ public class EnemyAttackController : MonoBehaviour {
     [SerializeField] private Transform projectilePoz;
     private float timer;
 
+    /// <summary>
+    /// Instantiate projectile at the position of the spawner inherited from the enemy
+    /// </summary>
     private void FireProjectile() {
         Instantiate(projectile, projectilePoz.position, Quaternion.identity);
     }
@@ -16,6 +19,10 @@ public class EnemyAttackController : MonoBehaviour {
         FireProjectile();
     }
 
+    /// <summary>
+    /// Fire a projectile every 0.75 seconds while the player is within range
+    /// </summary>
+    /// <param name="other"></param>
     private void OnTriggerStay2D(Collider2D other) {
         if (!other.gameObject.tag.Equals("Player"))
             return;
