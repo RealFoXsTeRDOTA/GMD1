@@ -123,11 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!95 &26285038 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 2223546203991798705, guid: c814ddaeaad7a7b49bee19d4c7c4e75e, type: 3}
-  m_PrefabInstance: {fileID: 208712272}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &208712272
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -198,10 +193,22 @@ PrefabInstance:
     - target: {fileID: 8545861257867616645, guid: c814ddaeaad7a7b49bee19d4c7c4e75e, type: 3}
       propertyPath: animator
       value: 
-      objectReference: {fileID: 26285038}
+      objectReference: {fileID: 0}
     - target: {fileID: 8545861257867616645, guid: c814ddaeaad7a7b49bee19d4c7c4e75e, type: 3}
       propertyPath: moveSpeed
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8781862402227235263, guid: c814ddaeaad7a7b49bee19d4c7c4e75e, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8781862402227235263, guid: c814ddaeaad7a7b49bee19d4c7c4e75e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -4.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 8781862402227235263, guid: c814ddaeaad7a7b49bee19d4c7c4e75e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.43
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c814ddaeaad7a7b49bee19d4c7c4e75e, type: 3}
@@ -404,7 +411,7 @@ Tilemap:
       - {fileID: 1103175516, guid: 032b8e09eeadc4d439bd134e475db201, type: 3}
       - {fileID: 1854959335, guid: 032b8e09eeadc4d439bd134e475db201, type: 3}
       - {fileID: 1103175516, guid: 032b8e09eeadc4d439bd134e475db201, type: 3}
-      m_AnimationSpeed: 10.000001
+      m_AnimationSpeed: 10
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   - first: {x: -4, y: 2, z: 0}
