@@ -177,6 +177,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5282326013937830256, guid: e36ae785f1f743d418a026d8821be049, type: 3}
+      propertyPath: secondsBetweenDamage
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7264762592258025632, guid: e36ae785f1f743d418a026d8821be049, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -687,6 +691,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2839311042534960365, guid: e36ae785f1f743d418a026d8821be049, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2839311042534960365, guid: e36ae785f1f743d418a026d8821be049, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.6395
+      objectReference: {fileID: 0}
+    - target: {fileID: 5282326013937830256, guid: e36ae785f1f743d418a026d8821be049, type: 3}
+      propertyPath: secondsBetweenDamage
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7264762592258025632, guid: e36ae785f1f743d418a026d8821be049, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -3527,7 +3543,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6741930825941429285, guid: 50b8a1a3abdb09646a1792ddd2f70193, type: 3}
       propertyPath: m_AdditionalShaderChannelsFlag
-      value: 1
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 6741930825941429336, guid: 50b8a1a3abdb09646a1792ddd2f70193, type: 3}
       propertyPath: m_Name
