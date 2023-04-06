@@ -12,17 +12,10 @@ public class ProjectileController : MonoBehaviour {
         projectile.velocity = new Vector2(direction.x, direction.y).normalized * moveSpeed;
 
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-       
-    }
-    
-
     private void OnCollisionEnter2D(Collision2D col) {
-        if (!col.gameObject.tag.Equals("Player"))
-            return;
-        Destroy(transform.gameObject);
+        if (col.gameObject.tag.Equals("Enemy"))
+            Physics2D.IgnoreCollision(col.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
+        if (!col.gameObject.tag.Equals("Enemy"))
+            Destroy(transform.gameObject);
     }
 }

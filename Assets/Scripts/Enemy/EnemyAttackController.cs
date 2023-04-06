@@ -3,35 +3,27 @@ using UnityEngine;
 public class EnemyAttackController : MonoBehaviour {
 
     [SerializeField] private GameObject projectile;
-    private Rigidbody2D enemy;
+    [SerializeField] private Transform projectilePoz;
     private float timer;
-    
-    // Start is called before the first frame update
-    void Start() {
-        enemy = GetComponent<Rigidbody2D>();
-    }
-
-    // Update is called once per frame
-    void Update() {
-       
-    }
 
     private void FireProjectile() {
-        Instantiate(projectile, enemy.position, Quaternion.identity);
+        Instantiate(projectile, projectilePoz.position, Quaternion.identity);
+    }
+
+    private void OnTriggerEnter2D(Collider2D col) {
+        if (!col.gameObject.tag.Equals("Player"))
+            return;
+        FireProjectile();
     }
 
     private void OnTriggerStay2D(Collider2D other) {
         if (!other.gameObject.tag.Equals("Player"))
             return;
         timer += Time.deltaTime;
-        if (timer > 1) {
+        if (timer > 0.75) {
             timer = 0;
             FireProjectile();
         }
-    }
-
-    private void OnTriggerExit2D(Collider2D other) {
-        // timer = 0;
     }
 
 }

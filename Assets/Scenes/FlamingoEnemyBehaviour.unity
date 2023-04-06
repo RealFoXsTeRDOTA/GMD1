@@ -411,7 +411,7 @@ Tilemap:
       - {fileID: 1103175516, guid: 032b8e09eeadc4d439bd134e475db201, type: 3}
       - {fileID: 1854959335, guid: 032b8e09eeadc4d439bd134e475db201, type: 3}
       - {fileID: 1103175516, guid: 032b8e09eeadc4d439bd134e475db201, type: 3}
-      m_AnimationSpeed: 10
+      m_AnimationSpeed: 10.000001
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   - first: {x: -4, y: 2, z: 0}
@@ -4356,6 +4356,10 @@ PrefabInstance:
     - target: {fileID: 317534224758328975, guid: f6655a39476a043628d91350d58092b5, type: 3}
       propertyPath: m_Name
       value: Flamingo
+      objectReference: {fileID: 0}
+    - target: {fileID: 317534224758328975, guid: f6655a39476a043628d91350d58092b5, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 317534224758329008, guid: f6655a39476a043628d91350d58092b5, type: 3}
       propertyPath: m_RootOrder

@@ -9,6 +9,7 @@ TagManager:
   - SlipperySurface
   - Ground
   - Projectile
+  - Enemy
   layers:
   - Default
   - TransparentFX
