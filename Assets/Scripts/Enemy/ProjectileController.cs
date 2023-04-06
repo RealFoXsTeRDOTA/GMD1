@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ProjectileController : MonoBehaviour {
+public class ProjectileController : MonoBehaviour, IProjectile {
     [SerializeField] private float moveSpeed;
     private GameObject player;
     private Rigidbody2D projectile;
@@ -8,9 +8,15 @@ public class ProjectileController : MonoBehaviour {
     void Start() {
         projectile = GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player");
-        Vector3 direction = player.transform.position - transform.position;
+        MoveToTarget(player);
+    }
+    /// <summary>
+    /// Projectile will move to the position of where the target was when it was spawned
+    /// </summary>
+    /// <param name="target"></param>
+    public void MoveToTarget(GameObject target) {
+        Vector3 direction = target.transform.position - transform.position;
         projectile.velocity = new Vector2(direction.x, direction.y).normalized * moveSpeed;
-
     }
     /// <summary>
     /// ignore collision with enemy and destroy projectile upon collision with any object other than the enemy
