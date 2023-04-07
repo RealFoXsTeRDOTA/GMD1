@@ -18,7 +18,7 @@ public class EnemyAttackController : MonoBehaviour {
     /// </summary>
     /// <param name="col"></param>
     private void OnTriggerEnter2D(Collider2D col) {
-        if (!col.gameObject.tag.Equals("Player"))
+        if (!col.gameObject.CompareTag("Player"))
             return;
         FireProjectile();
     }
@@ -28,7 +28,7 @@ public class EnemyAttackController : MonoBehaviour {
     /// </summary>
     /// <param name="other"></param>
     private void OnTriggerStay2D(Collider2D other) {
-        if (!other.gameObject.tag.Equals("Player"))
+        if (!other.gameObject.CompareTag("Player"))
             return;
         timer += Time.deltaTime;
         if (timer > 0.75) {

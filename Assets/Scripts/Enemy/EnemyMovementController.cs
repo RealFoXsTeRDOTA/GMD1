@@ -76,7 +76,7 @@ public class EnemyMovementController : MonoBehaviour {
     /// <param name="col"></param>
     private void OnCollisionEnter2D(Collision2D col) {
         if (moveUnrestricted) {
-            if (!(col.gameObject.tag.Equals("Ground") || col.gameObject.tag.Equals("Player"))) {
+            if (!(col.gameObject.CompareTag("Ground") || col.gameObject.CompareTag("Player"))) {
                 FlipMovementDirection();
             }
         }
@@ -84,7 +84,7 @@ public class EnemyMovementController : MonoBehaviour {
 
     //updates each frame so even if the player jumps over the enemy, it will switch direction
     private void OnTriggerStay2D(Collider2D other) {
-        if (!other.gameObject.tag.Equals("Player"))
+        if (!other.gameObject.CompareTag("Player"))
             return;
         var position = other.gameObject.transform.position;
         //set the position to flamingo.y so that the enemy cannot jump after the player
@@ -94,7 +94,7 @@ public class EnemyMovementController : MonoBehaviour {
     }
 
     private void OnTriggerExit2D(Collider2D other) {
-        if (other.gameObject.tag.Equals("Player"))
+        if (other.gameObject.CompareTag("Player"))
             target = Vector2.zero;
     }
 

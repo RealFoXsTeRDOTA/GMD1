@@ -4,6 +4,8 @@ public class ProjectileController : MonoBehaviour, IProjectile {
     [SerializeField] private float moveSpeed;
     private GameObject player;
     private Rigidbody2D projectile;
+    [SerializeField]
+    private GameObject healthContainer;
     // Start is called before the first frame update
     void Start() {
         projectile = GetComponent<Rigidbody2D>();
@@ -23,9 +25,12 @@ public class ProjectileController : MonoBehaviour, IProjectile {
     /// </summary>
     /// <param name="col"></param>
     private void OnCollisionEnter2D(Collision2D col) {
-        if (col.gameObject.tag.Equals("Enemy"))
+        if (col.gameObject.CompareTag("Enemy"))
             Physics2D.IgnoreCollision(col.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
-        if (!col.gameObject.tag.Equals("Enemy"))
+        if (col.gameObject.TryGetComponent(out Health player)) {
+            player.TakeDamage(1);
+        } 
+        if (!col.gameObject.CompareTag("Enemy"))
             Destroy(transform.gameObject);
     }
 }
