@@ -1,13 +1,13 @@
 using System.Collections;
+using Tiles;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
   //[Header("General settings")]
   private Rigidbody2D body;
-  public bool isOnIce = false;
-private SpriteRenderer spriteRenderer;
-  private bool isSlipperyMovement = false;
+  private SpriteRenderer spriteRenderer;
+  private bool isSlipperyMovement;
 
   [Header("Movement settings")]
   [SerializeField]
@@ -49,13 +49,11 @@ private SpriteRenderer spriteRenderer;
       return;
     }
 
-    if (isOnIce && IsPlayerGrounded())
+    if (isSlipperyMovement && IsPlayerGrounded())
     {
-      // float horizontalDirection = Input.GetAxis("Horizontal");
-      // body.AddForce(new Vector2(horizontalDirection * moveSpeed, 0f), ForceMode2D.Force);
       body.AddForce(new Vector2(CurrentMoveDirection.x * moveSpeed, 0f));
     }
-    else if (isOnIce && !IsPlayerGrounded())
+    else if (isSlipperyMovement && !IsPlayerGrounded())
     {
       if (CurrentMoveDirection.x == 0f)
       {
@@ -68,6 +66,11 @@ private SpriteRenderer spriteRenderer;
     {
       body.velocity = new Vector2(CurrentMoveDirection.x * moveSpeed, body.velocity.y);
     }
+  }
+  
+  public void SetIsSlipperyMovement(bool value)
+  {
+    isSlipperyMovement = value;
   }
 
   private void HandleMove(Vector2 direction)
@@ -120,19 +123,19 @@ private SpriteRenderer spriteRenderer;
   }
   private void OnCollisionEnter2D(Collision2D col)
   {
-    var tile = col.gameObject.GetComponent<ITile>();
+    var tile = col.gameObject.GetComponent<IEnterExitTile>();
     tile?.OnEnter(this);
   }
   
   private void OnCollisionExit2D(Collision2D collision)
   {
-    var tile = collision.gameObject.GetComponent<ITile>();
+    var tile = collision.gameObject.GetComponent<IEnterExitTile>();
     tile?.OnExit(this);
   }
   
   private void OnCollisionStay2D(Collision2D collision)
   {
-    var tile = collision.gameObject.GetComponent<ITile>();
+    var tile = collision.gameObject.GetComponent<IStayTile>();
     tile?.onStay(this);
   }
   

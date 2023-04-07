@@ -1,39 +1,54 @@
-using System;
+using System.Collections;
+using Tiles;
 using UnityEngine;
 
-public class LavaTile : MonoBehaviour, ITile
+public class LavaTile : MonoBehaviour, IEnterExitTile, IStayTile
 {
-  [SerializeField]
-  private GameObject fireParticleSystem;
+  private ParticleSystem fireParticleSystem;
+  private bool floorIsLava;
 
-  private ParticleSystem particleSystem;
 
   private void Start()
   {
-    particleSystem = fireParticleSystem.GetComponent<ParticleSystem>();
-    particleSystem.Stop();
+    fireParticleSystem = GetComponentInChildren<ParticleSystem>();
+    fireParticleSystem.Stop();
   }
 
-  public void OnEnter(PlayerController collision)
+  public void OnEnter(PlayerController playerController)
   {
-    var health = collision.gameObject.GetComponent<Health>();
-    // GameObject fireParticleSystem = collision.fireParticleSystem;
+    fireParticleSystem.Play();
+    TakeBurnDamage(playerController);
+    floorIsLava = true;
+    StartCoroutine(DamageOverTime(playerController));
+  }
+
+  public void OnExit(PlayerController playerController)
+  {
+    floorIsLava = false;
+    fireParticleSystem.Stop();
+    
+  }
+
+  public void onStay(PlayerController playerController)
+  {
+    fireParticleSystem.transform.position = playerController.transform.position;
+  }
+  
+  private IEnumerator DamageOverTime(PlayerController playerController)
+  {
+    while (floorIsLava)
+    {
+      TakeBurnDamage(playerController);
+      yield return new WaitForSeconds(2f);
+    }
+  }
+  
+  private void TakeBurnDamage(PlayerController playerController)
+  {
+    var health = playerController.gameObject.GetComponent<Health>();
     if (health != null)
     {
       health.TakeDamage(1);
     }
-    particleSystem.Play();
-  }
-
-  public void OnExit(PlayerController collision)
-  {
-    // GameObject fireParticleSystem = collision.fireParticleSystem;
-    particleSystem.Stop();
-    
-  }
-
-  public void onStay(PlayerController collision)
-  {
-    fireParticleSystem.transform.position = collision.transform.position;
   }
 }
