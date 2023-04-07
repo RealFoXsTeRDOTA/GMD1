@@ -1,16 +1,17 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class EnemyAttackController : MonoBehaviour {
 
     [SerializeField] private GameObject projectile;
-    [SerializeField] private Transform projectilePoz;
+    [SerializeField] private Transform projectilePos;
     private float timer;
 
     /// <summary>
     /// Instantiate projectile at the position of the spawner inherited from the enemy
     /// </summary>
     private void FireProjectile() {
-        Instantiate(projectile, projectilePoz.position, Quaternion.identity);
+        Instantiate(projectile, projectilePos.position, Quaternion.identity);
     }
 
     /// <summary>

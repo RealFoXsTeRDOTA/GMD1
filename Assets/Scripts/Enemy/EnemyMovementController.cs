@@ -12,7 +12,6 @@ public class EnemyMovementController : MonoBehaviour {
     private Vector2 target;
 
     private Rigidbody2D enemy;
-    private SpriteRenderer enemySprite;
 
 
     // Start is called before the first frame update
@@ -21,7 +20,6 @@ public class EnemyMovementController : MonoBehaviour {
         enemy.freezeRotation = true;
         moveDirection = moveDirectionLeft ? Vector2.left : Vector2.right;
         moveDirection.Normalize();
-        enemySprite = GetComponent<SpriteRenderer>();
         initialPosition = currentPosition = enemy.position;
         target = Vector2.zero;
     }
@@ -99,7 +97,8 @@ public class EnemyMovementController : MonoBehaviour {
     }
 
     private void FlipMovementDirection() {
-        enemySprite.flipX = !enemySprite.flipX;
+        var scale = transform.localScale;
+        transform.localScale = new Vector3(scale.x*-1, scale.y);
         moveDirection.x *= -1;
     }
 }

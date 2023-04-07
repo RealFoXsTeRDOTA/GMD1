@@ -4,8 +4,6 @@ public class ProjectileController : MonoBehaviour, IProjectile {
     [SerializeField] private float moveSpeed;
     private GameObject player;
     private Rigidbody2D projectile;
-    [SerializeField]
-    private GameObject healthContainer;
     // Start is called before the first frame update
     void Start() {
         projectile = GetComponent<Rigidbody2D>();
