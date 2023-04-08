@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &4553988538065790064
+--- !u!1 &6177164494683150079
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,13 +8,13 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4553988539504445788}
-  - component: {fileID: 4553988538065790062}
-  - component: {fileID: 4553988538065790061}
-  - component: {fileID: 4553988538065790060}
-  - component: {fileID: 4553988538065790067}
-  - component: {fileID: 4553988538065790066}
-  - component: {fileID: 4553988538065790065}
+  - component: {fileID: 6177164494683150078}
+  - component: {fileID: 6177164494683149824}
+  - component: {fileID: 6177164494683149825}
+  - component: {fileID: 6177164494683149826}
+  - component: {fileID: 6177164494683149827}
+  - component: {fileID: 6177164494683150076}
+  - component: {fileID: 6177164494683150077}
   m_Layer: 0
   m_Name: LavaTerrain
   m_TagString: Lava
@@ -22,29 +22,29 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4553988539504445788
+--- !u!4 &6177164494683150078
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4553988538065790064}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.94, y: -4.06, z: 0}
-  m_LocalScale: {x: 1.0478, y: 1.0142, z: 1}
+  m_GameObject: {fileID: 6177164494683150079}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 4553988539322283977}
+  - {fileID: 6177164495097870459}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1839735485 &4553988538065790062
+--- !u!1839735485 &6177164494683149824
 Tilemap:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4553988538065790064}
+  m_GameObject: {fileID: 6177164494683150079}
   m_Enabled: 1
   m_Tiles: {}
   m_AnimatedTiles: {}
@@ -53,7 +53,13 @@ Tilemap:
     m_Data: {fileID: 0}
   - m_RefCount: 0
     m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   m_TileSpriteArray:
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   - m_RefCount: 0
     m_Data: {fileID: 0}
   - m_RefCount: 0
@@ -101,12 +107,12 @@ Tilemap:
   - m_RefCount: 0
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   - m_RefCount: 0
-    m_Data: {r: 0.9039065, g: 0.41587865, b: 0.50326145, a: 1}
+    m_Data: {r: 0.9222714, g: 0.40700394, b: 0.5184688, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Origin: {x: -7, y: -7, z: 0}
-  m_Size: {x: 34, y: 7, z: 1}
+  m_Origin: {x: -19, y: -7, z: 0}
+  m_Size: {x: 46, y: 17, z: 1}
   m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
   m_TileOrientation: 0
   m_TileOrientationMatrix:
@@ -126,13 +132,13 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!483693784 &4553988538065790061
+--- !u!483693784 &6177164494683149825
 TilemapRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4553988538065790064}
+  m_GameObject: {fileID: 6177164494683150079}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -175,13 +181,13 @@ TilemapRenderer:
   m_Mode: 0
   m_DetectChunkCullingBounds: 0
   m_MaskInteraction: 0
---- !u!19719996 &4553988538065790060
+--- !u!19719996 &6177164494683149826
 TilemapCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4553988538065790064}
+  m_GameObject: {fileID: 6177164494683150079}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -191,14 +197,14 @@ TilemapCollider2D:
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0
---- !u!50 &4553988538065790067
+--- !u!50 &6177164494683149827
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4553988538065790064}
+  m_GameObject: {fileID: 6177164494683150079}
   m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
@@ -212,13 +218,13 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!66 &4553988538065790066
+--- !u!66 &6177164494683150076
 CompositeCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4553988538065790064}
+  m_GameObject: {fileID: 6177164494683150079}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -230,26 +236,25 @@ CompositeCollider2D:
   m_GenerationType: 0
   m_EdgeRadius: 0
   m_ColliderPaths:
-  - m_Collider: {fileID: 4553988538065790060}
+  - m_Collider: {fileID: 6177164494683149826}
     m_ColliderPaths: []
   m_CompositePaths:
     m_Paths: []
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
---- !u!114 &4553988538065790065
+--- !u!114 &6177164494683150077
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4553988538065790064}
+  m_GameObject: {fileID: 6177164494683150079}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ef911859948f6364ab7fdcab63dfe13e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireParticleSystem: {fileID: 4553988539322283982}
---- !u!1 &4553988539322283982
+--- !u!1 &6177164495097870452
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -257,9 +262,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4553988539322283977}
-  - component: {fileID: 4553988539322283976}
-  - component: {fileID: 4553988539322283983}
+  - component: {fileID: 6177164495097870459}
+  - component: {fileID: 6177164495097870457}
+  - component: {fileID: 6177164495097870458}
   m_Layer: 3
   m_Name: Fire
   m_TagString: Untagged
@@ -267,28 +272,28 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4553988539322283977
+--- !u!4 &6177164495097870459
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4553988539322283982}
+  m_GameObject: {fileID: 6177164495097870452}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 4.3185725, y: 5.841057, z: 0}
   m_LocalScale: {x: 0.9543807, y: 0.9859988, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4553988539504445788}
+  m_Father: {fileID: 6177164494683150078}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!198 &4553988539322283976
+--- !u!198 &6177164495097870457
 ParticleSystem:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4553988539322283982}
+  m_GameObject: {fileID: 6177164495097870452}
   serializedVersion: 8
   lengthInSec: 1
   simulationSpeed: 1
@@ -4989,14 +4994,14 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
---- !u!199 &4553988539322283983
+--- !u!199 &6177164495097870458
 ParticleSystemRenderer:
   serializedVersion: 6
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4553988539322283982}
+  m_GameObject: {fileID: 6177164495097870452}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -5028,7 +5033,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1494922837
+  m_SortingLayerID: -1797547531
   m_SortingLayer: 1
   m_SortingOrder: 0
   m_RenderMode: 0
