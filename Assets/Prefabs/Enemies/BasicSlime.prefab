@@ -177,6 +177,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectile: {fileID: 2211370924418745476, guid: 355293d72e0d8a142ba6c700dd515dd4, type: 3}
   projectilePos: {fileID: 4610793302325967714}
+  projectileFrequency: 0.75
 --- !u!114 &7448921231947093791
 MonoBehaviour:
   m_ObjectHideFlags: 0

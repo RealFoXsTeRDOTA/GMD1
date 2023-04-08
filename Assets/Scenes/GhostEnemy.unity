@@ -9779,6 +9779,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 5459775772667077425, guid: bcef37fdcf0a33e4e8fe3ff6b717173d, type: 3}
+      propertyPath: projectileFrequency
+      value: 0.75
+      objectReference: {fileID: 0}
     - target: {fileID: 5913486545927008044, guid: bcef37fdcf0a33e4e8fe3ff6b717173d, type: 3}
       propertyPath: m_BodyType
       value: 2
