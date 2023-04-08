@@ -8,6 +8,8 @@ TagManager:
   - Collectible
   - SlipperySurface
   - Ground
+  - Projectile
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -15,7 +17,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Enemy
   - 
   - 
   - 
