@@ -11,7 +11,10 @@ public class LavaTile : MonoBehaviour, IEnterExitTile, IStayTile
   private void Start()
   {
     fireParticleSystem = GetComponentInChildren<ParticleSystem>();
-    fireParticleSystem.Stop();
+    if (fireParticleSystem != null)
+    {
+      fireParticleSystem.Stop();
+    }
   }
 
   public void OnEnter(PlayerController playerController)
