@@ -12,7 +12,6 @@ public class EnemyMovementController : MonoBehaviour {
     private Vector2 target;
 
     private Rigidbody2D enemy;
-    private SpriteRenderer enemySprite;
 
 
     // Start is called before the first frame update
@@ -21,7 +20,6 @@ public class EnemyMovementController : MonoBehaviour {
         enemy.freezeRotation = true;
         moveDirection = moveDirectionLeft ? Vector2.left : Vector2.right;
         moveDirection.Normalize();
-        enemySprite = GetComponent<SpriteRenderer>();
         initialPosition = currentPosition = enemy.position;
         target = Vector2.zero;
     }
@@ -55,7 +53,6 @@ public class EnemyMovementController : MonoBehaviour {
             (target.x > enemy.position.x && moveDirection.x < 0)) {
             FlipMovementDirection();
         }
-
         enemy.position = Vector2.MoveTowards(enemy.position, target, moveSpeed * Time.fixedDeltaTime);
     }
 
@@ -77,7 +74,7 @@ public class EnemyMovementController : MonoBehaviour {
     /// <param name="col"></param>
     private void OnCollisionEnter2D(Collision2D col) {
         if (moveUnrestricted) {
-            if (!(col.gameObject.tag.Equals("Ground") || col.gameObject.tag.Equals("Player"))) {
+            if (!(col.gameObject.CompareTag("Ground") || col.gameObject.CompareTag("Player"))) {
                 FlipMovementDirection();
             }
         }
@@ -85,7 +82,7 @@ public class EnemyMovementController : MonoBehaviour {
 
     //updates each frame so even if the player jumps over the enemy, it will switch direction
     private void OnTriggerStay2D(Collider2D other) {
-        if (!other.gameObject.tag.Equals("Player"))
+        if (!other.gameObject.CompareTag("Player"))
             return;
         var position = other.gameObject.transform.position;
         //set the position to flamingo.y so that the enemy cannot jump after the player
@@ -95,12 +92,13 @@ public class EnemyMovementController : MonoBehaviour {
     }
 
     private void OnTriggerExit2D(Collider2D other) {
-        if (other.gameObject.tag.Equals("Player"))
+        if (other.gameObject.CompareTag("Player"))
             target = Vector2.zero;
     }
 
     private void FlipMovementDirection() {
-        enemySprite.flipX = !enemySprite.flipX;
+        var scale = transform.localScale;
+        transform.localScale = new Vector3(scale.x*-1, scale.y);
         moveDirection.x *= -1;
     }
 }
