@@ -1,11 +1,13 @@
 using System.Collections;
+using Tiles;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+  //[Header("General settings")]
   private Rigidbody2D body;
   private SpriteRenderer spriteRenderer;
-  private bool isSlipperyMovement = false;
+  private bool isSlipperyMovement;
 
   [Header("Movement settings")]
   [SerializeField]
@@ -51,7 +53,6 @@ public class PlayerController : MonoBehaviour
     if (isSlipperyMovement && IsPlayerGrounded())
     {
       body.AddForce(new Vector2(CurrentMoveDirection.x * moveSpeed, 0f));
-      // TODO - Play icy sound?
     }
     else if (isSlipperyMovement && !IsPlayerGrounded())
     {
@@ -66,6 +67,11 @@ public class PlayerController : MonoBehaviour
     {
       body.velocity = new Vector2(CurrentMoveDirection.x * moveSpeed, body.velocity.y);
     }
+  }
+  
+  public void SetIsSlipperyMovement(bool value)
+  {
+    isSlipperyMovement = value;
   }
 
   private void HandleMove(Vector2 direction)
@@ -129,16 +135,29 @@ public class PlayerController : MonoBehaviour
 
     canDash = true;
   }
-
+  private void OnCollisionEnter2D(Collision2D col)
+  {
+    var tile = col.gameObject.GetComponent<IEnterExitTile>();
+    tile?.OnEnter(this);
+  }
+  
+  private void OnCollisionExit2D(Collision2D collision)
+  {
+    var tile = collision.gameObject.GetComponent<IEnterExitTile>();
+    tile?.OnExit(this);
+  }
+  
   private void OnCollisionStay2D(Collision2D collision)
   {
-    isSlipperyMovement = collision.gameObject.CompareTag("SlipperySurface");
+    var tile = collision.gameObject.GetComponent<IStayTile>();
+    tile?.onStay(this);
   }
-
+  
   private bool IsPlayerGrounded()
   {
     return body.velocity.y <= .3f && body.velocity.y >= -.3f;
   }
+
 
   private void OnDestroy()
   {
