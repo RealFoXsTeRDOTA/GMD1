@@ -10,7 +10,8 @@ public class MouseCollectible : MonoBehaviour
     if (collision.CompareTag("Player"))
     {
       AudioSource.PlayClipAtPoint(collectiblePickUpSoundEffect, transform.position);
-      var gameController = collision.GetComponent<GameController>();
+      var gameController = GameObject.FindGameObjectWithTag("GameController")
+                                     .GetComponent<GameController>();
       gameController.IncreaseScore();
       Destroy(gameObject);
     }

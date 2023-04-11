@@ -8,7 +8,8 @@ public class SpawnManager : MonoBehaviour
   void Start()
   {
     var player = GameObject.FindGameObjectWithTag("Player");
-    var gameController = player.GetComponent<GameController>();
+    var gameController = GameObject.FindGameObjectWithTag("GameController")
+                                   .GetComponent<GameController>();
     player.transform.position = spawnLocations[gameController.SpawnPosition].position;
   }
 }

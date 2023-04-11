@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class LevelLoader : MonoBehaviour
 {
@@ -17,8 +16,8 @@ public class LevelLoader : MonoBehaviour
       return;
     }
 
-    var gameController = collision.gameObject.GetComponent<GameController>();
+    var gameController = FindFirstObjectByType<GameController>();
     gameController.SpawnPosition = spawnPoint;
-    SceneManager.LoadScene(sceneToLoad);
+    gameController.LoadScene(sceneToLoad);
   }
 }
