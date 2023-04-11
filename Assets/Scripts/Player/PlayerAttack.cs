@@ -22,23 +22,34 @@ public class PlayerAttack : MonoBehaviour
   private LayerMask enemyLayer;
   private Animator animator;
 
+  [Header("SFX")]
+  private AudioSource audioSource;
+
+  [SerializeField]
+  private AudioClip attackSoundEffect;
+
+  [SerializeField]
+  private AudioClip attackCooldownSoundEffect;
+
   private void Start()
   {
     input.AttackEvent += HandleAttack;
     animator = GetComponent<Animator>();
+    audioSource = GetComponent<AudioSource>();
   }
 
   private void HandleAttack()
   {
     if (Time.time < timeSinceLastAttack)
     {
-      // TODO - Play cooldown sound?
+      audioSource.PlayOneShot(attackCooldownSoundEffect);
       return;
     }
 
     animator.SetTrigger("Attack");
     var enemyCollidersHit = Physics2D.OverlapCircleAll(pointOfAttack.position, attackArea, enemyLayer);
     timeSinceLastAttack = Time.time + secondsPerAttack;
+    audioSource.PlayOneShot(attackSoundEffect);
 
     foreach (var collider in enemyCollidersHit)
     {

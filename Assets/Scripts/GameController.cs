@@ -12,6 +12,8 @@ public class GameController : MonoBehaviour
   [SerializeField]
   private TextMeshProUGUI scoreText;
 
+  public int SpawnPosition { get; set; }
+
   public int Score { get; private set; }
 
   private void Awake()

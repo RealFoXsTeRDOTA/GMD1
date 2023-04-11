@@ -4,10 +4,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-  //[Header("General settings")]
   private Rigidbody2D body;
-  private SpriteRenderer spriteRenderer;
-  private bool isSlipperyMovement;
+  public bool IsSlipperyMovement { get; set; }
 
   [Header("Movement settings")]
   [SerializeField]
@@ -31,6 +29,15 @@ public class PlayerController : MonoBehaviour
   private bool canDash = true;
   private bool isDashing;
 
+  [Header("SFX")]
+  private AudioSource audioSource;
+
+  [SerializeField]
+  private AudioClip dashSoundEffect;
+
+  [SerializeField]
+  private AudioClip dashCooldownSoundEffect;
+
   private void Start()
   {
     input.MoveEvent += HandleMove;
@@ -38,7 +45,7 @@ public class PlayerController : MonoBehaviour
     input.DashEvent += HandleDash;
 
     body = GetComponent<Rigidbody2D>();
-    spriteRenderer = GetComponent<SpriteRenderer>();
+    audioSource = GetComponent<AudioSource>();
     faceDirection = Vector2.right;
     FlipCharacter();
   }
@@ -50,11 +57,11 @@ public class PlayerController : MonoBehaviour
       return;
     }
 
-    if (isSlipperyMovement && IsPlayerGrounded())
+    if (IsSlipperyMovement && IsPlayerGrounded())
     {
       body.AddForce(new Vector2(CurrentMoveDirection.x * moveSpeed, 0f));
     }
-    else if (isSlipperyMovement && !IsPlayerGrounded())
+    else if (IsSlipperyMovement && !IsPlayerGrounded())
     {
       if (CurrentMoveDirection.x == 0f)
       {
@@ -67,11 +74,6 @@ public class PlayerController : MonoBehaviour
     {
       body.velocity = new Vector2(CurrentMoveDirection.x * moveSpeed, body.velocity.y);
     }
-  }
-  
-  public void SetIsSlipperyMovement(bool value)
-  {
-    isSlipperyMovement = value;
   }
 
   private void HandleMove(Vector2 direction)
@@ -102,6 +104,7 @@ public class PlayerController : MonoBehaviour
     if (IsPlayerGrounded())
     {
       body.AddForce(jumpForce * Vector2.up, ForceMode2D.Impulse);
+
     }
   }
 
@@ -113,8 +116,7 @@ public class PlayerController : MonoBehaviour
     }
     else
     {
-      Debug.Log("Dash is on cooldown!");
-      // TODO - Play a sound or something maybe?
+      audioSource.PlayOneShot(dashCooldownSoundEffect);
     }
   }
 
@@ -125,6 +127,7 @@ public class PlayerController : MonoBehaviour
     var gravity = body.gravityScale;
     body.gravityScale = 0f;
     body.AddForce(faceDirection * dashForce, ForceMode2D.Impulse);
+    audioSource.PlayOneShot(dashSoundEffect);
 
     yield return new WaitForSeconds(dashTime);
 
@@ -135,29 +138,29 @@ public class PlayerController : MonoBehaviour
 
     canDash = true;
   }
+
   private void OnCollisionEnter2D(Collision2D col)
   {
     var tile = col.gameObject.GetComponent<IEnterExitTile>();
     tile?.OnEnter(this);
   }
-  
+
   private void OnCollisionExit2D(Collision2D collision)
   {
     var tile = collision.gameObject.GetComponent<IEnterExitTile>();
     tile?.OnExit(this);
   }
-  
+
   private void OnCollisionStay2D(Collision2D collision)
   {
     var tile = collision.gameObject.GetComponent<IStayTile>();
-    tile?.onStay(this);
+    tile?.OnStay(this);
   }
-  
+
   private bool IsPlayerGrounded()
   {
     return body.velocity.y <= .3f && body.velocity.y >= -.3f;
   }
-
 
   private void OnDestroy()
   {

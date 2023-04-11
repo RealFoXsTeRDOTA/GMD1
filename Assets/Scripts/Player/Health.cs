@@ -13,11 +13,20 @@ public class Health : MonoBehaviour
   [SerializeField]
   private float invulnerabilityTimeInSeconds = .5f;
 
+  [Header("SFX")]
+  [SerializeField]
+  private AudioClip damageSoundEffect;
+
+  [SerializeField]
+  private AudioClip deathSoundEffect;
+  private AudioSource audioSource;
+
   private void Start()
   {
     maxHealth = 9;
     health = maxHealth;
     animationScript = GetComponent<PlayerAnimation>();
+    audioSource = GetComponent<AudioSource>();
   }
 
   private void Update()
@@ -36,10 +45,12 @@ public class Health : MonoBehaviour
       health -= damage;
       if (health > 0)
       {
+        audioSource.PlayOneShot(damageSoundEffect);
         StartCoroutine(BecomeTemporarilyInvincible());
       }
       else
       {
+        audioSource.PlayOneShot(deathSoundEffect);
         animationScript.SetDeath(true);
       }
     }

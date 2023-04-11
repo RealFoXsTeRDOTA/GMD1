@@ -177,6 +177,7 @@ MonoBehaviour:
   maxHealth: 2
   particlesOnDamage: {fileID: 3324473525157496823}
   particlesOnDeath: {fileID: 3698349665103930867, guid: 094b2caae6c5e114db163e82553d4381, type: 3}
+  deathSoundEffect: {fileID: 8300000, guid: 655d05095f8703e4083a492691b664f4, type: 3}
 --- !u!1 &3324473525157496822
 GameObject:
   m_ObjectHideFlags: 0

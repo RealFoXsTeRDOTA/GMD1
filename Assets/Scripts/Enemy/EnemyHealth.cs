@@ -12,6 +12,9 @@ public class EnemyHealth : MonoBehaviour
   [SerializeField]
   private Transform particlesOnDeath;
 
+  [SerializeField]
+  private AudioClip deathSoundEffect;
+
   private void Start()
   {
     currentHealth = maxHealth;
@@ -33,6 +36,7 @@ public class EnemyHealth : MonoBehaviour
 
   private void Kill()
   {
+    AudioSource.PlayClipAtPoint(deathSoundEffect, transform.position);
     var spawnPosition = new Vector3(transform.position.x, transform.position.y - .4f, transform.position.z);
     Instantiate(particlesOnDeath, spawnPosition, Quaternion.identity);
     Destroy(gameObject);
