@@ -150,7 +150,7 @@ public class PlayerController : MonoBehaviour
   private void OnCollisionStay2D(Collision2D collision)
   {
     var tile = collision.gameObject.GetComponent<IStayTile>();
-    tile?.onStay(this);
+    tile?.OnStay(this);
   }
   
   private bool IsPlayerGrounded()

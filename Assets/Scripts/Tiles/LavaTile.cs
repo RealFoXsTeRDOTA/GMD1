@@ -32,7 +32,7 @@ public class LavaTile : MonoBehaviour, IEnterExitTile, IStayTile
     
   }
 
-  public void onStay(PlayerController playerController)
+  public void OnStay(PlayerController playerController)
   {
     fireParticleSystem.transform.position = playerController.transform.position;
   }
