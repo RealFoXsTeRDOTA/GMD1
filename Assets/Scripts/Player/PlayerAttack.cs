@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
@@ -9,7 +10,7 @@ public class PlayerAttack : MonoBehaviour
   private Transform pointOfAttack;
 
   [SerializeField]
-  private float attackArea = .6f;
+  private float attackArea = .4f;
 
   [SerializeField]
   private int attackDamage = 1;
@@ -20,7 +21,6 @@ public class PlayerAttack : MonoBehaviour
 
   [SerializeField]
   private LayerMask enemyLayer;
-  private Animator animator;
 
   [Header("SFX")]
   private AudioSource audioSource;
@@ -30,12 +30,13 @@ public class PlayerAttack : MonoBehaviour
 
   [SerializeField]
   private AudioClip attackCooldownSoundEffect;
+  private SpriteRenderer attackSpriteRenderer;
 
   private void Start()
   {
     input.AttackEvent += HandleAttack;
-    animator = GetComponent<Animator>();
     audioSource = GetComponent<AudioSource>();
+    attackSpriteRenderer = pointOfAttack.GetComponent<SpriteRenderer>();
   }
 
   private void HandleAttack()
@@ -46,7 +47,7 @@ public class PlayerAttack : MonoBehaviour
       return;
     }
 
-    animator.SetTrigger("Attack");
+    StartCoroutine(PlayAttackAnimation());
     var enemyCollidersHit = Physics2D.OverlapCircleAll(pointOfAttack.position, attackArea, enemyLayer);
     timeSinceLastAttack = Time.time + secondsPerAttack;
     audioSource.PlayOneShot(attackSoundEffect);
@@ -61,6 +62,13 @@ public class PlayerAttack : MonoBehaviour
       var healthComponent = collider.GetComponent<EnemyHealth>();
       healthComponent.TakeDamage(attackDamage);
     }
+  }
+
+  private IEnumerator PlayAttackAnimation()
+  {
+    attackSpriteRenderer.enabled = true;
+    yield return new WaitForSeconds(.1f);
+    attackSpriteRenderer.enabled = false;
   }
 
   private void OnDrawGizmosSelected()
