@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class EnemyAttackController : MonoBehaviour {
@@ -41,7 +42,9 @@ public class EnemyAttackController : MonoBehaviour {
             return;
         target = other.transform.position;
     }
-    private void OnTriggerExit(Collider other) {
-        target = Vector3.zero;
+
+    private void OnTriggerExit2D(Collider2D other) {
+        if (other.gameObject.CompareTag("Player"))
+            target = Vector2.zero;
     }
 }
