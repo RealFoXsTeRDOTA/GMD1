@@ -78,6 +78,9 @@ public class EnemyMovementController : MonoBehaviour {
                 FlipMovementDirection();
             }
         }
+        if (col.gameObject.CompareTag("Enemy")) {
+            Physics2D.IgnoreCollision(col.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
+        }
     }
 
     //updates each frame so even if the player jumps over the enemy, it will switch direction
