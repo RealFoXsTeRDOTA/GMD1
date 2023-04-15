@@ -1,4 +1,4 @@
 public interface IStayTile
 {
-  public void onStay(PlayerController playerController);
+  public void OnStay(PlayerController playerController);
 }

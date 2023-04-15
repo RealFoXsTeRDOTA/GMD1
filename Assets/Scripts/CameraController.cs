@@ -2,18 +2,18 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-  [SerializeField]
-  private Transform objectToFollow;
+  private GameObject objectToFollow;
   private Vector3 offset;
 
   void Start()
   {
-    offset = transform.position - objectToFollow.position;
+    objectToFollow = GameObject.FindGameObjectWithTag("Player");
+    offset = Vector3.back * 10;
     DontDestroyOnLoad(gameObject);
   }
 
   void LateUpdate()
   {
-    transform.position = objectToFollow.position + offset;
+    transform.position = objectToFollow.transform.position + offset;
   }
 }

@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
@@ -12,6 +13,12 @@ public class GameController : MonoBehaviour
   [SerializeField]
   private TextMeshProUGUI scoreText;
 
+  [SerializeField]
+  private Animator animator;
+  private string sceneToLoad;
+
+  public int SpawnPosition { get; set; }
+
   public int Score { get; private set; }
 
   private void Awake()
@@ -20,8 +27,6 @@ public class GameController : MonoBehaviour
     input.ResumeEvent += HandleResume;
 
     Score = 0;
-
-    DontDestroyOnLoad(gameObject);
   }
 
   public void IncreaseScore()
@@ -38,6 +43,18 @@ public class GameController : MonoBehaviour
   private void HandleResume()
   {
 
+  }
+
+  public void LoadScene(string sceneName)
+  {
+    sceneToLoad = sceneName;
+    var triggerName = "FadeOut";
+    animator.SetTrigger(triggerName);
+  }
+
+  public void OnFadeComplete()
+  {
+    SceneManager.LoadScene(sceneToLoad);
   }
 
   private void OnDestroy()
