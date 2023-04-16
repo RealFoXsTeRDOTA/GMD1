@@ -2,13 +2,17 @@ using UnityEngine;
 
 public class HealthCollectible : MonoBehaviour
 {
+  [SerializeField]
+  private AudioClip collectiblePickUpSoundEffect;
+
   private void OnTriggerEnter2D(Collider2D collision)
   {
     if (collision.CompareTag("Player"))
     {
+      AudioSource.PlayClipAtPoint(collectiblePickUpSoundEffect, transform.position);
       var health = collision.gameObject.GetComponent<Health>();
       health.GiveHealth(1);
-      gameObject.SetActive(false);
+      Destroy(gameObject);
     }
   }
 }

@@ -49,7 +49,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fad4d4fde5328f348825b34e1e12d55f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DamageOnHit: 1
+  damageOnHit: 1
+  secondsBetweenDamage: 1
 --- !u!60 &150307185432477821
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -98,6 +99,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpikeVisual
       objectReference: {fileID: 0}
+    - target: {fileID: 4211294492632845498, guid: 4a7e56d3284cbe940823be9d4b56fc90, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
     - target: {fileID: 4211294492632845499, guid: 4a7e56d3284cbe940823be9d4b56fc90, type: 3}
       propertyPath: m_RootOrder
       value: 0

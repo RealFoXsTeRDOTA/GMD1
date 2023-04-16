@@ -1,19 +1,37 @@
-using System;
+using System.Collections;
+using System.Collections;
 using UnityEngine;
 
-public class PlayerAttack : MonoBehaviour {
-    [SerializeField] private InputReader input;
+public class PlayerAttack : MonoBehaviour
+{
+  [SerializeField]
+  private InputReader input;
 
-    [SerializeField] private Transform pointOfAttack;
+  [SerializeField]
+  private Transform pointOfAttack;
 
-    [SerializeField] private float attackArea = .6f;
+  [SerializeField]
+  private float attackArea = .4f;
 
-    [SerializeField] private int attackDamage = 1;
+  [SerializeField]
+  private int attackDamage = 1;
 
-    [SerializeField] private float secondsPerAttack = .5f;
-    private float timeSinceLastAttack = 0f;
+  [SerializeField]
+  private float secondsPerAttack = .5f;
+  private float timeSinceLastAttack = 0f;
 
-    [SerializeField] private LayerMask enemyLayer;
+  [SerializeField]
+  private LayerMask enemyLayer;
+
+  [Header("SFX")]
+  private AudioSource audioSource;
+
+  [SerializeField]
+  private AudioClip attackSoundEffect;
+
+  [SerializeField]
+  private AudioClip attackCooldownSoundEffect;
+  private SpriteRenderer attackSpriteRenderer;
     private Animator animator;
 
     [SerializeField] private GameObject projectile;
@@ -25,37 +43,48 @@ public class PlayerAttack : MonoBehaviour {
         input.AttackEvent += HandleAttack;
         input.RangedAttackEvent += HandleRangedAttack;
         animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
+        attackSpriteRenderer = pointOfAttack.GetComponent<SpriteRenderer>();
     }
 
-    private void Update() {
-        shootCooldown += Time.deltaTime;
+  private void HandleAttack()
+  {
+    if (Time.time < timeSinceLastAttack)
+    {
+      audioSource.PlayOneShot(attackCooldownSoundEffect);
+      return;
     }
 
-    private void HandleAttack() {
-        if (Time.time < timeSinceLastAttack) {
-            // TODO - Play cooldown sound?
-            return;
-        }
+    StartCoroutine(PlayAttackAnimation());
+    var enemyCollidersHit = Physics2D.OverlapCircleAll(pointOfAttack.position, attackArea, enemyLayer);
+    timeSinceLastAttack = Time.time + secondsPerAttack;
+    audioSource.PlayOneShot(attackSoundEffect);
 
-        animator.SetTrigger("Attack");
-        var enemyCollidersHit = Physics2D.OverlapCircleAll(pointOfAttack.position, attackArea, enemyLayer);
-        timeSinceLastAttack = Time.time + secondsPerAttack;
+    foreach (var collider in enemyCollidersHit)
+    {
+      if (collider.isTrigger)
+      {
+        continue;
+      }
 
-        foreach (var collider in enemyCollidersHit) {
-            if (collider.isTrigger) {
-                continue;
-            }
-
-            var healthComponent = collider.GetComponent<EnemyHealth>();
-            healthComponent.TakeDamage(attackDamage);
-        }
+      var healthComponent = collider.GetComponent<EnemyHealth>();
+      healthComponent.TakeDamage(attackDamage);
     }
+  }
 
-    private void OnDrawGizmosSelected() {
-        Gizmos.DrawWireSphere(pointOfAttack.position, attackArea);
-    }
+  private IEnumerator PlayAttackAnimation()
+  {
+    attackSpriteRenderer.enabled = true;
+    yield return new WaitForSeconds(.1f);
+    attackSpriteRenderer.enabled = false;
+  }
 
-    private void OnDestroy() {
+  private void OnDrawGizmosSelected()
+  {
+    Gizmos.DrawWireSphere(pointOfAttack.position, attackArea);
+  }
+
+  private void OnDestroy() {
         input.AttackEvent -= HandleAttack;
         input.RangedAttackEvent -= HandleRangedAttack; 
     }
