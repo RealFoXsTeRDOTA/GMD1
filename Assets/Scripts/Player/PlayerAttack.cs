@@ -60,13 +60,18 @@ public class PlayerAttack : MonoBehaviour {
         input.RangedAttackEvent -= HandleRangedAttack; 
     }
 
+    /// <summary>
+    /// only allow to shoot projectiles at an interval of time away from each other
+    /// </summary>
     private void HandleRangedAttack() {
         if (shootCooldown >= shootTime) {
             FireProjectile();
             shootCooldown = 0;
         }
     }
-
+    /// <summary>
+    /// instantiate projectile at the position of a child transform on the player and the rotation of the player
+    /// </summary>
     private void FireProjectile() {
         Instantiate(projectile, projectileSpawner.position, transform.rotation);
     }

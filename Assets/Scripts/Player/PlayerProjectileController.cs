@@ -7,6 +7,7 @@ public class PlayerProjectileController : MonoBehaviour{
     // Start is called before the first frame update
     void Start() {
         projectile = GetComponent<Rigidbody2D>();
+        //set to minus to compensate for the rotation of the transform in PlayerController.cs
         projectile.velocity = -transform.right * moveSpeed;
     }
 
