@@ -46,6 +46,10 @@ public class PlayerAttack : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         attackSpriteRenderer = pointOfAttack.GetComponent<SpriteRenderer>();
     }
+    
+    private void Update() {
+      shootTime += Time.deltaTime;
+    }
 
   private void HandleAttack()
   {
@@ -93,9 +97,9 @@ public class PlayerAttack : MonoBehaviour
     /// only allow to shoot projectiles at an interval of time away from each other
     /// </summary>
     private void HandleRangedAttack() {
-        if (shootCooldown >= shootTime) {
+        if (shootTime >= shootCooldown) {
             FireProjectile();
-            shootCooldown = 0;
+            shootTime = 0;
         }
     }
     /// <summary>
