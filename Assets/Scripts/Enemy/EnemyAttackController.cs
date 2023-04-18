@@ -1,11 +1,29 @@
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class EnemyAttackController : MonoBehaviour {
-
     [SerializeField] private GameObject projectile;
     [SerializeField] private Transform projectilePos;
     private float timer;
+    private Vector3 target;
+    [SerializeField] private float projectileFrequency;
+
+    private void Start() {
+        target = Vector3.zero;
+    }
+
+    /// <summary>
+    /// Fire a projectile every 0.75 seconds while the player is within range
+    /// </summary>
+    /// <param name="other"></param>
+    private void FixedUpdate() {
+        if (!target.Equals(Vector2.zero)) {
+            timer += Time.deltaTime;
+            if (timer > projectileFrequency) {
+                timer = 0;
+                FireProjectile();
+            }
+        }
+    }
 
     /// <summary>
     /// Instantiate projectile at the position of the spawner inherited from the enemy
@@ -13,29 +31,17 @@ public class EnemyAttackController : MonoBehaviour {
     private void FireProjectile() {
         Instantiate(projectile, projectilePos.position, Quaternion.identity);
     }
-
+    
     /// <summary>
-    /// Start firing once the player enters the trigger area
-    /// </summary>
-    /// <param name="col"></param>
-    private void OnTriggerEnter2D(Collider2D col) {
-        if (!col.gameObject.CompareTag("Player"))
-            return;
-        FireProjectile();
-    }
-
-    /// <summary>
-    /// Fire a projectile every 0.75 seconds while the player is within range
+    /// Set the target every time it moves inside the trigger area
     /// </summary>
     /// <param name="other"></param>
     private void OnTriggerStay2D(Collider2D other) {
-        if (!other.gameObject.CompareTag("Player"))
+        if (!other.CompareTag("Player"))
             return;
-        timer += Time.deltaTime;
-        if (timer > 0.75) {
-            timer = 0;
-            FireProjectile();
-        }
+        target = other.transform.position;
     }
-
+    private void OnTriggerExit(Collider other) {
+        target = Vector3.zero;
+    }
 }

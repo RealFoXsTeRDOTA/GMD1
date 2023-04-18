@@ -25,8 +25,8 @@ public class ProjectileController : MonoBehaviour, IProjectile {
     private void OnCollisionEnter2D(Collision2D col) {
         if (col.gameObject.CompareTag("Enemy"))
             Physics2D.IgnoreCollision(col.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
-        if (col.gameObject.TryGetComponent(out Health player)) {
-            player.TakeDamage(1);
+        if (col.gameObject.TryGetComponent(out Health playerHealth)) {
+            playerHealth.TakeDamage(1);
         } 
         if (!col.gameObject.CompareTag("Enemy"))
             Destroy(transform.gameObject);

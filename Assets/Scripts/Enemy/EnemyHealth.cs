@@ -5,15 +5,17 @@ public class EnemyHealth : MonoBehaviour
   [SerializeField]
   private float maxHealth = 5;
   private float currentHealth;
-
-  [SerializeField]
   private ParticleSystem particlesOnDamage;
 
   [SerializeField]
-  private Transform particlesOnDeath;
+  private GameObject particlesOnDeath;
+
+  [SerializeField]
+  private AudioClip deathSoundEffect;
 
   private void Start()
   {
+    particlesOnDamage = GetComponent<ParticleSystem>();
     currentHealth = maxHealth;
   }
 
@@ -33,8 +35,8 @@ public class EnemyHealth : MonoBehaviour
 
   private void Kill()
   {
-    var spawnPosition = new Vector3(transform.position.x, transform.position.y - .4f, transform.position.z);
-    Instantiate(particlesOnDeath, spawnPosition, Quaternion.identity);
+    AudioSource.PlayClipAtPoint(deathSoundEffect, transform.position);
+    Instantiate(particlesOnDeath, transform.position, Quaternion.identity);
     Destroy(gameObject);
   }
 }

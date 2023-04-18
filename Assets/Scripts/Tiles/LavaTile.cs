@@ -7,7 +7,6 @@ public class LavaTile : MonoBehaviour, IEnterExitTile, IStayTile
   private ParticleSystem fireParticleSystem;
   private bool floorIsLava;
 
-
   private void Start()
   {
     fireParticleSystem = GetComponentInChildren<ParticleSystem>();
@@ -20,38 +19,31 @@ public class LavaTile : MonoBehaviour, IEnterExitTile, IStayTile
   public void OnEnter(PlayerController playerController)
   {
     fireParticleSystem.Play();
-    TakeBurnDamage(playerController);
     floorIsLava = true;
-    StartCoroutine(DamageOverTime(playerController));
+
+    if (playerController.TryGetComponent<Health>(out var healthComponent))
+    {
+      StartCoroutine(DamageOverTime(healthComponent));
+    }
   }
 
   public void OnExit(PlayerController playerController)
   {
     floorIsLava = false;
     fireParticleSystem.Stop();
-    
   }
 
   public void OnStay(PlayerController playerController)
   {
     fireParticleSystem.transform.position = playerController.transform.position;
   }
-  
-  private IEnumerator DamageOverTime(PlayerController playerController)
+
+  private IEnumerator DamageOverTime(Health health)
   {
     while (floorIsLava)
     {
-      TakeBurnDamage(playerController);
-      yield return new WaitForSeconds(2f);
-    }
-  }
-  
-  private void TakeBurnDamage(PlayerController playerController)
-  {
-    var health = playerController.gameObject.GetComponent<Health>();
-    if (health != null)
-    {
       health.TakeDamage(1);
+      yield return new WaitForSeconds(2f);
     }
   }
 }
