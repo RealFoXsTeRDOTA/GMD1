@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections;
 using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
@@ -31,13 +32,24 @@ public class PlayerAttack : MonoBehaviour
   [SerializeField]
   private AudioClip attackCooldownSoundEffect;
   private SpriteRenderer attackSpriteRenderer;
+    private Animator animator;
 
-  private void Start()
-  {
-    input.AttackEvent += HandleAttack;
-    audioSource = GetComponent<AudioSource>();
-    attackSpriteRenderer = pointOfAttack.GetComponent<SpriteRenderer>();
-  }
+    [SerializeField] private GameObject projectile;
+    [SerializeField] private Transform projectileSpawner;
+    [SerializeField] private float shootCooldown;
+    private float shootTime;
+
+    private void Start() {
+        input.AttackEvent += HandleAttack;
+        input.RangedAttackEvent += HandleRangedAttack;
+        animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
+        attackSpriteRenderer = pointOfAttack.GetComponent<SpriteRenderer>();
+    }
+    
+    private void Update() {
+      shootTime += Time.deltaTime;
+    }
 
   private void HandleAttack()
   {
@@ -76,8 +88,24 @@ public class PlayerAttack : MonoBehaviour
     Gizmos.DrawWireSphere(pointOfAttack.position, attackArea);
   }
 
-  private void OnDestroy()
-  {
-    input.AttackEvent -= HandleAttack;
-  }
+  private void OnDestroy() {
+        input.AttackEvent -= HandleAttack;
+        input.RangedAttackEvent -= HandleRangedAttack; 
+    }
+
+    /// <summary>
+    /// only allow to shoot projectiles at an interval of time away from each other
+    /// </summary>
+    private void HandleRangedAttack() {
+        if (shootTime >= shootCooldown) {
+            FireProjectile();
+            shootTime = 0;
+        }
+    }
+    /// <summary>
+    /// instantiate projectile at the position of a child transform on the player and the rotation of the player
+    /// </summary>
+    private void FireProjectile() {
+        Instantiate(projectile, projectileSpawner.position, transform.rotation);
+    }
 }

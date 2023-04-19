@@ -22,6 +22,8 @@ public class EnemyMovementController : MonoBehaviour {
         moveDirection.Normalize();
         initialPosition = currentPosition = enemy.position;
         target = Vector2.zero;
+        //set the rigidbody so that the player cannot push it around
+        enemy.bodyType = moveSpeed == 0 ? RigidbodyType2D.Static : RigidbodyType2D.Dynamic;
     }
 
     /// <summary>
@@ -31,17 +33,19 @@ public class EnemyMovementController : MonoBehaviour {
     /// -> Move back to initial position if the movement is restricted to a number of tiles and the enemy went past allowed distance and resume normal movement behaviour
     /// </summary>
     void FixedUpdate() {
-        ChangeDirectionForFixedDirection();
-        if (!target.Equals(Vector2.zero)) {
-            MoveToPlayer();
-        }
-        else if (!moveUnrestricted && (enemy.position.x > tileNumber + initialPosition.x && moveDirection.x > 0 ||
-                                       enemy.position.x < initialPosition.x - tileNumber && moveDirection.x < 0)) {
-            enemy.position = Vector2.MoveTowards(enemy.position, initialPosition, moveSpeed * Time.fixedDeltaTime);
-            FlipMovementDirection();
-        }
-        else {
-            enemy.MovePosition(enemy.position + moveSpeed * Time.fixedDeltaTime * moveDirection);
+        if(moveSpeed != 0) {
+            ChangeDirectionForFixedDirection();
+            if (!target.Equals(Vector2.zero)) {
+                MoveToPlayer();
+            }
+            else if (!moveUnrestricted && (enemy.position.x > tileNumber + initialPosition.x && moveDirection.x > 0 ||
+                                           enemy.position.x < initialPosition.x - tileNumber && moveDirection.x < 0)) {
+                enemy.position = Vector2.MoveTowards(enemy.position, initialPosition, moveSpeed * Time.fixedDeltaTime);
+                FlipMovementDirection();
+            }
+            else {
+                enemy.MovePosition(enemy.position + moveSpeed * Time.fixedDeltaTime * moveDirection);
+            }
         }
     }
 
@@ -78,17 +82,25 @@ public class EnemyMovementController : MonoBehaviour {
                 FlipMovementDirection();
             }
         }
+        if (col.gameObject.CompareTag("Enemy")) {
+            Physics2D.IgnoreCollision(col.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
+        }
     }
 
     //updates each frame so even if the player jumps over the enemy, it will switch direction
     private void OnTriggerStay2D(Collider2D other) {
         if (!other.gameObject.CompareTag("Player"))
             return;
-        var position = other.gameObject.transform.position;
-        //set the position to flamingo.y so that the enemy cannot jump after the player
-        target = new Vector2(position.x, enemy.position.y);
-        //prevents the player from pushing/being pushed by the player
-        Physics2D.IgnoreCollision(other.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
+        if (moveSpeed == 0) {
+            transform.localScale = other.transform.position.x < transform.position.x ? new Vector3(-1, 1) : new Vector3(1, 1);
+        }
+        else {
+            var position = other.gameObject.transform.position;
+            //set the position to enemy.y so that the enemy cannot jump after the player
+            target = new Vector2(position.x, enemy.position.y);
+            //prevents the player from pushing/being pushed by the player
+            Physics2D.IgnoreCollision(other.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
+        }
     }
 
     private void OnTriggerExit2D(Collider2D other) {

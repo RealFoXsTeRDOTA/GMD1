@@ -13,6 +13,7 @@ public class InputReader : ScriptableObject, GameInput.IGameplayActions, GameInp
   public Action PauseEvent;
   public Action ResumeEvent;
   public Action DashEvent;
+  public Action RangedAttackEvent;
 
   private void OnEnable()
   {
@@ -82,6 +83,13 @@ public class InputReader : ScriptableObject, GameInput.IGameplayActions, GameInp
     if (context.action.phase == InputActionPhase.Performed)
     {
       DashEvent?.Invoke();
+    }
+  }
+
+  public void OnRangedAttack(InputAction.CallbackContext context) {
+    if (context.action.phase == InputActionPhase.Performed)
+    {
+      RangedAttackEvent?.Invoke();
     }
   }
 }
