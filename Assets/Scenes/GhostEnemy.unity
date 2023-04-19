@@ -7550,6 +7550,10 @@ PrefabInstance:
       propertyPath: timeBetweenHits
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 4008318741853789953, guid: b86969a26612c224a9dd8ae6cc43353b, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4008318741853789955, guid: b86969a26612c224a9dd8ae6cc43353b, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -7610,6 +7614,10 @@ PrefabInstance:
       propertyPath: deathSoundEffect
       value: 
       objectReference: {fileID: 8300000, guid: ff5f85da24bc943d1abdc5760a22bc81, type: 3}
+    - target: {fileID: 4008318741853789983, guid: b86969a26612c224a9dd8ae6cc43353b, type: 3}
+      propertyPath: particlesOnDeath
+      value: 
+      objectReference: {fileID: 134423538199255478, guid: f456dcd8c2ea64b488499c8fe6cf9b90, type: 3}
     - target: {fileID: 5048174114423228944, guid: b86969a26612c224a9dd8ae6cc43353b, type: 3}
       propertyPath: m_Layer
       value: 6
