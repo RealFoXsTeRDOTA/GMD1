@@ -12,7 +12,6 @@ public class EnemyMovementController : MonoBehaviour {
     private Vector2 target;
 
     private Rigidbody2D enemy;
-    private SpriteRenderer enemySprite;
 
 
     // Start is called before the first frame update
@@ -21,9 +20,10 @@ public class EnemyMovementController : MonoBehaviour {
         enemy.freezeRotation = true;
         moveDirection = moveDirectionLeft ? Vector2.left : Vector2.right;
         moveDirection.Normalize();
-        enemySprite = GetComponent<SpriteRenderer>();
         initialPosition = currentPosition = enemy.position;
         target = Vector2.zero;
+        //set the rigidbody so that the player cannot push it around
+        enemy.bodyType = moveSpeed == 0 ? RigidbodyType2D.Static : RigidbodyType2D.Dynamic;
     }
 
     /// <summary>
@@ -33,17 +33,19 @@ public class EnemyMovementController : MonoBehaviour {
     /// -> Move back to initial position if the movement is restricted to a number of tiles and the enemy went past allowed distance and resume normal movement behaviour
     /// </summary>
     void FixedUpdate() {
-        ChangeDirectionForFixedDirection();
-        if (!target.Equals(Vector2.zero)) {
-            MoveToPlayer();
-        }
-        else if (!moveUnrestricted && (enemy.position.x > tileNumber + initialPosition.x && moveDirection.x > 0 ||
-                                       enemy.position.x < initialPosition.x - tileNumber && moveDirection.x < 0)) {
-            enemy.position = Vector2.MoveTowards(enemy.position, initialPosition, moveSpeed * Time.fixedDeltaTime);
-            FlipMovementDirection();
-        }
-        else {
-            enemy.MovePosition(enemy.position + moveSpeed * Time.fixedDeltaTime * moveDirection);
+        if(moveSpeed != 0) {
+            ChangeDirectionForFixedDirection();
+            if (!target.Equals(Vector2.zero)) {
+                MoveToPlayer();
+            }
+            else if (!moveUnrestricted && (enemy.position.x > tileNumber + initialPosition.x && moveDirection.x > 0 ||
+                                           enemy.position.x < initialPosition.x - tileNumber && moveDirection.x < 0)) {
+                enemy.position = Vector2.MoveTowards(enemy.position, initialPosition, moveSpeed * Time.fixedDeltaTime);
+                FlipMovementDirection();
+            }
+            else {
+                enemy.MovePosition(enemy.position + moveSpeed * Time.fixedDeltaTime * moveDirection);
+            }
         }
     }
 
@@ -55,7 +57,6 @@ public class EnemyMovementController : MonoBehaviour {
             (target.x > enemy.position.x && moveDirection.x < 0)) {
             FlipMovementDirection();
         }
-
         enemy.position = Vector2.MoveTowards(enemy.position, target, moveSpeed * Time.fixedDeltaTime);
     }
 
@@ -77,30 +78,39 @@ public class EnemyMovementController : MonoBehaviour {
     /// <param name="col"></param>
     private void OnCollisionEnter2D(Collision2D col) {
         if (moveUnrestricted) {
-            if (!(col.gameObject.tag.Equals("Ground") || col.gameObject.tag.Equals("Player"))) {
+            if (!(col.gameObject.CompareTag("Ground") || col.gameObject.CompareTag("Player"))) {
                 FlipMovementDirection();
             }
+        }
+        if (col.gameObject.CompareTag("Enemy")) {
+            Physics2D.IgnoreCollision(col.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
         }
     }
 
     //updates each frame so even if the player jumps over the enemy, it will switch direction
     private void OnTriggerStay2D(Collider2D other) {
-        if (!other.gameObject.tag.Equals("Player"))
+        if (!other.gameObject.CompareTag("Player"))
             return;
-        var position = other.gameObject.transform.position;
-        //set the position to flamingo.y so that the enemy cannot jump after the player
-        target = new Vector2(position.x, enemy.position.y);
-        //prevents the player from pushing/being pushed by the player
-        Physics2D.IgnoreCollision(other.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
+        if (moveSpeed == 0) {
+            transform.localScale = other.transform.position.x < transform.position.x ? new Vector3(-1, 1) : new Vector3(1, 1);
+        }
+        else {
+            var position = other.gameObject.transform.position;
+            //set the position to enemy.y so that the enemy cannot jump after the player
+            target = new Vector2(position.x, enemy.position.y);
+            //prevents the player from pushing/being pushed by the player
+            Physics2D.IgnoreCollision(other.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
+        }
     }
 
     private void OnTriggerExit2D(Collider2D other) {
-        if (other.gameObject.tag.Equals("Player"))
+        if (other.gameObject.CompareTag("Player"))
             target = Vector2.zero;
     }
 
     private void FlipMovementDirection() {
-        enemySprite.flipX = !enemySprite.flipX;
+        var scale = transform.localScale;
+        transform.localScale = new Vector3(scale.x*-1, scale.y);
         moveDirection.x *= -1;
     }
 }
