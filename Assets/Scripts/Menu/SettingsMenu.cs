@@ -12,8 +12,7 @@ public class SettingsMenu : MonoBehaviour
  Resolution[] resolutions;
  [SerializeField]
  private TMP_Dropdown resolutionDropdown; 
- [SerializeField] 
- private TMP_Dropdown graphicsDropdown;
+
  [SerializeField] 
  private Slider volumeSlider;
  public void Start()
@@ -46,11 +45,6 @@ public class SettingsMenu : MonoBehaviour
   float volumeLevel;
   audioMixer.GetFloat("volume", out volumeLevel);
   volumeSlider.value = volumeLevel;
-  
-  //set the quality to the current quality
-  //this is not working
-  graphicsDropdown.value = QualitySettings.GetQualityLevel();
-  graphicsDropdown.RefreshShownValue();
  }
  
  public void SetResolution(int resolutionIndex)

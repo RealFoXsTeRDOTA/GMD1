@@ -4,8 +4,6 @@ using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
-  [SerializeField]
-  private InputReader input;
 
   [SerializeField]
   private GameObject pauseMenu;
@@ -23,9 +21,6 @@ public class GameController : MonoBehaviour
 
   private void Awake()
   {
-    input.PauseEvent += HandlePause;
-    input.ResumeEvent += HandleResume;
-
     Score = 0;
   }
 
@@ -33,16 +28,6 @@ public class GameController : MonoBehaviour
   {
     Score++;
     scoreText.text = Score.ToString();
-  }
-
-  private void HandlePause()
-  {
-
-  }
-
-  private void HandleResume()
-  {
-
   }
 
   public void LoadScene(string sceneName)
@@ -55,11 +40,5 @@ public class GameController : MonoBehaviour
   public void OnFadeComplete()
   {
     SceneManager.LoadScene(sceneToLoad);
-  }
-
-  private void OnDestroy()
-  {
-    input.PauseEvent -= HandlePause;
-    input.ResumeEvent -= HandleResume;
   }
 }

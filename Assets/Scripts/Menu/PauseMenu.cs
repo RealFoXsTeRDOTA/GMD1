@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,23 +9,15 @@ public class PauseMenu : MonoBehaviour
     private static bool isPaused = false;
     [SerializeField]
     private GameObject pauseMenuUI;
+    [SerializeField]
+    private InputReader input;
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            if (isPaused)
-            {
-                Resume();
-            }
-            else
-            {
-                Pause();
-            }
-        }
+        input.PauseEvent += Pause;
+        input.ResumeEvent += Resume;
     }
-    
+
     public void Resume()
     {
         pauseMenuUI.SetActive(false);
@@ -41,6 +34,7 @@ public class PauseMenu : MonoBehaviour
     
     public void LoadMenu()
     {
+        Debug.Log("Ola");
         Time.timeScale = 1f;
         SceneManager.LoadScene("MenuScene");
         Debug.Log("Loading Menu...");
@@ -50,5 +44,11 @@ public class PauseMenu : MonoBehaviour
     {
         Debug.Log("Quitting Game...");
         Application.Quit();
+    }
+    
+    private void OnDestroy()
+    {
+        input.PauseEvent -= Pause;
+        input.ResumeEvent -= Resume;
     }
 }
