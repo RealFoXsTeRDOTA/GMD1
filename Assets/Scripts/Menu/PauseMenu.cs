@@ -1,12 +1,8 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
-    private static bool isPaused = false;
     [SerializeField]
     private GameObject pauseMenuUI;
     [SerializeField]
@@ -22,14 +18,12 @@ public class PauseMenu : MonoBehaviour
     {
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
-        isPaused = false;
     }
     
     private void Pause()
     {
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
-        isPaused = true;
     }
     
     public void LoadMenu()

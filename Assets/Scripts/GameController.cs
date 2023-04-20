@@ -4,10 +4,6 @@ using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
-
-  [SerializeField]
-  private GameObject pauseMenu;
-
   [SerializeField]
   private TextMeshProUGUI scoreText;
 

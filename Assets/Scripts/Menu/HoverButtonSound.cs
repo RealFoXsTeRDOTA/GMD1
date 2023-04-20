@@ -17,12 +17,6 @@ namespace Menu
                 button = GetComponent<Button>();
                 audioSource = GetComponent<AudioSource>();
 
-                // if audio source is not attached to the button, add one
-                if (audioSource == null)
-                {
-                    audioSource = gameObject.AddComponent<AudioSource>();
-                }
-
                 // set the audio source to not play on awake, and to play the assigned clip
                 audioSource.playOnAwake = false;
                 audioSource.clip = hoverSound;
