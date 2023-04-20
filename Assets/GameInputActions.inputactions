@@ -49,6 +49,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Ranged Attack",
+                    "type": "Button",
+                    "id": "5870d77a-8880-4e67-b871-4dc4aa265e77",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -142,6 +151,17 @@
                 },
                 {
                     "name": "",
+                    "id": "55c7d6d1-8ba6-454a-8eaf-91918d735727",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "977bbc5f-73e2-4a33-a940-51e0fa81320f",
                     "path": "<Keyboard>/escape",
                     "interactions": "",
@@ -181,6 +201,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a149dc85-dcf0-49e7-b781-624fabb7101b",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Ranged Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a7b3ea8b-b531-40d7-91bb-49da40b6b429",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Ranged Attack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ProjectileController : MonoBehaviour, IProjectile {
+public class ProjectileController : MonoBehaviour{
     [SerializeField] private float moveSpeed;
     private GameObject player;
     private Rigidbody2D projectile;
@@ -23,7 +23,7 @@ public class ProjectileController : MonoBehaviour, IProjectile {
     /// </summary>
     /// <param name="col"></param>
     private void OnCollisionEnter2D(Collision2D col) {
-        if (col.gameObject.CompareTag("Enemy"))
+        if (col.gameObject.CompareTag("Enemy") || col.gameObject.CompareTag("Projectile"))
             Physics2D.IgnoreCollision(col.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
         if (col.gameObject.TryGetComponent(out Health playerHealth)) {
             playerHealth.TakeDamage(1);
