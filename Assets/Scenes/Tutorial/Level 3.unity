@@ -591,14 +591,6 @@ PrefabInstance:
       propertyPath: sceneToLoad
       value: Scenes/Tutorial/Level 4
       objectReference: {fileID: 0}
-    - target: {fileID: 8527384314848224398, guid: bb1caaeade4e3b34587112b420dc286b, type: 3}
-      propertyPath: m_Size.y
-      value: 5.367185
-      objectReference: {fileID: 0}
-    - target: {fileID: 8527384314848224398, guid: bb1caaeade4e3b34587112b420dc286b, type: 3}
-      propertyPath: m_Offset.y
-      value: -1.4044406
-      objectReference: {fileID: 0}
     - target: {fileID: 8527384314848224399, guid: bb1caaeade4e3b34587112b420dc286b, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -609,7 +601,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8527384314848224399, guid: bb1caaeade4e3b34587112b420dc286b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.11
+      value: -3
       objectReference: {fileID: 0}
     - target: {fileID: 8527384314848224399, guid: bb1caaeade4e3b34587112b420dc286b, type: 3}
       propertyPath: m_LocalPosition.z
