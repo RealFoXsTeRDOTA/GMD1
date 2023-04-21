@@ -11,8 +11,8 @@ public class MouseCollectible : MonoBehaviour
     {
       AudioSource.PlayClipAtPoint(collectiblePickUpSoundEffect, transform.position);
       var gameController = GameObject.FindGameObjectWithTag("GameController")
-                                     .GetComponent<GameController>();
-      gameController.IncreaseScore();
+                                     .GetComponent<SceneLoader>();
+      //gameController.IncreaseScore();
       Destroy(gameObject);
     }
   }
