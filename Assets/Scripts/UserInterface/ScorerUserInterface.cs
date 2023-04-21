@@ -13,7 +13,7 @@ public class ScorerUserInterface : MonoBehaviour
                                .GetComponent<GameController>();
 
     scoreText.text = gameController.Score.ToString();
-    gameController.ScoreIncreasedEvent += UpdateScore;
+    gameController.ScoreChangedEvent += UpdateScore;
   }
 
   private void UpdateScore(int score)
@@ -23,6 +23,6 @@ public class ScorerUserInterface : MonoBehaviour
 
   private void OnDestroy()
   {
-    gameController.ScoreIncreasedEvent -= UpdateScore;
+    gameController.ScoreChangedEvent -= UpdateScore;
   }
 }
