@@ -35,6 +35,7 @@ public class EnemyHealth : MonoBehaviour
 
   private void Kill()
   {
+    // TODO - Make audio manager, i.e. ONE single audio source throughout the game that has access to all sounds. Can then call methods to play specific sounds.
     AudioSource.PlayClipAtPoint(deathSoundEffect, transform.position);
     Instantiate(particlesOnDeath, transform.position, Quaternion.identity);
     Destroy(gameObject);

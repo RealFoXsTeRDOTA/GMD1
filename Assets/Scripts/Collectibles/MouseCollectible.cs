@@ -9,10 +9,11 @@ public class MouseCollectible : MonoBehaviour
   {
     if (collision.CompareTag("Player"))
     {
+      // TODO - Make audio manager, i.e. ONE single audio source throughout the game that has access to all sounds. Can then call methods to play specific sounds.
       AudioSource.PlayClipAtPoint(collectiblePickUpSoundEffect, transform.position);
       var gameController = GameObject.FindGameObjectWithTag("GameController")
-                                     .GetComponent<SceneLoader>();
-      //gameController.IncreaseScore();
+                                     .GetComponent<GameController>();
+      gameController.IncreaseScore();
       Destroy(gameObject);
     }
   }

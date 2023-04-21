@@ -21,14 +21,21 @@ public class Health : MonoBehaviour
   private AudioClip deathSoundEffect;
   private AudioSource audioSource;
 
+  private GameController gameController;
+
   private void Start()
   {
     maxHealth = 9;
     health = maxHealth;
     animationScript = GetComponent<PlayerAnimation>();
+
+    // TODO - Make audio manager, i.e. ONE single audio source throughout the game that has access to all sounds. Can then call methods to play specific sounds.
     audioSource = GetComponent<AudioSource>();
+    gameController = GameObject.FindGameObjectWithTag("GameController")
+                               .GetComponent<GameController>();
   }
 
+  // TODO - Find a better way of doing this? Calling GetComponentsInChildren every frame isn't great... Should probably also be placed in the game controller now too
   private void Update()
   {
     var images = healthContainer.GetComponentsInChildren<Image>();
