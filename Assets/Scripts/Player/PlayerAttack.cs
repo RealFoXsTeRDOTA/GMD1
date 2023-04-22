@@ -32,7 +32,7 @@ public class PlayerAttack : MonoBehaviour
   [SerializeField]
   private AudioClip attackCooldownSoundEffect;
   private SpriteRenderer attackSpriteRenderer;
-    private Animator animator;
+  private Animator animator;
 
     [SerializeField] private GameObject projectile;
     [SerializeField] private Transform projectileSpawner;
