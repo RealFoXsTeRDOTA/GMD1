@@ -23,7 +23,7 @@ public class PlayerAttack : MonoBehaviour
   private LayerMask enemyLayer;
 
   [Header("SFX")]
-  private AudioSource audioSource;
+  private AudioManager audioManager;
 
   [SerializeField]
   private AudioClip attackSoundEffect;
@@ -44,8 +44,7 @@ public class PlayerAttack : MonoBehaviour
     input.RangedAttackEvent += HandleRangedAttack;
     animator = GetComponent<Animator>();
 
-    // TODO - Make audio manager, i.e. ONE single audio source throughout the game that has access to all sounds. Can then call methods to play specific sounds.
-    audioSource = GetComponent<AudioSource>();
+    audioManager = FindFirstObjectByType<AudioManager>();
     attackSpriteRenderer = pointOfAttack.GetComponent<SpriteRenderer>();
   }
 
@@ -58,14 +57,14 @@ public class PlayerAttack : MonoBehaviour
   {
     if (Time.time < timeSinceLastAttack)
     {
-      audioSource.PlayOneShot(attackCooldownSoundEffect);
+      audioManager.Play(attackCooldownSoundEffect);
       return;
     }
 
     StartCoroutine(PlayAttackAnimation());
     var enemyCollidersHit = Physics2D.OverlapCircleAll(pointOfAttack.position, attackArea, enemyLayer);
     timeSinceLastAttack = Time.time + secondsPerAttack;
-    audioSource.PlayOneShot(attackSoundEffect);
+    audioManager.Play(attackSoundEffect);
 
     foreach (var collider in enemyCollidersHit)
     {

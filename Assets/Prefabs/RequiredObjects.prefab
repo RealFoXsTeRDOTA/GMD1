@@ -183,22 +183,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8425946871584341031}
     m_Modifications:
-    - target: {fileID: 670090580486178824, guid: c814ddaeaad7a7b49bee19d4c7c4e75e, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2674014219431994730, guid: c814ddaeaad7a7b49bee19d4c7c4e75e, type: 3}
-      propertyPath: attackArea
-      value: 0.5
-      objectReference: {fileID: 0}
     - target: {fileID: 2674014219431994730, guid: c814ddaeaad7a7b49bee19d4c7c4e75e, type: 3}
       propertyPath: attackSprite
       value: 
       objectReference: {fileID: 2054620122947430415, guid: df1266a5ed6d6284fbf8eaac9106ada9, type: 3}
-    - target: {fileID: 2674014219431994730, guid: c814ddaeaad7a7b49bee19d4c7c4e75e, type: 3}
-      propertyPath: enemyLayer.m_Bits
-      value: 64
-      objectReference: {fileID: 0}
     - target: {fileID: 2804933760746749345, guid: c814ddaeaad7a7b49bee19d4c7c4e75e, type: 3}
       propertyPath: m_LinearDrag
       value: 1
@@ -207,14 +195,6 @@ PrefabInstance:
       propertyPath: healthContainer
       value: 
       objectReference: {fileID: 5072561231699690794}
-    - target: {fileID: 5171642846215685950, guid: c814ddaeaad7a7b49bee19d4c7c4e75e, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -1.141
-      objectReference: {fileID: 0}
-    - target: {fileID: 5171642846215685950, guid: c814ddaeaad7a7b49bee19d4c7c4e75e, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.028
-      objectReference: {fileID: 0}
     - target: {fileID: 5293053093354642848, guid: c814ddaeaad7a7b49bee19d4c7c4e75e, type: 3}
       propertyPath: m_Name
       value: Player

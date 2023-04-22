@@ -15,16 +15,15 @@ public class Health : MonoBehaviour
 
   [SerializeField]
   private AudioClip deathSoundEffect;
-  private AudioSource audioSource;
 
+  private AudioManager audioManager;
   private GameController gameController;
 
   private void Start()
   {
     animationScript = GetComponent<PlayerAnimation>();
 
-    // TODO - Make audio manager, i.e. ONE single audio source throughout the game that has access to all sounds. Can then call methods to play specific sounds.
-    audioSource = GetComponent<AudioSource>();
+    audioManager = FindFirstObjectByType<AudioManager>();
     gameController = GameObject.FindGameObjectWithTag("GameController")
                                .GetComponent<GameController>();
 
@@ -39,7 +38,7 @@ public class Health : MonoBehaviour
 
       if (gameController.CurrentPlayerHealth > 0)
       {
-        audioSource.PlayOneShot(damageSoundEffect);
+        audioManager.Play(damageSoundEffect);
         StartCoroutine(BecomeTemporarilyInvincible());
       }
     }
@@ -47,7 +46,7 @@ public class Health : MonoBehaviour
 
   private void HandlePlayerDeath()
   {
-    audioSource.PlayOneShot(deathSoundEffect);
+    audioManager.Play(deathSoundEffect);
     animationScript.SetDeath(true);
   }
 
