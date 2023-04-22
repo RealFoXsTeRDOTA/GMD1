@@ -37,7 +37,7 @@ public class PlayerController : MonoBehaviour
 
   [SerializeField]
   private AudioClip dashCooldownSoundEffect;
-  private ParticleSystem dashParticles;
+  private TrailRenderer dashEffect;
 
   private void Start()
   {
@@ -47,7 +47,7 @@ public class PlayerController : MonoBehaviour
 
     body = GetComponent<Rigidbody2D>();
     audioSource = GetComponent<AudioSource>();
-    dashParticles = GetComponentInChildren<ParticleSystem>();
+    dashEffect = GetComponentInChildren<TrailRenderer>();
     faceDirection = Vector2.right;
     FlipCharacter();
   }
@@ -130,12 +130,13 @@ public class PlayerController : MonoBehaviour
     body.gravityScale = 0f;
     body.AddForce(faceDirection * dashForce, ForceMode2D.Impulse);
     audioSource.PlayOneShot(dashSoundEffect);
-    dashParticles.Play();
+    dashEffect.enabled = true;
 
     yield return new WaitForSeconds(dashTime);
 
     body.gravityScale = gravity;
     isDashing = false;
+    dashEffect.enabled = false;
 
     yield return new WaitForSeconds(dashCooldown);
 

@@ -23,6 +23,8 @@ public class InputReader : ScriptableObject, GameInput.IGameplayActions, GameInp
       gameInput.Gameplay.SetCallbacks(this);
       gameInput.UI.SetCallbacks(this);
 
+      PauseMenu.ResumeClickedEvent += StartGameplay;
+
       StartGameplay();
     }
   }
@@ -87,10 +89,16 @@ public class InputReader : ScriptableObject, GameInput.IGameplayActions, GameInp
     }
   }
 
-  public void OnRangedAttack(InputAction.CallbackContext context) {
+  public void OnRangedAttack(InputAction.CallbackContext context)
+  {
     if (context.action.phase == InputActionPhase.Performed)
     {
       RangedAttackEvent?.Invoke();
     }
+  }
+
+  private void OnDisable()
+  {
+    PauseMenu.ResumeClickedEvent -= StartGameplay;
   }
 }

@@ -1,40 +1,42 @@
-using TMPro;
+using System;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
-  [SerializeField]
-  private TextMeshProUGUI scoreText;
-
-  [SerializeField]
-  private Animator animator;
-  private string sceneToLoad;
-
-  public int SpawnPosition { get; set; }
-
+  public int MaxPlayerHealth { get; } = 9;
+  public int CurrentPlayerHealth { get; private set; }
   public int Score { get; private set; }
+
+  public event Action<int> ScoreChangedEvent;
+  public event Action<int> HealthChangedEvent;
+  public event Action PlayerDeathEvent;
 
   private void Awake()
   {
+    CurrentPlayerHealth = MaxPlayerHealth;
     Score = 0;
   }
 
   public void IncreaseScore()
   {
     Score++;
-    scoreText.text = Score.ToString();
+    ScoreChangedEvent?.Invoke(Score);
   }
 
-  public void LoadScene(string sceneName)
+  public void TakeDamage(int damage)
   {
-    sceneToLoad = sceneName;
-    var triggerName = "FadeOut";
-    animator.SetTrigger(triggerName);
+    CurrentPlayerHealth -= damage;
+    HealthChangedEvent?.Invoke(CurrentPlayerHealth);
+
+    if (CurrentPlayerHealth == 0)
+    {
+      PlayerDeathEvent?.Invoke();
+    }
   }
 
-  public void OnFadeComplete()
+  public void GiveHealth(int health)
   {
-    SceneManager.LoadScene(sceneToLoad);
+    CurrentPlayerHealth += health;
+    HealthChangedEvent?.Invoke(CurrentPlayerHealth);
   }
 }
