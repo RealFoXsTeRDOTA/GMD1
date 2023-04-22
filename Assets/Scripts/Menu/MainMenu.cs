@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-  private const string startScene = "Scenes/Tutorial/Level 1";
+  private const string startScene = "Scenes/Tutorial/Level 0";
 
   public void PlayGame()
   {
