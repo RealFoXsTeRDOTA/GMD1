@@ -35,7 +35,7 @@ public class EnemyHealth : MonoBehaviour
 
   private void Kill()
   {
-    AudioSource.PlayClipAtPoint(deathSoundEffect, transform.position);
+    FindFirstObjectByType<AudioManager>().Play(deathSoundEffect);
     Instantiate(particlesOnDeath, transform.position, Quaternion.identity);
     Destroy(gameObject);
   }

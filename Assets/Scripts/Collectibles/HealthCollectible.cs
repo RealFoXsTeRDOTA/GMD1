@@ -9,7 +9,7 @@ public class HealthCollectible : MonoBehaviour
   {
     if (collision.CompareTag("Player"))
     {
-      AudioSource.PlayClipAtPoint(collectiblePickUpSoundEffect, transform.position);
+      FindFirstObjectByType<AudioManager>().Play(collectiblePickUpSoundEffect);
       var health = collision.gameObject.GetComponent<Health>();
       health.GiveHealth(1);
       Destroy(gameObject);
