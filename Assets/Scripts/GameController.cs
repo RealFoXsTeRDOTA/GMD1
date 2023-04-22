@@ -1,65 +1,42 @@
-using TMPro;
+using System;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
-  [SerializeField]
-  private InputReader input;
-
-  [SerializeField]
-  private GameObject pauseMenu;
-
-  [SerializeField]
-  private TextMeshProUGUI scoreText;
-
-  [SerializeField]
-  private Animator animator;
-  private string sceneToLoad;
-
-  public int SpawnPosition { get; set; }
-
+  public int MaxPlayerHealth { get; } = 9;
+  public int CurrentPlayerHealth { get; private set; }
   public int Score { get; private set; }
+
+  public event Action<int> ScoreChangedEvent;
+  public event Action<int> HealthChangedEvent;
+  public event Action PlayerDeathEvent;
 
   private void Awake()
   {
-    input.PauseEvent += HandlePause;
-    input.ResumeEvent += HandleResume;
-
+    CurrentPlayerHealth = MaxPlayerHealth;
     Score = 0;
   }
 
   public void IncreaseScore()
   {
     Score++;
-    scoreText.text = Score.ToString();
+    ScoreChangedEvent?.Invoke(Score);
   }
 
-  private void HandlePause()
+  public void TakeDamage(int damage)
   {
+    CurrentPlayerHealth -= damage;
+    HealthChangedEvent?.Invoke(CurrentPlayerHealth);
 
+    if (CurrentPlayerHealth == 0)
+    {
+      PlayerDeathEvent?.Invoke();
+    }
   }
 
-  private void HandleResume()
+  public void GiveHealth(int health)
   {
-
-  }
-
-  public void LoadScene(string sceneName)
-  {
-    sceneToLoad = sceneName;
-    var triggerName = "FadeOut";
-    animator.SetTrigger(triggerName);
-  }
-
-  public void OnFadeComplete()
-  {
-    SceneManager.LoadScene(sceneToLoad);
-  }
-
-  private void OnDestroy()
-  {
-    input.PauseEvent -= HandlePause;
-    input.ResumeEvent -= HandleResume;
+    CurrentPlayerHealth += health;
+    HealthChangedEvent?.Invoke(CurrentPlayerHealth);
   }
 }

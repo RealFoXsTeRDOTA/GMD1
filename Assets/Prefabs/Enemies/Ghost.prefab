@@ -163,7 +163,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.42409134, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -174,7 +174,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 10, y: 5.5}
+  m_Size: {x: 8.018547, y: 5.5}
   m_EdgeRadius: 0
 --- !u!50 &5913486545927008044
 Rigidbody2D:
@@ -209,8 +209,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ef7668986c5ef244bc5c3c973ae10aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectile: {fileID: 5264098104744884211, guid: 6b06a840198eb8e46b9a95d3b0c2dd8b,
-    type: 3}
+  projectile: {fileID: 5264098104744884211, guid: 6b06a840198eb8e46b9a95d3b0c2dd8b, type: 3}
   projectilePos: {fileID: 392315212908104060}
   projectileFrequency: 2
 --- !u!114 &270586907330590529
@@ -226,8 +225,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 3
-  particlesOnDeath: {fileID: 3698349665103930866, guid: c3fb3ec7334d23b44a2e72dbf145de49,
-    type: 3}
+  particlesOnDeath: {fileID: 3698349665103930866, guid: c3fb3ec7334d23b44a2e72dbf145de49, type: 3}
   deathSoundEffect: {fileID: 8300000, guid: 655d05095f8703e4083a492691b664f4, type: 3}
 --- !u!198 &3359406305435979947
 ParticleSystem:

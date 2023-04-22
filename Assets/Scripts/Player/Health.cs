@@ -1,15 +1,11 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Health : MonoBehaviour
 {
-  [SerializeField]
-  private GameObject healthContainer;
   private PlayerAnimation animationScript;
-  private int health;
-  private int maxHealth;
   private bool isHit;
+
   [SerializeField]
   private float invulnerabilityTimeInSeconds = .5f;
 
@@ -19,48 +15,46 @@ public class Health : MonoBehaviour
 
   [SerializeField]
   private AudioClip deathSoundEffect;
-  private AudioSource audioSource;
+
+  private AudioManager audioManager;
+  private GameController gameController;
 
   private void Start()
   {
-    maxHealth = 9;
-    health = maxHealth;
     animationScript = GetComponent<PlayerAnimation>();
-    audioSource = GetComponent<AudioSource>();
-  }
 
-  private void Update()
-  {
-    var images = healthContainer.GetComponentsInChildren<Image>();
-    for (var i = 0; i < maxHealth; i++)
-    {
-      images[i].enabled = i < health;
-    }
+    audioManager = FindFirstObjectByType<AudioManager>();
+    gameController = GameObject.FindGameObjectWithTag("GameController")
+                               .GetComponent<GameController>();
+
+    gameController.PlayerDeathEvent += HandlePlayerDeath;
   }
 
   public void TakeDamage(int damage)
   {
-    if (!isHit)
+    if (!isHit && gameController.CurrentPlayerHealth > 0)
     {
-      health -= damage;
-      if (health > 0)
+      gameController.TakeDamage(damage);
+
+      if (gameController.CurrentPlayerHealth > 0)
       {
-        audioSource.PlayOneShot(damageSoundEffect);
+        audioManager.Play(damageSoundEffect);
         StartCoroutine(BecomeTemporarilyInvincible());
-      }
-      else
-      {
-        audioSource.PlayOneShot(deathSoundEffect);
-        animationScript.SetDeath(true);
       }
     }
   }
 
+  private void HandlePlayerDeath()
+  {
+    audioManager.Play(deathSoundEffect);
+    animationScript.SetDeath(true);
+  }
+
   public void GiveHealth(int health)
   {
-    if (health < maxHealth)
+    if (health < gameController.MaxPlayerHealth)
     {
-      this.health += health;
+      gameController.GiveHealth(health);
     }
   }
 
@@ -71,5 +65,10 @@ public class Health : MonoBehaviour
     yield return new WaitForSeconds(invulnerabilityTimeInSeconds);
     animationScript.SetHit(false);
     isHit = false;
+  }
+
+  private void OnDestroy()
+  {
+    gameController.PlayerDeathEvent -= HandlePlayerDeath;
   }
 }
