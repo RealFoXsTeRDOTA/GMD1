@@ -16,7 +16,9 @@ public class PauseMenu : MonoBehaviour
 
     public void Resume()
     {
+        Debug.Log("resuming?");
         pauseMenuUI.SetActive(false);
+        input.ResumeEvent?.Invoke();
         Time.timeScale = 1f;
     }
     
@@ -28,10 +30,8 @@ public class PauseMenu : MonoBehaviour
     
     public void LoadMenu()
     {
-        Debug.Log("Ola");
         Time.timeScale = 1f;
         SceneManager.LoadScene("MenuScene");
-        Debug.Log("Loading Menu...");
     }
     
     public void QuitGame()

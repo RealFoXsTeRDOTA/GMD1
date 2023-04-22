@@ -73,6 +73,7 @@ public class InputReader : ScriptableObject, GameInput.IGameplayActions, GameInp
   {
     if (context.action.phase == InputActionPhase.Performed)
     {
+      Debug.Log("Resuming game...");
       ResumeEvent?.Invoke();
       StartGameplay();
     }
