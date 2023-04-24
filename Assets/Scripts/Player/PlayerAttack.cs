@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections;
 using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
@@ -24,7 +23,7 @@ public class PlayerAttack : MonoBehaviour
   private LayerMask enemyLayer;
 
   [Header("SFX")]
-  private AudioSource audioSource;
+  private AudioManager audioManager;
 
   [SerializeField]
   private AudioClip attackSoundEffect;
@@ -34,35 +33,38 @@ public class PlayerAttack : MonoBehaviour
   private SpriteRenderer attackSpriteRenderer;
   private Animator animator;
 
-    [SerializeField] private GameObject projectile;
-    [SerializeField] private Transform projectileSpawner;
-    [SerializeField] private float shootCooldown;
-    private float shootTime;
+  [SerializeField] private GameObject projectile;
+  [SerializeField] private Transform projectileSpawner;
+  [SerializeField] private float shootCooldown;
+  private float shootTime;
 
-    private void Start() {
-        input.AttackEvent += HandleAttack;
-        input.RangedAttackEvent += HandleRangedAttack;
-        animator = GetComponent<Animator>();
-        audioSource = GetComponent<AudioSource>();
-        attackSpriteRenderer = pointOfAttack.GetComponent<SpriteRenderer>();
-    }
-    
-    private void Update() {
-      shootTime += Time.deltaTime;
-    }
+  private void Start()
+  {
+    input.AttackEvent += HandleAttack;
+    input.RangedAttackEvent += HandleRangedAttack;
+    animator = GetComponent<Animator>();
+
+    audioManager = FindFirstObjectByType<AudioManager>();
+    attackSpriteRenderer = pointOfAttack.GetComponent<SpriteRenderer>();
+  }
+
+  private void Update()
+  {
+    shootTime += Time.deltaTime;
+  }
 
   private void HandleAttack()
   {
     if (Time.time < timeSinceLastAttack)
     {
-      audioSource.PlayOneShot(attackCooldownSoundEffect);
+      audioManager.Play(attackCooldownSoundEffect);
       return;
     }
 
     StartCoroutine(PlayAttackAnimation());
     var enemyCollidersHit = Physics2D.OverlapCircleAll(pointOfAttack.position, attackArea, enemyLayer);
     timeSinceLastAttack = Time.time + secondsPerAttack;
-    audioSource.PlayOneShot(attackSoundEffect);
+    audioManager.Play(attackSoundEffect);
 
     foreach (var collider in enemyCollidersHit)
     {
@@ -71,8 +73,10 @@ public class PlayerAttack : MonoBehaviour
         continue;
       }
 
-      var healthComponent = collider.GetComponent<EnemyHealth>();
-      healthComponent.TakeDamage(attackDamage);
+      if (collider.TryGetComponent<EnemyHealth>(out var healthComponent))
+      {
+        healthComponent.TakeDamage(attackDamage);
+      }
     }
   }
 
@@ -88,24 +92,28 @@ public class PlayerAttack : MonoBehaviour
     Gizmos.DrawWireSphere(pointOfAttack.position, attackArea);
   }
 
-  private void OnDestroy() {
-        input.AttackEvent -= HandleAttack;
-        input.RangedAttackEvent -= HandleRangedAttack; 
-    }
+  private void OnDestroy()
+  {
+    input.AttackEvent -= HandleAttack;
+    input.RangedAttackEvent -= HandleRangedAttack;
+  }
 
-    /// <summary>
-    /// only allow to shoot projectiles at an interval of time away from each other
-    /// </summary>
-    private void HandleRangedAttack() {
-        if (shootTime >= shootCooldown) {
-            FireProjectile();
-            shootTime = 0;
-        }
+  /// <summary>
+  /// only allow to shoot projectiles at an interval of time away from each other
+  /// </summary>
+  private void HandleRangedAttack()
+  {
+    if (shootTime >= shootCooldown)
+    {
+      FireProjectile();
+      shootTime = 0;
     }
-    /// <summary>
-    /// instantiate projectile at the position of a child transform on the player and the rotation of the player
-    /// </summary>
-    private void FireProjectile() {
-        Instantiate(projectile, projectileSpawner.position, transform.rotation);
-    }
+  }
+  /// <summary>
+  /// instantiate projectile at the position of a child transform on the player and the rotation of the player
+  /// </summary>
+  private void FireProjectile()
+  {
+    Instantiate(projectile, projectileSpawner.position, transform.rotation);
+  }
 }

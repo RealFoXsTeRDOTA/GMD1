@@ -30,14 +30,14 @@ public class PlayerController : MonoBehaviour
   private bool isDashing;
 
   [Header("SFX")]
-  private AudioSource audioSource;
+  private AudioManager audioManager;
 
   [SerializeField]
   private AudioClip dashSoundEffect;
 
   [SerializeField]
   private AudioClip dashCooldownSoundEffect;
-  private ParticleSystem dashParticles;
+  private TrailRenderer dashEffect;
 
   private void Start()
   {
@@ -46,8 +46,8 @@ public class PlayerController : MonoBehaviour
     input.DashEvent += HandleDash;
 
     body = GetComponent<Rigidbody2D>();
-    audioSource = GetComponent<AudioSource>();
-    dashParticles = GetComponentInChildren<ParticleSystem>();
+    audioManager = FindFirstObjectByType<AudioManager>();
+    dashEffect = GetComponentInChildren<TrailRenderer>();
     faceDirection = Vector2.right;
     FlipCharacter();
   }
@@ -118,7 +118,7 @@ public class PlayerController : MonoBehaviour
     }
     else
     {
-      audioSource.PlayOneShot(dashCooldownSoundEffect);
+      audioManager.Play(dashCooldownSoundEffect);
     }
   }
 
@@ -129,13 +129,14 @@ public class PlayerController : MonoBehaviour
     var gravity = body.gravityScale;
     body.gravityScale = 0f;
     body.AddForce(faceDirection * dashForce, ForceMode2D.Impulse);
-    audioSource.PlayOneShot(dashSoundEffect);
-    dashParticles.Play();
+    audioManager.Play(dashSoundEffect);
+    dashEffect.enabled = true;
 
     yield return new WaitForSeconds(dashTime);
 
     body.gravityScale = gravity;
     isDashing = false;
+    dashEffect.enabled = false;
 
     yield return new WaitForSeconds(dashCooldown);
 

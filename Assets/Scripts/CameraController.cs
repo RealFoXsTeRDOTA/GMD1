@@ -9,7 +9,6 @@ public class CameraController : MonoBehaviour
   {
     objectToFollow = GameObject.FindGameObjectWithTag("Player");
     offset = Vector3.back * 10;
-    DontDestroyOnLoad(gameObject);
   }
 
   void LateUpdate()
