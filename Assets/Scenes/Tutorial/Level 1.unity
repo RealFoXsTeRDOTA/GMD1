@@ -436,7 +436,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: I can use "up arrow" to jump
+  m_text: ' use "up arrow" to jump'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 155054b5878f746f78fa831a699f68e5, type: 2}
   m_sharedMaterial: {fileID: -8246768349602916369, guid: 155054b5878f746f78fa831a699f68e5, type: 2}
@@ -1192,7 +1192,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: And I should avoid certain objects
+  m_text: avoid certain objects to not take damage
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 155054b5878f746f78fa831a699f68e5, type: 2}
   m_sharedMaterial: {fileID: -8246768349602916369, guid: 155054b5878f746f78fa831a699f68e5, type: 2}
@@ -1323,8 +1323,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 58.42, y: 4.16}
-  m_SizeDelta: {x: 3.4139, y: 1.0822}
+  m_AnchoredPosition: {x: 59.0511, y: 4.0659}
+  m_SizeDelta: {x: 4.676, y: 1.2704}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1954870369
 GameObject:
