@@ -37,6 +37,15 @@ public class GameController : MonoBehaviour
     if (CurrentPlayerHealth == 0)
     {
       PlayerDeathEvent?.Invoke();
+      {
+        var savedData = GameSaver.LoadData();
+        FindFirstObjectByType<SceneLoader>().LoadScene(savedData.Level);
+        var gameController = GameObject.FindGameObjectWithTag("GameController")
+          .GetComponent<GameController>();
+        gameController.GiveHealth(gameController.MaxPlayerHealth);
+        gameController.SetScore(savedData.Collectibles);
+      }
+      
     }
   }
 

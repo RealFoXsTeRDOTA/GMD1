@@ -13,8 +13,8 @@ public static class GameSaver
         
         var saveData = new SaveData()
         {
-            level = level,
-            collectibles = collectibles
+            Level = level,
+            Collectibles = collectibles
         };
         formatter.Serialize(stream, saveData);
         stream.Close();
@@ -34,8 +34,8 @@ public static class GameSaver
 
         return new SaveData()
         {
-            level = "Scenes/Tutorial/Level 0",
-            collectibles = 0
+            Level = "Scenes/Tutorial/Level 0",
+            Collectibles = 0
         };
     }
 }

@@ -14,12 +14,12 @@ public class MainMenu : MonoBehaviour
   public void Continue()
   {
     var savedData = GameSaver.LoadData();
-    SceneManager.LoadScene(savedData.level);
+    SceneManager.LoadScene(savedData.Level);
     
     var gameController = GameObject.FindGameObjectWithTag("GameController")
       .GetComponent<GameController>();
     gameController.GiveHealth(gameController.MaxPlayerHealth);
-    gameController.SetScore(savedData.collectibles);
+    gameController.SetScore(savedData.Collectibles);
   }
 
   public void QuitGame()
