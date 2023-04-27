@@ -16,7 +16,6 @@ public static class GameSaver
             level = level,
             collectibles = collectibles
         };
-        Debug.Log(saveData.ToString());
         formatter.Serialize(stream, saveData);
         stream.Close();
     }

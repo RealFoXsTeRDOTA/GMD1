@@ -43,6 +43,10 @@ public class GameController : MonoBehaviour
   public void GiveHealth(int health)
   {
     CurrentPlayerHealth += health;
+    if (CurrentPlayerHealth > MaxPlayerHealth)
+    {
+      CurrentPlayerHealth = MaxPlayerHealth;
+    }
     HealthChangedEvent?.Invoke(CurrentPlayerHealth);
   }
 }
