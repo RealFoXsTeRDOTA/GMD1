@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Health : MonoBehaviour
 {
@@ -40,6 +41,16 @@ public class Health : MonoBehaviour
       {
         audioManager.Play(damageSoundEffect);
         StartCoroutine(BecomeTemporarilyInvincible());
+      }
+      else
+      {
+        var savedData = GameSaver.LoadData();
+        SceneManager.LoadScene(savedData.level);
+        
+        var gameController = GameObject.FindGameObjectWithTag("GameController")
+          .GetComponent<GameController>();
+        gameController.GiveHealth(gameController.MaxPlayerHealth);
+        gameController.SetScore(savedData.collectibles);
       }
     }
   }

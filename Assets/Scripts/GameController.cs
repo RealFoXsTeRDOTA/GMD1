@@ -22,6 +22,12 @@ public class GameController : MonoBehaviour
     Score++;
     ScoreChangedEvent?.Invoke(Score);
   }
+  
+  public void SetScore(int score)
+  {
+    Score = score;
+    ScoreChangedEvent?.Invoke(Score);
+  }
 
   public void TakeDamage(int damage)
   {
