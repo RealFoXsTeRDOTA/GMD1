@@ -5308,7 +5308,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: I can use "Left Shift" to get a speedboost
+  m_text: use "Left Shift" to get a speedboost
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 155054b5878f746f78fa831a699f68e5, type: 2}
   m_sharedMaterial: {fileID: -8246768349602916369, guid: 155054b5878f746f78fa831a699f68e5, type: 2}
@@ -5439,7 +5439,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 27.46, y: -3.6}
+  m_AnchoredPosition: {x: 17.07, y: 2.57}
   m_SizeDelta: {x: 2.9881, y: 1.4238}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &1791878422
