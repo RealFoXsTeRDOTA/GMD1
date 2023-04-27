@@ -10,7 +10,7 @@ public class PauseMenu : MonoBehaviour
   [SerializeField]
   private InputReader input;
 
-  public static event Action ResumeClickedEvent;
+  public event Action ResumeClickedEvent;
 
   private void Start()
   {
@@ -33,16 +33,13 @@ public class PauseMenu : MonoBehaviour
 
   public void LoadMenu()
   {
-    Debug.Log("Ola");
     Time.timeScale = 1f;
     ResumeClickedEvent?.Invoke();
-    SceneManager.LoadScene("MenuScene");
-    Debug.Log("Loading Menu...");
+    SceneManager.LoadScene(0);
   }
 
   public void QuitGame()
   {
-    Debug.Log("Quitting Game...");
     Application.Quit();
   }
 

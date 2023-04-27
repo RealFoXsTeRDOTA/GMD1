@@ -7,13 +7,12 @@ public class LavaTile : MonoBehaviour, IEnterExitTile, IStayTile
   private ParticleSystem fireParticleSystem;
   private bool floorIsLava;
 
+  [SerializeField]
+  private float damageInterval = 1;
+
   private void Start()
   {
     fireParticleSystem = GetComponentInChildren<ParticleSystem>();
-    if (fireParticleSystem != null)
-    {
-      fireParticleSystem.Stop();
-    }
   }
 
   public void OnEnter(PlayerController playerController)
@@ -43,7 +42,7 @@ public class LavaTile : MonoBehaviour, IEnterExitTile, IStayTile
     while (floorIsLava)
     {
       health.TakeDamage(1);
-      yield return new WaitForSeconds(2f);
+      yield return new WaitForSeconds(damageInterval);
     }
   }
 }

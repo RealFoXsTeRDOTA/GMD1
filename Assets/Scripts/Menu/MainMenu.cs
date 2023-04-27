@@ -3,16 +3,13 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-  private const string startScene = "Scenes/Tutorial/Level 0";
-
   public void PlayGame()
   {
-    SceneManager.LoadScene(startScene);
+    SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
   }
 
   public void QuitGame()
   {
-    Debug.Log("Quitting Game...");
     Application.Quit();
   }
 }
