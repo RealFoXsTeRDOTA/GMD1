@@ -9,7 +9,6 @@ public class GameController : MonoBehaviour
 
   public event Action<int> ScoreChangedEvent;
   public event Action<int> HealthChangedEvent;
-  public Action PlayerRespawnEvent;
   public Action PlayerDeathEvent;
 
   private void Awake()

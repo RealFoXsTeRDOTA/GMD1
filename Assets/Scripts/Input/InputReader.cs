@@ -30,7 +30,6 @@ public class InputReader : MonoBehaviour, IGameplayActions, IUIActions
 
     pauseMenu.ResumeClickedEvent += StartGameplay;
     gameController.PlayerDeathEvent += PauseGameplay;
-    gameController.PlayerRespawnEvent += StartGameplay;
 
     StartGameplay();
   }
@@ -106,6 +105,5 @@ public class InputReader : MonoBehaviour, IGameplayActions, IUIActions
   {
     pauseMenu.ResumeClickedEvent -= StartGameplay;
     gameController.PlayerDeathEvent -= PauseGameplay;
-    gameController.PlayerRespawnEvent -= StartGameplay;
   }
 }
