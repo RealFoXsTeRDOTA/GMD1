@@ -22,6 +22,12 @@ public class GameController : MonoBehaviour
     Score++;
     ScoreChangedEvent?.Invoke(Score);
   }
+  
+  public void SetScore(int score)
+  {
+    Score = score;
+    ScoreChangedEvent?.Invoke(Score);
+  }
 
   public void TakeDamage(int damage)
   {
@@ -31,12 +37,25 @@ public class GameController : MonoBehaviour
     if (CurrentPlayerHealth == 0)
     {
       PlayerDeathEvent?.Invoke();
+      {
+        var savedData = GameSaver.LoadData();
+        FindFirstObjectByType<SceneLoader>().LoadScene(savedData.Level);
+        var gameController = GameObject.FindGameObjectWithTag("GameController")
+          .GetComponent<GameController>();
+        gameController.GiveHealth(gameController.MaxPlayerHealth);
+        gameController.SetScore(savedData.Collectibles);
+      }
+      
     }
   }
 
   public void GiveHealth(int health)
   {
     CurrentPlayerHealth += health;
+    if (CurrentPlayerHealth > MaxPlayerHealth)
+    {
+      CurrentPlayerHealth = MaxPlayerHealth;
+    }
     HealthChangedEvent?.Invoke(CurrentPlayerHealth);
   }
 }

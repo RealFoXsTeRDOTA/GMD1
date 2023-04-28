@@ -3,9 +3,22 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-  public void PlayGame()
+  public void NewGame()
   {
-    SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
+    var currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+    GameSaver.SaveData(currentSceneIndex, 0);
+    SceneManager.LoadSceneAsync(currentSceneIndex + 1);
+  }
+
+  public void Continue()
+  {
+    var savedData = GameSaver.LoadData();
+    SceneManager.LoadScene(savedData.Level);
+
+    var gameController = GameObject.FindGameObjectWithTag("GameController")
+      .GetComponent<GameController>();
+    gameController.GiveHealth(gameController.MaxPlayerHealth);
+    gameController.SetScore(savedData.Collectibles);
   }
 
   public void QuitGame()
