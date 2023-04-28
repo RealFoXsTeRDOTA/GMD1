@@ -21,7 +21,7 @@ public class SceneLoader : MonoBehaviour
     animator.SetTrigger(triggerName);
   }
 
-  public void OnFadeComplete()
+  protected void OnFadeComplete()
   {
     SceneManager.LoadSceneAsync(sceneIndexToLoad);
   }

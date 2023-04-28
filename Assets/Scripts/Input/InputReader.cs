@@ -9,14 +9,13 @@ public class InputReader : MonoBehaviour, IGameplayActions, IUIActions
   private GameInput gameInput;
   private PauseMenu pauseMenu;
   private GameController gameController;
-
-  public Action<Vector2> MoveEvent;
-  public Action AttackEvent;
-  public Action JumpEvent;
-  public Action PauseEvent;
-  public Action ResumeEvent;
-  public Action DashEvent;
-  public Action RangedAttackEvent;
+  public event Action<Vector2> MoveEvent;
+  public event Action AttackEvent;
+  public event Action JumpEvent;
+  public event Action PauseEvent;
+  public event Action ResumeEvent;
+  public event Action DashEvent;
+  public event Action RangedAttackEvent;
 
   private void Awake()
   {
@@ -24,12 +23,11 @@ public class InputReader : MonoBehaviour, IGameplayActions, IUIActions
     gameInput.Gameplay.SetCallbacks(this);
     gameInput.UI.SetCallbacks(this);
 
-    gameController = GameObject.FindGameObjectWithTag("GameController")
-                               .GetComponent<GameController>();
     pauseMenu = FindFirstObjectByType<PauseMenu>();
-
+    gameController = FindAnyObjectByType<GameController>();
     pauseMenu.ResumeClickedEvent += StartGameplay;
     gameController.PlayerDeathEvent += PauseGameplay;
+    gameController.PlayerRespawnEvent += StartGameplay;
 
     StartGameplay();
   }
@@ -105,5 +103,6 @@ public class InputReader : MonoBehaviour, IGameplayActions, IUIActions
   {
     pauseMenu.ResumeClickedEvent -= StartGameplay;
     gameController.PlayerDeathEvent -= PauseGameplay;
+    gameController.PlayerRespawnEvent -= StartGameplay;
   }
 }
