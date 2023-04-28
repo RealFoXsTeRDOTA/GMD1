@@ -13,7 +13,7 @@ public class MainMenu : MonoBehaviour
   public void Continue()
   {
     var savedData = GameSaver.LoadData();
-    SceneManager.LoadScene(savedData.Level);
+    SceneManager.LoadSceneAsync(savedData.Level);
 
     var gameController = GameObject.FindGameObjectWithTag("GameController")
       .GetComponent<GameController>();
