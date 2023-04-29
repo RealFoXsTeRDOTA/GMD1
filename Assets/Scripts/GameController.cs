@@ -1,4 +1,6 @@
+using DefaultNamespace;
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class GameController : MonoBehaviour
@@ -37,13 +39,18 @@ public class GameController : MonoBehaviour
 		if (CurrentPlayerHealth <= 0)
 		{
 			PlayerDeathEvent?.Invoke();
-
 			var savedData = GameSaver.LoadData();
 			FindFirstObjectByType<SceneLoader>().LoadScene(savedData.Level);
-			GiveHealth(MaxPlayerHealth);
-			SetScore(savedData.Collectibles);
-			PlayerRespawnEvent?.Invoke();
+			StartCoroutine(RespawnPlayer(savedData));
 		}
+	}
+
+	private IEnumerator RespawnPlayer(SaveData savedData)
+	{
+		yield return new WaitForSeconds(1.5f);
+		GiveHealth(MaxPlayerHealth);
+		SetScore(savedData.Collectibles);
+		PlayerRespawnEvent?.Invoke();
 	}
 
 	public void GiveHealth(int health)
