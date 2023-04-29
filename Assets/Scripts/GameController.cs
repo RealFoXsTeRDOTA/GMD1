@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
+	private static GameController instance;
 	public int MaxPlayerHealth { get; } = 9;
 	public int CurrentPlayerHealth { get; private set; }
 	public int Score { get; private set; } = 0;
@@ -16,7 +17,18 @@ public class GameController : MonoBehaviour
 
 	private void Awake()
 	{
-		CurrentPlayerHealth = MaxPlayerHealth;
+		if (instance != null && instance != this)
+		{
+			Destroy(gameObject);
+			return;
+		}
+		else
+		{
+			instance = this;
+			CurrentPlayerHealth = MaxPlayerHealth;
+		}
+
+		DontDestroyOnLoad(gameObject);
 	}
 
 	public void IncreaseScore()
