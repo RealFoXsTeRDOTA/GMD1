@@ -13,8 +13,7 @@ public class CheckpointController : MonoBehaviour
       return;
     }
 
-    var gameController = GameObject.FindGameObjectWithTag("GameController")
-        .GetComponent<GameController>();
+    var gameController = FindFirstObjectByType<GameController>();
     gameController.GiveHealth(gameController.MaxPlayerHealth);
     GameSaver.SaveData(SceneManager.GetActiveScene().buildIndex, gameController.Score);
     FindFirstObjectByType<AudioManager>().Play(saveSound);
