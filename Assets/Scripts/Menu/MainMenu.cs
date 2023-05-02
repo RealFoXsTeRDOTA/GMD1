@@ -6,7 +6,7 @@ public class MainMenu : MonoBehaviour
   public void NewGame()
   {
     var currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-    GameSaver.SaveData(currentSceneIndex + 2, 0);
+    GameSaver.SaveData(currentSceneIndex + 1, 0);
     SceneManager.LoadSceneAsync(currentSceneIndex + 1);
   }
 
@@ -15,8 +15,7 @@ public class MainMenu : MonoBehaviour
     var savedData = GameSaver.LoadData();
     SceneManager.LoadSceneAsync(savedData.Level);
 
-    var gameController = GameObject.FindGameObjectWithTag("GameController")
-      .GetComponent<GameController>();
+    var gameController = FindFirstObjectByType<GameController>();
     gameController.GiveHealth(gameController.MaxPlayerHealth);
     gameController.SetScore(savedData.Collectibles);
   }
