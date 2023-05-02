@@ -2,18 +2,28 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-  private AudioSource backgroundMusic;
-  private AudioSource soundEffects;
+	private static AudioManager instance;
+	private AudioSource soundEffects;
 
-  private void Awake()
-  {
-    var audioSources = GetComponents<AudioSource>();
-    backgroundMusic = audioSources[0];
-    soundEffects = audioSources[1];
-  }
+	private void Awake()
+	{
+		if (instance != null && instance != this)
+		{
+			Destroy(gameObject);
+			return;
+		}
+		else
+		{
+			instance = this;
+			var audioSources = GetComponents<AudioSource>();
+			soundEffects = audioSources[1];
+		}
 
-  public void Play(AudioClip audio)
-  {
-    soundEffects.PlayOneShot(audio);
-  }
+		DontDestroyOnLoad(gameObject);
+	}
+
+	public void Play(AudioClip audio)
+	{
+		soundEffects.PlayOneShot(audio);
+	}
 }

@@ -1,5 +1,49 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &451300763641620196
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6810803677873404874}
+  - component: {fileID: 2379216695503500364}
+  m_Layer: 0
+  m_Name: InputReader
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6810803677873404874
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 451300763641620196}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8425946871584341031}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2379216695503500364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 451300763641620196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f1ff9c4f59482b43a8e8f1a5bb8cfde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8425946871584341028
 GameObject:
   m_ObjectHideFlags: 0
@@ -33,6 +77,7 @@ Transform:
   - {fileID: 3779319851176636018}
   - {fileID: 4145945675089020693}
   - {fileID: 8425946873357491166}
+  - {fileID: 6810803677873404874}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -184,6 +229,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 8425946871584341031}
     m_Modifications:
     - target: {fileID: 2674014219431994730, guid: c814ddaeaad7a7b49bee19d4c7c4e75e, type: 3}
+      propertyPath: input
+      value: 
+      objectReference: {fileID: 2379216695503500364}
+    - target: {fileID: 2674014219431994730, guid: c814ddaeaad7a7b49bee19d4c7c4e75e, type: 3}
       propertyPath: attackSprite
       value: 
       objectReference: {fileID: 2054620122947430415, guid: df1266a5ed6d6284fbf8eaac9106ada9, type: 3}
@@ -199,6 +248,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 5754372936219262146, guid: c814ddaeaad7a7b49bee19d4c7c4e75e, type: 3}
+      propertyPath: input
+      value: 
+      objectReference: {fileID: 2379216695503500364}
     - target: {fileID: 8781862402227235263, guid: c814ddaeaad7a7b49bee19d4c7c4e75e, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -257,6 +310,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8425946871584341031}
     m_Modifications:
+    - target: {fileID: 6254762174552747832, guid: 50b8a1a3abdb09646a1792ddd2f70193, type: 3}
+      propertyPath: input
+      value: 
+      objectReference: {fileID: 2379216695503500364}
     - target: {fileID: 6319546554340226143, guid: 50b8a1a3abdb09646a1792ddd2f70193, type: 3}
       propertyPath: m_Name
       value: SceneLoader
