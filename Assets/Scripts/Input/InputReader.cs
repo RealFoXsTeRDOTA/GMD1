@@ -1,32 +1,35 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static GameInput;
+using static UnityEngine.InputSystem.InputAction;
 
-[CreateAssetMenu(menuName = "InputReader")]
-public class InputReader : ScriptableObject, GameInput.IGameplayActions, GameInput.IUIActions
+public class InputReader : MonoBehaviour, IGameplayActions, IUIActions
 {
   private GameInput gameInput;
+  private PauseMenu pauseMenu;
+  private GameController gameController;
+  public event Action<Vector2> MoveEvent;
+  public event Action AttackEvent;
+  public event Action JumpEvent;
+  public event Action PauseEvent;
+  public event Action ResumeEvent;
+  public event Action DashEvent;
+  public event Action RangedAttackEvent;
 
-  public Action<Vector2> MoveEvent;
-  public Action AttackEvent;
-  public Action JumpEvent;
-  public Action PauseEvent;
-  public Action ResumeEvent;
-  public Action DashEvent;
-  public Action RangedAttackEvent;
-
-  private void OnEnable()
+  private void Awake()
   {
-    if (gameInput == null)
-    {
-      gameInput = new GameInput();
-      gameInput.Gameplay.SetCallbacks(this);
-      gameInput.UI.SetCallbacks(this);
+    gameInput = new GameInput();
+    gameInput.Gameplay.SetCallbacks(this);
+    gameInput.UI.SetCallbacks(this);
 
-      PauseMenu.ResumeClickedEvent += StartGameplay;
+    pauseMenu = FindFirstObjectByType<PauseMenu>();
+    gameController = FindAnyObjectByType<GameController>();
+    pauseMenu.ResumeClickedEvent += StartGameplay;
+    gameController.PlayerDeathEvent += PauseGameplay;
+    gameController.PlayerRespawnEvent += StartGameplay;
 
-      StartGameplay();
-    }
+    StartGameplay();
   }
 
   private void StartGameplay()
@@ -41,7 +44,7 @@ public class InputReader : ScriptableObject, GameInput.IGameplayActions, GameInp
     gameInput.UI.Enable();
   }
 
-  public void OnAttack(InputAction.CallbackContext context)
+  public void OnAttack(CallbackContext context)
   {
     if (context.action.phase == InputActionPhase.Performed)
     {
@@ -49,7 +52,7 @@ public class InputReader : ScriptableObject, GameInput.IGameplayActions, GameInp
     }
   }
 
-  public void OnJump(InputAction.CallbackContext context)
+  public void OnJump(CallbackContext context)
   {
     if (context.action.phase == InputActionPhase.Performed)
     {
@@ -57,12 +60,12 @@ public class InputReader : ScriptableObject, GameInput.IGameplayActions, GameInp
     }
   }
 
-  public void OnMove(InputAction.CallbackContext context)
+  public void OnMove(CallbackContext context)
   {
     MoveEvent?.Invoke(context.ReadValue<Vector2>());
   }
 
-  public void OnPause(InputAction.CallbackContext context)
+  public void OnPause(CallbackContext context)
   {
     if (context.action.phase == InputActionPhase.Performed)
     {
@@ -71,17 +74,16 @@ public class InputReader : ScriptableObject, GameInput.IGameplayActions, GameInp
     }
   }
 
-  public void OnResume(InputAction.CallbackContext context)
+  public void OnResume(CallbackContext context)
   {
     if (context.action.phase == InputActionPhase.Performed)
     {
-      Debug.Log("Resuming game...");
       ResumeEvent?.Invoke();
       StartGameplay();
     }
   }
 
-  public void OnDash(InputAction.CallbackContext context)
+  public void OnDash(CallbackContext context)
   {
     if (context.action.phase == InputActionPhase.Performed)
     {
@@ -89,7 +91,7 @@ public class InputReader : ScriptableObject, GameInput.IGameplayActions, GameInp
     }
   }
 
-  public void OnRangedAttack(InputAction.CallbackContext context)
+  public void OnRangedAttack(CallbackContext context)
   {
     if (context.action.phase == InputActionPhase.Performed)
     {
@@ -97,8 +99,10 @@ public class InputReader : ScriptableObject, GameInput.IGameplayActions, GameInp
     }
   }
 
-  private void OnDisable()
+  private void OnDestroy()
   {
-    PauseMenu.ResumeClickedEvent -= StartGameplay;
+    pauseMenu.ResumeClickedEvent -= StartGameplay;
+    gameController.PlayerDeathEvent -= PauseGameplay;
+    gameController.PlayerRespawnEvent -= StartGameplay;
   }
 }

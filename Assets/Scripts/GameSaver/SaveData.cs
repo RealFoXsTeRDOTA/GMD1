@@ -2,10 +2,10 @@
 
 namespace DefaultNamespace
 {
-    [Serializable]
-    public class SaveData
-    {
-        public string Level { get; set; } 
-        public int Collectibles { get; set; }
-    }
+  [Serializable]
+  public class SaveData
+  {
+    public int Level { get; set; }
+    public int Collectibles { get; set; }
+  }
 }

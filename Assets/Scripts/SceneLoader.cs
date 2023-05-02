@@ -5,17 +5,31 @@ public class SceneLoader : MonoBehaviour
 {
   [SerializeField]
   private Animator animator;
-  private string sceneToLoad;
 
-  public void LoadScene(string sceneName)
+  private int sceneIndexToLoad;
+  private const string triggerName = "FadeOut";
+  private bool isRespawn;
+
+  public void LoadNextScene()
   {
-    sceneToLoad = sceneName;
-    var triggerName = "FadeOut";
+    isRespawn = false;
+    sceneIndexToLoad = SceneManager.GetActiveScene().buildIndex + 1;
     animator.SetTrigger(triggerName);
   }
 
-  public void OnFadeComplete()
+  public void LoadScene(int sceneIndex)
   {
-    SceneManager.LoadScene(sceneToLoad);
+    isRespawn = true;
+    sceneIndexToLoad = sceneIndex;
+    animator.SetTrigger(triggerName);
+  }
+
+  protected void OnFadeComplete()
+  {
+    SceneManager.LoadSceneAsync(sceneIndexToLoad);
+    if (isRespawn)
+    {
+      FindAnyObjectByType<GameController>().RespawnPlayer();
+    }
   }
 }
