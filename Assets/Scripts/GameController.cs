@@ -57,7 +57,8 @@ public class GameController : MonoBehaviour
 
   public void RespawnPlayer()
   {
-    GiveHealth(MaxPlayerHealth);
+    CurrentPlayerHealth = MaxPlayerHealth;
+    HealthChangedEvent?.Invoke(CurrentPlayerHealth);
     PlayerRespawnEvent?.Invoke();
   }
 
