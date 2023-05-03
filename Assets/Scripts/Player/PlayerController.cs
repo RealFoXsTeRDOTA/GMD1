@@ -163,16 +163,16 @@ public class PlayerController : MonoBehaviour
     tile?.OnStay(this);
   }
   
-  private void OnTriggerEnter2D(Collider2D col)
-  {
-    if (col.CompareTag("Void"))
-    {
-      if (TryGetComponent<Health>(out var healthComponent))
-      {
-        healthComponent.TakeDamage(gameController.CurrentPlayerHealth);
-      }
-    }
-  }
+  // private void OnTriggerEnter2D(Collider2D col)
+  // {
+  //   if (col.CompareTag("Void"))
+  //   {
+  //     if (TryGetComponent<Health>(out var healthComponent))
+  //     {
+  //       healthComponent.TakeDamage(gameController.CurrentPlayerHealth);
+  //     }
+  //   }
+  // }
 
   private bool IsPlayerGrounded()
   {

@@ -26208,8 +26208,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1869224416}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 152.8, y: -10.8, z: 14.486654}
-  m_LocalScale: {x: 60, y: 0.88509, z: 0.88509}
+  m_LocalPosition: {x: 153, y: -14.8, z: 14.486654}
+  m_LocalScale: {x: 60, y: 10, z: 0.88509}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -26224,9 +26224,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1869224416}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f39fba9a1f6a43a59f5b650d1eebeb7, type: 3}
+  m_Script: {fileID: 11500000, guid: fad4d4fde5328f348825b34e1e12d55f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageOnHit: 9
+  secondsBetweenDamage: 1
 --- !u!1001 &1884707659
 PrefabInstance:
   m_ObjectHideFlags: 0
