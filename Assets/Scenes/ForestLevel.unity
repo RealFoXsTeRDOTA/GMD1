@@ -469,6 +469,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fire
       objectReference: {fileID: 0}
+    - target: {fileID: 7449293689791706008, guid: 25cf00a7b9bd44d61a81cfb59aa0877c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 25cf00a7b9bd44d61a81cfb59aa0877c, type: 3}
 --- !u!1001 &259852660
@@ -33323,6 +33327,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef911859948f6364ab7fdcab63dfe13e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageInterval: 1
 --- !u!66 &1942500255
 CompositeCollider2D:
   m_ObjectHideFlags: 0

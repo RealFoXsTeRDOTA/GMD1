@@ -1,18 +1,18 @@
 using System.Collections;
 using UnityEngine;
 
-public class Spike : MonoBehaviour
+public class DamageZone : MonoBehaviour
 {
   [SerializeField]
   private int damageOnHit = 1;
 
   [SerializeField]
   private float secondsBetweenDamage = 1f;
-  private bool isPlayerOnSpikes = false;
+  private bool isTargetOnDamageZone = false;
 
   private IEnumerator DamagePlayer(Health healthComponent)
   {
-    while (isPlayerOnSpikes)
+    while (isTargetOnDamageZone)
     {
       healthComponent.TakeDamage(damageOnHit);
       yield return new WaitForSeconds(secondsBetweenDamage);
@@ -26,7 +26,7 @@ public class Spike : MonoBehaviour
       return;
     }
 
-    isPlayerOnSpikes = true;
+    isTargetOnDamageZone = true;
     StartCoroutine(DamagePlayer(healthComponent));
   }
 
@@ -37,6 +37,6 @@ public class Spike : MonoBehaviour
       return;
     }
 
-    isPlayerOnSpikes = false;
+    isTargetOnDamageZone = false;
   }
 }
