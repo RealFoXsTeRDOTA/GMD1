@@ -24,7 +24,7 @@ public class InputReader : MonoBehaviour, IGameplayActions, IUIActions
     gameInput.UI.SetCallbacks(this);
 
     pauseMenu = FindFirstObjectByType<PauseMenu>();
-    gameController = FindAnyObjectByType<GameController>();
+    gameController = FindFirstObjectByType<GameController>();
     pauseMenu.ResumeClickedEvent += StartGameplay;
     gameController.PlayerDeathEvent += PauseGameplay;
     gameController.PlayerRespawnEvent += StartGameplay;

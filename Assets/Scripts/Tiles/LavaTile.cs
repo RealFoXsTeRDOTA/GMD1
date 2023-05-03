@@ -29,12 +29,12 @@ public class LavaTile : MonoBehaviour, IEnterExitTile, IStayTile
   public void OnExit(PlayerController playerController)
   {
     floorIsLava = false;
-    fireParticleSystem.Stop();
+    fireParticleSystem?.Stop();
   }
 
-  public void OnStay(PlayerController playerController)
-  {
-    fireParticleSystem.transform.position = playerController.transform.position;
+  public void OnStay(PlayerController playerController) {
+    if (fireParticleSystem != null)
+      fireParticleSystem.transform.position = playerController.transform.position;
   }
 
   private IEnumerator DamageOverTime(Health health)
