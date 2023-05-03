@@ -29,7 +29,7 @@ public class SceneLoader : MonoBehaviour
     SceneManager.LoadSceneAsync(sceneIndexToLoad);
     if (isRespawn)
     {
-      FindAnyObjectByType<GameController>().RespawnPlayer();
+      FindFirstObjectByType<GameController>().RespawnPlayer();
     }
   }
 }

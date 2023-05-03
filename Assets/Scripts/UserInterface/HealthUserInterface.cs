@@ -9,8 +9,7 @@ public class HealthUserInterface : MonoBehaviour
   private void Awake()
   {
     images = GetComponentsInChildren<Image>();
-    gameController = GameObject.FindGameObjectWithTag("GameController")
-                               .GetComponent<GameController>();
+    gameController = FindFirstObjectByType<GameController>();
     UpdateHealth(gameController.CurrentPlayerHealth);
     gameController.HealthChangedEvent += UpdateHealth;
   }
