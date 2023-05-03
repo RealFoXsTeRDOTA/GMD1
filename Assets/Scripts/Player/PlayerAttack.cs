@@ -31,7 +31,6 @@ public class PlayerAttack : MonoBehaviour
   [SerializeField]
   private AudioClip attackCooldownSoundEffect;
   private SpriteRenderer attackSpriteRenderer;
-  private Animator animator;
 
   [SerializeField] private GameObject projectile;
   [SerializeField] private Transform projectileSpawner;
@@ -42,7 +41,6 @@ public class PlayerAttack : MonoBehaviour
   {
     input.AttackEvent += HandleAttack;
     input.RangedAttackEvent += HandleRangedAttack;
-    animator = GetComponent<Animator>();
 
     audioManager = FindFirstObjectByType<AudioManager>();
     attackSpriteRenderer = pointOfAttack.GetComponent<SpriteRenderer>();

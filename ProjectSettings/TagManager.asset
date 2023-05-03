@@ -6,7 +6,6 @@ TagManager:
   tags:
   - Tile
   - Collectible
-  - SlipperySurface
   - Ground
   - Projectile
   - Enemy
