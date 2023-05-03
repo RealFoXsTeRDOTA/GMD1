@@ -9,6 +9,8 @@ public class LavaTile : MonoBehaviour, IEnterExitTile, IStayTile
 
   [SerializeField]
   private float damageInterval = 1;
+  [SerializeField]
+  private int damage = 1;
 
   private void Start()
   {
@@ -41,7 +43,7 @@ public class LavaTile : MonoBehaviour, IEnterExitTile, IStayTile
   {
     while (floorIsLava)
     {
-      health.TakeDamage(1);
+      health.TakeDamage(damage);
       yield return new WaitForSeconds(damageInterval);
     }
   }
