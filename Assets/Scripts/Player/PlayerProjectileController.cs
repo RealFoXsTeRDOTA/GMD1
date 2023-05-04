@@ -1,3 +1,5 @@
+using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerProjectileController : MonoBehaviour
@@ -24,15 +26,37 @@ public class PlayerProjectileController : MonoBehaviour
     {
       Physics2D.IgnoreCollision(other.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
     }
-
+  
     if (other.gameObject.TryGetComponent(out EnemyHealth enemyHealth))
     {
       enemyHealth.TakeDamage(1);
     }
 
+    if (other.gameObject.TryGetComponent(out BossHealthController bossHealth)) {
+      bossHealth.TakeDamage(1);
+    }
+  
     if (!other.gameObject.CompareTag("Player"))
     {
       Destroy(transform.gameObject);
     }
   }
+
+
+  // private void OnTriggerEnter2D(Collider2D other) {
+  //   if (other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Projectile"))
+  //   {
+  //     Physics2D.IgnoreCollision(other.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
+  //   }
+  //
+  //   if (other.gameObject.TryGetComponent(out EnemyHealth enemyHealth))
+  //   {
+  //     enemyHealth.TakeDamage(1);
+  //   }
+  //
+  //   if (!other.gameObject.CompareTag("Player"))
+  //   {
+  //     Destroy(transform.gameObject);
+  //   }
+  // }
 }
