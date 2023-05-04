@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
   private Rigidbody2D body;
-  private GameController gameController;
   public bool IsSlipperyMovement { get; set; }
 
   [Header("Movement settings")]
@@ -49,7 +48,6 @@ public class PlayerController : MonoBehaviour
     body = GetComponent<Rigidbody2D>();
     audioManager = FindFirstObjectByType<AudioManager>();
     dashEffect = GetComponentInChildren<TrailRenderer>();
-    gameController = FindObjectOfType<GameController>();
     faceDirection = Vector2.right;
     FlipCharacter();
   }
@@ -64,15 +62,6 @@ public class PlayerController : MonoBehaviour
     if (IsSlipperyMovement && IsPlayerGrounded())
     {
       body.AddForce(new Vector2(CurrentMoveDirection.x * moveSpeed, 0f));
-    }
-    else if (IsSlipperyMovement && !IsPlayerGrounded())
-    {
-      if (CurrentMoveDirection.x == 0f)
-      {
-        return;
-      }
-
-      body.velocity = new Vector2(CurrentMoveDirection.x * moveSpeed, body.velocity.y);
     }
     else
     {
@@ -162,17 +151,6 @@ public class PlayerController : MonoBehaviour
     var tile = collision.gameObject.GetComponent<IStayTile>();
     tile?.OnStay(this);
   }
-  
-  // private void OnTriggerEnter2D(Collider2D col)
-  // {
-  //   if (col.CompareTag("Void"))
-  //   {
-  //     if (TryGetComponent<Health>(out var healthComponent))
-  //     {
-  //       healthComponent.TakeDamage(gameController.CurrentPlayerHealth);
-  //     }
-  //   }
-  // }
 
   private bool IsPlayerGrounded()
   {
