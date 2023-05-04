@@ -9,11 +9,11 @@ EditorBuildSettings:
     path: Assets/Scenes/MenuScene/MenuScene.unity
     guid: 993b8a7363dac4181bc1a85cfff05949
   - enabled: 1
-    path: Assets/Scenes/Ice/Level 1.unity
-    guid: 222d2656c03d12e4d8ec337858c04f9f
-  - enabled: 1
     path: Assets/Scenes/Forest/Level 1.unity
     guid: 597318dad42574c85b83d81b2044ed1c
+  - enabled: 1
+    path: Assets/Scenes/Ice/Level 1.unity
+    guid: 222d2656c03d12e4d8ec337858c04f9f
   - enabled: 1
     path: Assets/Scenes/Ice/Level 2.unity
     guid: d86553bd68f2fb94991ee84e66898cd9

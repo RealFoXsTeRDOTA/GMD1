@@ -9,6 +9,8 @@ public class MovingTile : MonoBehaviour, IEnterExitTile
     private float speed = 2f;
     [SerializeField]
     private float moveDistance = 5f;
+    [SerializeField]
+    private bool rightFirst = true;
 
     private Vector3 startPosition;
 
@@ -19,8 +21,9 @@ public class MovingTile : MonoBehaviour, IEnterExitTile
 
     private void Update()
     {
+        float direction = rightFirst ? 1f : -1f;
         float newPosition = Mathf.PingPong(Time.time * speed, moveDistance);
-        transform.position = startPosition + Vector3.right * newPosition;
+        transform.position = startPosition + Vector3.right * (direction * newPosition);
     }
     
     public void OnEnter(PlayerController playerController)
