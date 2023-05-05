@@ -10,9 +10,7 @@ public class MouseCollectible : MonoBehaviour
     if (collision.CompareTag("Player"))
     {
       FindFirstObjectByType<AudioManager>().Play(collectiblePickUpSoundEffect);
-      var gameController = GameObject.FindGameObjectWithTag("GameController")
-                                     .GetComponent<GameController>();
-      gameController.IncreaseScore();
+      FindFirstObjectByType<GameController>().IncreaseScore();
       Destroy(gameObject);
     }
   }

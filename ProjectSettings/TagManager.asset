@@ -9,6 +9,9 @@ TagManager:
   - Ground
   - Projectile
   - Enemy
+  - Ice
+  - Lava
+  - Void
   layers:
   - Default
   - TransparentFX

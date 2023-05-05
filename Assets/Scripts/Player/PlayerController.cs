@@ -63,15 +63,6 @@ public class PlayerController : MonoBehaviour
     {
       body.AddForce(new Vector2(CurrentMoveDirection.x * moveSpeed, 0f));
     }
-    else if (IsSlipperyMovement && !IsPlayerGrounded())
-    {
-      if (CurrentMoveDirection.x == 0f)
-      {
-        return;
-      }
-
-      body.velocity = new Vector2(CurrentMoveDirection.x * moveSpeed, body.velocity.y);
-    }
     else
     {
       body.velocity = new Vector2(CurrentMoveDirection.x * moveSpeed, body.velocity.y);

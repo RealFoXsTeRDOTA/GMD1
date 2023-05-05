@@ -9,8 +9,7 @@ public class ScorerUserInterface : MonoBehaviour
   private void Start()
   {
     scoreText = GetComponentInChildren<TextMeshProUGUI>();
-    gameController = GameObject.FindGameObjectWithTag("GameController")
-                               .GetComponent<GameController>();
+    gameController = FindFirstObjectByType<GameController>();
 
     scoreText.text = gameController.Score.ToString();
     gameController.ScoreChangedEvent += UpdateScore;
