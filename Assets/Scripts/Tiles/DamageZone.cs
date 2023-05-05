@@ -25,7 +25,7 @@ public class DamageZone : MonoBehaviour
     {
       return;
     }
-
+    Debug.Log("entered damage zone");
     isTargetOnDamageZone = true;
     StartCoroutine(DamagePlayer(healthComponent));
   }
