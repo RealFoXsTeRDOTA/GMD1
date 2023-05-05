@@ -109,8 +109,7 @@ public class EnemyMovementController : MonoBehaviour {
     }
 
     private void FlipMovementDirection() {
-        var scale = transform.localScale;
-        transform.localScale = new Vector3(scale.x*-1, scale.y);
+        transform.Rotate(0,180f, 0);
         moveDirection.x *= -1;
     }
 }
