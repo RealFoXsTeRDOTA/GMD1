@@ -78,11 +78,11 @@ public class EnemyMovementController : MonoBehaviour {
     /// <param name="col"></param>
     private void OnCollisionEnter2D(Collision2D col) {
         if (moveUnrestricted) {
-            if (!(col.gameObject.CompareTag("Ground") || col.gameObject.CompareTag("Player"))) {
+            if (!(col.gameObject.CompareTag("Ground") )) {
                 FlipMovementDirection();
             }
         }
-        if (col.gameObject.CompareTag("Enemy")) {
+        if (col.gameObject.CompareTag("Enemy") || col.gameObject.CompareTag("Projectile") ||col.gameObject.CompareTag("Player")) {
             Physics2D.IgnoreCollision(col.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
         }
     }

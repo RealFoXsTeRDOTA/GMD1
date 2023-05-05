@@ -3051,6 +3051,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Portal
       objectReference: {fileID: 0}
+    - target: {fileID: 8527384314848224401, guid: bb1caaeade4e3b34587112b420dc286b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bb1caaeade4e3b34587112b420dc286b, type: 3}
 --- !u!1 &861942629 stripped
@@ -39569,6 +39573,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 197325201705833476, guid: 94eda7958abe7c14d83db8eebe1f6123, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.62
+      objectReference: {fileID: 0}
     - target: {fileID: 1338802558820949695, guid: 94eda7958abe7c14d83db8eebe1f6123, type: 3}
       propertyPath: ghost
       value: 
@@ -39601,6 +39609,14 @@ PrefabInstance:
       propertyPath: deathSoundEffect
       value: 
       objectReference: {fileID: 8300000, guid: 4e1ff8faed12a475eba9be0e46072269, type: 3}
+    - target: {fileID: 1465164755056969979, guid: 94eda7958abe7c14d83db8eebe1f6123, type: 3}
+      propertyPath: moveSpeed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1465164755056969979, guid: 94eda7958abe7c14d83db8eebe1f6123, type: 3}
+      propertyPath: tileNumber
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 2676252141040019678, guid: 94eda7958abe7c14d83db8eebe1f6123, type: 3}
       propertyPath: m_Name
       value: Boss
@@ -39657,13 +39673,29 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3961086608272605966, guid: 94eda7958abe7c14d83db8eebe1f6123, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3961086608272605966, guid: 94eda7958abe7c14d83db8eebe1f6123, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.77
+      objectReference: {fileID: 0}
     - target: {fileID: 5744953746316999409, guid: 94eda7958abe7c14d83db8eebe1f6123, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6668115053998775432, guid: 94eda7958abe7c14d83db8eebe1f6123, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -3.95
+      objectReference: {fileID: 0}
+    - target: {fileID: 6668115053998775432, guid: 94eda7958abe7c14d83db8eebe1f6123, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.36
+      objectReference: {fileID: 0}
     - target: {fileID: 8140695022434403156, guid: 94eda7958abe7c14d83db8eebe1f6123, type: 3}
       propertyPath: projectileFrequency
-      value: 2
+      value: 1.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 94eda7958abe7c14d83db8eebe1f6123, type: 3}
