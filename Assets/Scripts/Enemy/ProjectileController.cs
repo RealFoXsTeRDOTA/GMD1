@@ -9,12 +9,14 @@ public class ProjectileController : MonoBehaviour{
         projectile = GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player");
         MoveToTarget(player);
+        //destroy the projectile if it doesn't hit a the target
+        Destroy(gameObject, 4f);
     }
     /// <summary>
     /// Projectile will move to the position of where the target was when it was spawned
     /// </summary>
     /// <param name="target"></param>
-    public void MoveToTarget(GameObject target) {
+    private void MoveToTarget(GameObject target) {
         Vector3 direction = target.transform.position - transform.position;
         projectile.velocity = new Vector2(direction.x, direction.y).normalized * moveSpeed;
     }
