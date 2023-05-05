@@ -49,7 +49,6 @@ public class BossHealthController : MonoBehaviour {
         }
         else
         {
-            Debug.Log(currentHealth);
             SpawnGhost();
             SpawnSlime();
             UpdateBossHealth();
