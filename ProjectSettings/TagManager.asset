@@ -12,6 +12,7 @@ TagManager:
   - Ice
   - Lava
   - Void
+  - HealthBar
   layers:
   - Default
   - TransparentFX
