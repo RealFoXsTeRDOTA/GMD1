@@ -15,8 +15,6 @@ public class GameController : MonoBehaviour
 
   private void Awake()
   {
-    Debug.Log(null != instance);
-    Debug.Log(this != instance);
     if (instance != null && instance != this)
     {
       Destroy(gameObject);
