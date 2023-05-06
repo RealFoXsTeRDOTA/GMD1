@@ -21,15 +21,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Tutorial/Level 3.unity
     guid: 049362693c94b1c43a60dd92896fe06e
   - enabled: 1
-    path: Assets/Scenes/Ice/Level 1.unity
-    guid: 222d2656c03d12e4d8ec337858c04f9f
-  - enabled: 1
-    path: Assets/Scenes/Ice/Level 2.unity
-    guid: d86553bd68f2fb94991ee84e66898cd9
-  - enabled: 1
-    path: Assets/Scenes/Ice/Level 3.unity
-    guid: e565f39b303618047a237543d874a20e
-  - enabled: 1
     path: Assets/Scenes/Forest/Level 1.unity
     guid: 15fd7b54706b04c96a2e126611a67bc8
   - enabled: 1
@@ -38,6 +29,15 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Forest/Level 3.unity
     guid: 9d7fac6f1337f4579a8dcb290066bf08
+  - enabled: 1
+    path: Assets/Scenes/Ice/Level 1.unity
+    guid: 222d2656c03d12e4d8ec337858c04f9f
+  - enabled: 1
+    path: Assets/Scenes/Ice/Level 2.unity
+    guid: d86553bd68f2fb94991ee84e66898cd9
+  - enabled: 1
+    path: Assets/Scenes/Ice/Level 3.unity
+    guid: e565f39b303618047a237543d874a20e
   - enabled: 1
     path: Assets/Scenes/Cave Floor/Cave Level 1.unity
     guid: 90454378a36eb1240a59f5ae3c52eef4
