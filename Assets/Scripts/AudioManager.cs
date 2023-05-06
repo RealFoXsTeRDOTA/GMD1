@@ -37,15 +37,7 @@ public class AudioManager : MonoBehaviour
 
 	public void ToggleBossMusic()
 	{
-		if (backgroundMusic.clip == backgroundAudio)
-		{
-			backgroundMusic.clip = bossAudio;
-		}
-		else
-		{
-			backgroundMusic.clip = backgroundAudio;
-		}
-
+		backgroundMusic.clip = backgroundMusic.clip == backgroundAudio ? bossAudio : backgroundAudio;
 		backgroundMusic.Play();
 	}
 }
