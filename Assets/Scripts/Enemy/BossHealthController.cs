@@ -80,7 +80,7 @@ public class BossHealthController : MonoBehaviour, IEnemyHealth
   }
 
   /// <summary>
-  /// spawn ghost when there is less than 60% health
+  /// spawn ghost when there is less than 90% health
   /// </summary>
   private void SpawnGhost()
   {
