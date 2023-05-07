@@ -75,7 +75,7 @@ public class BossHealthController : MonoBehaviour {
     }
 
     /// <summary>
-    /// spawn ghost when there is less than 60% health
+    /// spawn ghost when there is less than 90% health
     /// </summary>
     private void SpawnGhost() {
         if (currentHealth <= maxHealth * 9 / 10 && !ghostSpawned) {
