@@ -3,10 +3,18 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+  private GameController gameController;
+
+  private void Awake()
+  {
+    gameController = FindFirstObjectByType<GameController>();
+  }
+
   public void NewGame()
   {
     var currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-    GameSaver.SaveData(currentSceneIndex + 1, 0);
+    gameController.SetScore(0);
+    GameSaver.SaveData(currentSceneIndex + 1, gameController.Score);
     SceneManager.LoadSceneAsync(currentSceneIndex + 1);
   }
 
@@ -14,8 +22,6 @@ public class MainMenu : MonoBehaviour
   {
     var savedData = GameSaver.LoadData();
     SceneManager.LoadSceneAsync(savedData.Level);
-
-    var gameController = FindFirstObjectByType<GameController>();
     gameController.GiveHealth(gameController.MaxPlayerHealth);
     gameController.SetScore(savedData.Collectibles);
   }

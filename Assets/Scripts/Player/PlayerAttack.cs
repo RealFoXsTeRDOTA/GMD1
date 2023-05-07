@@ -71,7 +71,7 @@ public class PlayerAttack : MonoBehaviour
         continue;
       }
 
-      if (collider.TryGetComponent<EnemyHealth>(out var healthComponent))
+      if (collider.TryGetComponent<IEnemyHealth>(out var healthComponent))
       {
         healthComponent.TakeDamage(attackDamage);
       }
